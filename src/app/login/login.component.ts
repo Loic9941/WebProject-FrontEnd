@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import {  } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import {  } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(private authService: AuthenticationService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -19,7 +21,17 @@ export class LoginComponent {
   }
 
   login() {
-    console.log(this.loginForm.value.email);
-    console.log(this.loginForm.value.password);
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe(
+        (response) => {
+          if(response.token){
+            sessionStorage.setItem("jwt", response.token);
+            this.router.navigate(["/"]);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
