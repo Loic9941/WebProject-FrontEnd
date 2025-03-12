@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow my-5">
+        <h4 class="card-header">Créer un compte</h4>
+        <div class="card-body">
+          <form [formGroup]="registerForm"  (ngSubmit)="register()">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                formControlName="email"
+                type="email"
+                id="email"
+                name="email"
+                class="form-control border"
+              />
+            </div>
+            <div>
+              @if(registerForm.get('email')?.invalid && registerForm.get('email')?.errors && registerForm.get('email')?.dirty || registerForm.get('email')?.touched){
+                @if(registerForm.get('email')?.hasError('required')){
+                  <small class="form-text text-danger">L'email est obligatoire</small>
+                }
+                @else if(registerForm.get('email')?.hasError('email')){
+                  <small class="form-text text-danger">L'email invalide</small>
+                }
+              }
+            </div>
+            <br />
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input
+                formControlName="password"
+                type="password"
+                id="password"
+                name="password"
+                class="form-control border"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              @if(registerForm.get('password')?.invalid && registerForm.get('password')?.errors && registerForm.get('password')?.dirty || registerForm.get('password')?.touched){
+                @if(registerForm.get('password')?.hasError('required')){
+                  <small class="form-text text-danger">Le mot de passe est obligatoire</small>
+                }
+                @else if(registerForm.get('password')?.hasError('minlength')){
+                  <small class="form-text text-danger">Le mot de passe doit contenir au moins 6 caractères</small>
+                }
+                @else if(registerForm.get('password')?.hasError('pattern')){
+                  <small class="form-text text-danger">Le mot de passe doit contenir au moins une lettre et un chiffre</small>
+                }
+                @else if(registerForm.get('password')?.hasError('maxlength')){
+                  <small class="form-text text-danger">Le mot de passe doit contenir au plus 20 caractères</small>
+                }
+              }
+            </div>
+            <br />
+            <div>
+                <label for="role">Rôle</label>
+
+                <select formControlName="role" class="form-control border">
+                    <option value="user">Utilisateur</option>
+                    <option value="admin">Administrateur</option>
+                </select>
+            </div>
+            <br />
+            <button
+              [disabled]="registerForm.invalid"
+              type="submit"
+              class="btn btn-outline-dark"
+              name="btn"
+            >
+              Créer un compte
+            </button>
+          </form>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+  </div>
+  
