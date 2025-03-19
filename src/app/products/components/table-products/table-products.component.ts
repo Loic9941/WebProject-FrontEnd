@@ -1,17 +1,11 @@
 import { Component } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
-import { ProductsService } from '../../services/products.service';
+import { ProductService } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
-
-interface Product {
-	id: number;
-  name: string;
-  price: number;
-}
+import { Product } from '../../interfaces/product';
 
 @Component({
 	selector: 'ngbd-table-basic',
-	imports: [DecimalPipe, RouterModule],
+	imports: [RouterModule],
 	templateUrl: './table-products.component.html',
 })
 export class TableProductsComponent {
@@ -19,12 +13,12 @@ export class TableProductsComponent {
   /**
    *
    */
-  constructor(private productsService: ProductsService) {
+  constructor(private productService: ProductService) {
   }
   products: Product[] = [];
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe((data) => {
+    this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
   }
