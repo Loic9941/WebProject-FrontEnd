@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environment';
+import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TableProductsService {
+export class ProductsService {
 
   private baseUrl = environment.API_ENDPOINT;
 
@@ -15,6 +15,10 @@ export class TableProductsService {
 
   getProducts():Observable<any> {
     return this.http.get(`${this.baseUrl}/Product`);
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/Product/${id}`);
   }
 
 }

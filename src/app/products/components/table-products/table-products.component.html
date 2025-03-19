@@ -1,4 +1,8 @@
 <div class="row justify-content-center">
+    <h1>Table des produits</h1>
+    <div class="text-end">
+        <button class="btn btn-success">Ajouter un produit</button>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -21,7 +25,20 @@
                         {{ country.name }}
                     </td>-->
                     <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
+                    <td>{{ product.price }} €</td>
+                    <td class="text-end">
+                        <button class="btn btn-warning me-2" 
+                            [routerLink]="['/products/edit', product.id]"
+                        >
+                            Voir
+                        </button>
+                        <button class="btn btn-warning me-2" 
+                            [routerLink]="['/products/edit', product.id]"
+                        >
+                            Modifier
+                        </button>
+                        <button class="btn btn-danger">Supprimer</button>
+                    </td>
                 </tr>
             }
         </tbody>
