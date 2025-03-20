@@ -17,15 +17,14 @@
             @for (product of products; track product.id; let i = $index) {
                 <tr>
                     <th scope="row">{{ i + 1 }}</th>
-                    <!--<td>
+                    <td >
                         <img
-                            [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-                            [alt]="'The flag of ' + country.name"
+                           *ngIf="product.image"
+                            [src]="'data:image/jpeg;base64,' + product.image"
                             class="me-2"
                             style="width: 20px"
                         />
-                        {{ country.name }}
-                    </td>-->
+                    </td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }} €</td>
                     <td class="text-end">

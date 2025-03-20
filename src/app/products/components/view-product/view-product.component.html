@@ -1,23 +1,44 @@
-<div class="container">
-    <h2>Voir le produit</h2>
-    <form>
-        <div class="mb-3">
-            <label for="name" class="form-label">Nom</label>
-            <input
-            type="text"
-            id="name"
-            class="form-control"
-            name="name"
-            />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow my-5">
+            <h4 class="card-header">Détails de l'article</h4>
+            <div class="card-body">
+                <div class="mb-3">
+                    <b><label for="name" class="form-label">Nom de l'article : </label></b>
+                    <p>{{ product.name }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="description" class="form-label">Description de l'article : </label></b>
+                    <p>{{ product.description }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="price" class="form-label">Prix de l'article : </label></b>
+                    <p>{{ product.price |currency:'€' }}</p>
+                </div>
+                
+                <div *ngIf="product.image " class="mt-3">
+                    <h6>photo :</h6>
+                    <img
+                        [src]="product.image"
+                        alt="Image du produit"
+                        class="img-thumbnail"
+                        style="max-width: 200px;"
+                    />
+                </div>
+            </div>
+            
+            
+            <div class="card-footer d-flex justify-content-between">
+                <button [routerLink]="['/products']" class="btn btn-secondary">
+                    Retour
+                </button>
+                <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                >
+                    Acheter
+                </button>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Prix</label>
-            <input
-            type="number"
-            id="price"
-            class="form-control"
-            name="price"
-            />
-        </div>
-    </form>
+    </div>
 </div>

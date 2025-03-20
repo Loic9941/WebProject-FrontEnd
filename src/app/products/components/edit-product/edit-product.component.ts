@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
 
 })
 export class EditProductComponent implements OnInit {
@@ -19,7 +19,7 @@ export class EditProductComponent implements OnInit {
     description: '',
     price: 0,
     image: undefined,
-    contactId: 0,
+    contactId: 1, //Fix Me Later
     id: 0,
   };
   selectedFile: File | null = null;
@@ -32,8 +32,17 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {    
     this.productId = +this.route.snapshot.paramMap.get('id')!;
+    if (this.productId) {
+      this.getProduct();
+    }
+  }
+
+  getProduct(): void {
     this.productService.getProductById(this.productId).subscribe((data) => {
       this.product = data;
+      if (this.product.image) {
+        this.product.image = 'data:image/jpeg;base64,' + this.product.image
+      }
     });
   }
 
@@ -46,13 +55,16 @@ export class EditProductComponent implements OnInit {
 
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
-        console.log('Selected file:', this.selectedFile);
       }
-
-      console.log('Form data ready to be sent:', formData);
-      this.productService.updateProduct(this.productId, formData).subscribe((data) => {
-        console.log('Product updated:', data);
-      });
+      if (this.productId) {
+        this.productService.updateProduct(this.productId, formData).subscribe((data) => {
+        });
+      }
+      else {
+        this.productService.addProduct(formData).subscribe((data) => {
+          //to do later
+        });
+      }
     }
   }
 
@@ -60,9 +72,11 @@ export class EditProductComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-      console.log('This Image : ', this.product.image);
-      console.log('Selected file: ', this.selectedFile);
-      this.product.image = this.selectedFile;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.product.image = reader.result as string; // Update product.image with the preview URL
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 }
