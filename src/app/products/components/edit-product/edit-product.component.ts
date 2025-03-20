@@ -4,12 +4,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink, ToastModule],
+  providers: [MessageService]
 
 })
 export class EditProductComponent implements OnInit {
@@ -26,7 +29,8 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private messageService: MessageService
   ) {
   }
 
@@ -58,11 +62,12 @@ export class EditProductComponent implements OnInit {
       }
       if (this.productId) {
         this.productService.updateProduct(this.productId, formData).subscribe((data) => {
+          this.showSuccess();
         });
       }
       else {
         this.productService.addProduct(formData).subscribe((data) => {
-          //to do later
+          this.showSuccess();
         });
       }
     }
@@ -78,5 +83,9 @@ export class EditProductComponent implements OnInit {
       };
       reader.readAsDataURL(this.selectedFile);
     }
+  }
+
+  showSuccess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Sauvegardé avec succès', life: 3000 });
   }
 }

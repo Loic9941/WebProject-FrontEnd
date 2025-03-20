@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
 	selector: 'ngbd-table-basic',
 	imports: [RouterModule, CommonModule],
