@@ -1,7 +1,8 @@
 export interface Product {
     id : number
     name : string;
-    description : string;
+    description? : string;
     price : number;
     contactId : number;
+    image : File | undefined;
 }

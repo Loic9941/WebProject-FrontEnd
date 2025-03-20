@@ -2,59 +2,59 @@
   <div class="col-md-6">
     <div class="card shadow my-5">
       <h4 class="card-header">Se connecter</h4>
-      <div class="card-body">
-        <form [formGroup]="loginForm"  (ngSubmit)="login()">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              formControlName="email"
-              type="email"
-              id="email"
-              name="email"
-              class="form-control border"
-            />
-          </div>
-          <div>
-            @if(loginForm.get('email')?.invalid && loginForm.get('email')?.errors && loginForm.get('email')?.dirty || loginForm.get('email')?.touched){
-              @if(loginForm.get('email')?.hasError('required')){
-                <small class="form-text text-danger">L'email est obligatoire</small>
+      <form [formGroup]="loginForm"  (ngSubmit)="login()">
+        <div class="card-body">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                formControlName="email"
+                type="email"
+                id="email"
+                name="email"
+                class="form-control border"
+              />
+            </div>
+            <div>
+              @if(loginForm.get('email')?.invalid && loginForm.get('email')?.errors && loginForm.get('email')?.dirty || loginForm.get('email')?.touched){
+                @if(loginForm.get('email')?.hasError('required')){
+                  <small class="form-text text-danger">L'email est obligatoire</small>
+                }
+                @else if(loginForm.get('email')?.hasError('email')){
+                  <small class="form-text text-danger">L'adresse email est invalide</small>
+                }
               }
-              @else if(loginForm.get('email')?.hasError('email')){
-                <small class="form-text text-danger">L'adresse email est invalide</small>
+            </div>
+            <br />
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input
+                formControlName="password"
+                type="password"
+                id="password"
+                name="password"
+                class="form-control border"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              @if(loginForm.get('password')?.invalid && loginForm.get('password')?.errors && loginForm.get('password')?.dirty || loginForm.get('password')?.touched){
+                @if(loginForm.get('password')?.hasError('required')){
+                  <small class="form-text text-danger">Le mot de passe est obligatoire</small>
+                }
               }
-            }
-          </div>
-          <br />
-          <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input
-              formControlName="password"
-              type="password"
-              id="password"
-              name="password"
-              class="form-control border"
-              autocomplete="off"
-            />
-          </div>
-          <div>
-            @if(loginForm.get('password')?.invalid && loginForm.get('password')?.errors && loginForm.get('password')?.dirty || loginForm.get('password')?.touched){
-              @if(loginForm.get('password')?.hasError('required')){
-                <small class="form-text text-danger">Le mot de passe est obligatoire</small>
-              }
-            }
-          </div>
-          <br />
+            </div>
+        </div>
+        <div class="card-footer">
           <button
-            [disabled]="loginForm.invalid"
-            type="submit"
-            class="btn btn-outline-dark"
-            name="btn"
-          >
-            Se connecter
+          [disabled]="loginForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+          name="btn"
+        >
+          Se connecter
           </button>
-        </form>
-      </div>
-      <div class="card-footer"></div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
