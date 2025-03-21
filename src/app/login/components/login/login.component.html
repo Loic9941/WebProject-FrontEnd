@@ -1,4 +1,5 @@
 <div class="row justify-content-center">
+  <p-toast />
   <div class="col-md-6">
     <div class="card shadow my-5">
       <h4 class="card-header">Se connecter</h4>
@@ -45,13 +46,14 @@
             </div>
         </div>
         <div class="card-footer">
-          <p-button
+          <button
           [disabled]="loginForm.invalid"
           type="submit"
           name="btn"
-          label ="Se connecter"
-          severity="primary"
-        />
+          class="btn btn-outline-success"
+        >
+        Se connecter
+        </button>
         </div>
       </form>
     </div>

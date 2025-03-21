@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from '../../shared/services/api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +11,23 @@ export class ProductService {
 
   private baseUrl = environment.API_ENDPOINT;
 
-  constructor(private http:HttpClient) {
+  constructor(private apiService:ApiService) {
   }
 
   getProducts():Observable<any> {
-    return this.http.get(`${this.baseUrl}/Product`);
+    return this.apiService.get(`Product`);
   }
 
   getProductById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Product/${id}`);
+    return this.apiService.get(`Product/${id}`);
   }
 
   updateProduct(id: number, product: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/Product/${id}`, product);
+    return this.apiService.putMedia(`Product/${id}`, product);
   }
 
   addProduct(product: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Product`, product);
+    return this.apiService.postMedia(`Product`, product);
   }
 
 }

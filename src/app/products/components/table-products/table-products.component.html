@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <h1>Table des produits</h1>
     <div class="text-end">
-        <button class="btn btn-success"  
+        <button class="btn btn-outline-success"  
             [routerLink]="['/products/edit']"
         >Ajouter un produit</button>
     </div>
@@ -28,17 +28,17 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }} €</td>
                     <td class="text-end">
-                        <button class="btn btn-primary me-2" 
+                        <button class="btn btn-outline-secondary me-2" 
                             [routerLink]="['/products/view', product.id]"
                         >
                             Voir
                         </button>
-                        <button class="btn btn-warning me-2" 
+                        <button class="btn btn-outline-secondary me-2" 
                             [routerLink]="['/products/edit', product.id]"
                         >
                             Modifier
                         </button>
-                        <button class="btn btn-danger">Supprimer</button>
+                        <button class="btn btn-outline-danger">Supprimer</button>
                     </td>
                 </tr>
             }

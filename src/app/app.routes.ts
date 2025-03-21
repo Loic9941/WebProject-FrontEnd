@@ -6,6 +6,7 @@ import { EditProductComponent } from './products/components/edit-product/edit-pr
 import { ViewProductComponent } from './products/components/view-product/view-product.component';
 
 export const routes: Routes = [
+    { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'products', component: TableProductsComponent },

@@ -3,18 +3,21 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import {  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
-import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, ButtonModule],
+  imports: [ReactiveFormsModule, ToastModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  providers: [MessageService]
 })
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(private authService: AuthenticationService, private router: Router, private messageService: MessageService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -27,11 +30,15 @@ export class LoginComponent {
         (response) => {
           if(response.token){
             sessionStorage.setItem("jwt", response.token);
-            this.router.navigate(["/"]);
+            this.router.navigate(["/products"]);
           }
         },
         (error) => {
-          console.log(error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erreur',
+            detail: 'Erreur lors de la connexion',
+          });
         }
       );
   }

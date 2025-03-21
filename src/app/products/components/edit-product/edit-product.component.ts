@@ -57,9 +57,9 @@ export class EditProductComponent implements OnInit {
       formData.append('description', this.product.description || '');
       formData.append('price', this.product.price.toString());
 
-      if (this.selectedFile) {
+      /*if (this.selectedFile) {
         formData.append('image', this.selectedFile);
-      }
+      }*/
       if (this.productId) {
         this.productService.updateProduct(this.productId, formData).subscribe((data) => {
           this.showSuccess();

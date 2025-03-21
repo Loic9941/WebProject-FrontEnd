@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
@@ -10,7 +9,7 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, ButtonModule, ToastModule],
+  imports: [ReactiveFormsModule, ToastModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   providers: [MessageService]

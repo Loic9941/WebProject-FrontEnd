@@ -10,5 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar-wrapper.component.css'
 })
 export class NavbarWrapperComponent {
-  isLoggedIn = false; //Fix me later
+  get isLoggedIn(): boolean {
+    return sessionStorage.getItem("jwt") ? true : false;
+  }
 }
