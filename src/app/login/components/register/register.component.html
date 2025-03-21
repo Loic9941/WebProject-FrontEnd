@@ -1,79 +1,117 @@
 <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow my-5">
-        <h4 class="card-header">Créer un compte</h4>
+  <p-toast />
+  <div class="col-md-6">
+    <div class="card shadow my-5">
+      <h4 class="card-header">Créer un compte</h4>        
+      <form [formGroup]="registerForm"  (ngSubmit)="register()">
         <div class="card-body">
-          <form [formGroup]="registerForm"  (ngSubmit)="register()">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                formControlName="email"
-                type="email"
-                id="email"
-                name="email"
-                class="form-control border"
-              />
-            </div>
-            <div>
-              @if(registerForm.get('email')?.invalid && registerForm.get('email')?.errors && registerForm.get('email')?.dirty || registerForm.get('email')?.touched){
-                @if(registerForm.get('email')?.hasError('required')){
-                  <small class="form-text text-danger">L'email est obligatoire</small>
-                }
-                @else if(registerForm.get('email')?.hasError('email')){
-                  <small class="form-text text-danger">L'adresse email est invalide</small>
-                }
+          <div class="form-group">
+            <label for="lastname">Nom</label>
+            <input
+              formControlName="lastname"
+              type="text"
+              id="lastname"
+              name="lastname"
+              class="form-control border"
+            />
+          </div>
+          <div>
+            @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.errors && registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched){
+              @if(registerForm.get('lastname')?.hasError('required')){
+                <small class="form-text text-danger">Le nom est obligatoire</small>
               }
-            </div>
-            <br />
-            <div class="form-group">
-              <label for="password">Mot de passe</label>
-              <input
-                formControlName="password"
-                type="password"
-                id="password"
-                name="password"
-                class="form-control border"
-                autocomplete="off"
-              />
-            </div>
-            <div>
-              @if(registerForm.get('password')?.invalid && registerForm.get('password')?.errors && registerForm.get('password')?.dirty || registerForm.get('password')?.touched){
-                @if(registerForm.get('password')?.hasError('required')){
-                  <small class="form-text text-danger">Le mot de passe est obligatoire</small>
-                }
-                @else if(registerForm.get('password')?.hasError('minlength')){
-                  <small class="form-text text-danger">Le mot de passe doit contenir au moins 6 caractères</small>
-                }
-                @else if(registerForm.get('password')?.hasError('pattern')){
-                  <small class="form-text text-danger">Le mot de passe doit contenir au moins une lettre et un chiffre</small>
-                }
-                @else if(registerForm.get('password')?.hasError('maxlength')){
-                  <small class="form-text text-danger">Le mot de passe doit contenir au plus 20 caractères</small>
-                }
+            }
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="firstname">Prénom</label>
+            <input
+              formControlName="firstname"
+              type="text"
+              id="firstname"
+              name="firstname"
+              class="form-control border"
+            />
+          </div>
+          <div>
+            @if(registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.errors && registerForm.get('firstname')?.dirty || registerForm.get('firstname')?.touched){
+              @if(registerForm.get('firstname')?.hasError('required')){
+                <small class="form-text text-danger">Le prénom est obligatoire</small>
               }
-            </div>
-            <br />
-            <div>
-                <label for="role">Rôle</label>
+            }
+          </div>
+          <br />
+          <div>
+            <label for="email">Email</label>
+            <input
+              formControlName="email"
+              type="email"
+              id="email"
+              name="email"
+              class="form-control border"
+            />
+          </div>
+          <div>
+            @if(registerForm.get('email')?.invalid && registerForm.get('email')?.errors && registerForm.get('email')?.dirty || registerForm.get('email')?.touched){
+              @if(registerForm.get('email')?.hasError('required')){
+                <small class="form-text text-danger">L'email est obligatoire</small>
+              }
+              @else if(registerForm.get('email')?.hasError('email')){
+                <small class="form-text text-danger">L'adresse email est invalide</small>
+              }
+            }
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input
+              formControlName="password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control border"
+              autocomplete="off"
+            />
+          </div>
+          <div>
+            @if(registerForm.get('password')?.invalid && registerForm.get('password')?.errors && registerForm.get('password')?.dirty || registerForm.get('password')?.touched){
+              @if(registerForm.get('password')?.hasError('required')){
+                <small class="form-text text-danger">Le mot de passe est obligatoire</small>
+              }
+              @else if(registerForm.get('password')?.hasError('minlength')){
+                <small class="form-text text-danger">Le mot de passe doit contenir au moins 6 caractères</small>
+              }
+              @else if(registerForm.get('password')?.hasError('pattern')){
+                <small class="form-text text-danger">Le mot de passe doit contenir au moins une lettre et un chiffre</small>
+              }
+              @else if(registerForm.get('password')?.hasError('maxlength')){
+                <small class="form-text text-danger">Le mot de passe doit contenir au plus 20 caractères</small>
+              }
+            }
+          </div>
+          <br />
+          <div>
+              <label for="role">Rôle</label>
 
-                <select formControlName="role" class="form-control border">
-                    <option value="user">Utilisateur</option>
-                    <option value="admin">Administrateur</option>
-                </select>
-            </div>
-            <br />
-            <button
-              [disabled]="registerForm.invalid"
-              type="submit"
-              class="btn btn-outline-dark"
-              name="btn"
-            >
-              Créer un compte
-            </button>
-          </form>
+              <select formControlName="role" class="form-control border">
+                  <option value="user">Artisan</option>
+                  <option value="customer">Client</option>
+                  <option value="Administrator">Administrateur</option>
+                  <option value="DeliveryPartner">Partenaire de livraison</option>
+              </select>
+          </div>
         </div>
-        <div class="card-footer"></div>
-      </div>
+        <div class="card-footer">
+          <p-button
+            [disabled]="registerForm.invalid"
+            type="submit"
+            name="btn"
+            label="Créer un compte"
+            severity="primary"
+          />
+        </div>
+      </form>
     </div>
   </div>
+</div>
   

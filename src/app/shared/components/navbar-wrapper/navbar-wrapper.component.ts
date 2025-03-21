@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar-wrapper.component.css'
 })
 export class NavbarWrapperComponent {
-  isLoggedIn = true; //Fix me later
+  isLoggedIn = false; //Fix me later
 }
