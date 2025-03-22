@@ -5,11 +5,12 @@ import { providePrimeNG } from 'primeng/config';
 import Nora from '@primeng/themes/nora';
 
 import { routes } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './shared/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(HttpClientModule), 
+    provideHttpClient(withInterceptors([authInterceptor])), 
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideAnimationsAsync(),

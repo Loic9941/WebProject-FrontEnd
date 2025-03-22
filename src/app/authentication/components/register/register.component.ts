@@ -18,7 +18,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
 
   constructor(
-    private authService : AuthenticationService,
+    private authenticationService : AuthenticationService,
     private router: Router, 
     private messageService: MessageService
   ) {
@@ -37,7 +37,7 @@ export class RegisterComponent {
   }
 
   register() {
-    this.authService.register(this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.role, this.registerForm.value.firstname, this.registerForm.value.lastname)
+    this.authenticationService.register(this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.role, this.registerForm.value.firstname, this.registerForm.value.lastname)
     .subscribe(
       (response) => {
         this.messageService.add({

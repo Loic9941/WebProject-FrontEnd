@@ -17,7 +17,7 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthenticationService, private router: Router, private messageService: MessageService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, private messageService: MessageService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -25,7 +25,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
+    this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         (response) => {
           if(response.token){
