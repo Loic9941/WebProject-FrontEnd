@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <h1>Utilisateurs</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of users; track user.id; let i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td >
+                        {{ user.email }}
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-secondary me-2" 
+                        >
+                            Voir
+                        </button>
+                        <button 
+                            class="btn btn-outline-secondary me-2" 
+                        >
+                            Modifier
+                        </button>
+                        <button 
+                            class="btn btn-outline-danger"
+                        >
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

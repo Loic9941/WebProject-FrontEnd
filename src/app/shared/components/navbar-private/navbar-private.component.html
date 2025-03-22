@@ -19,6 +19,9 @@
         <li *ngIf="showProducts()" class="nav-item">
           <a class="nav-link" href="/products">articles</a>
         </li>
+        <li *ngIf="showUsers()" class="nav-item">
+          <a class="nav-link" href="/users">Utilisateurs</a>
+        </li>
       </ul>
       <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">
         Déconnexion

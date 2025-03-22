@@ -5,14 +5,15 @@ import { TableProductsComponent } from './products/components/table-products/tab
 import { EditProductComponent } from './products/components/edit-product/edit-product.component';
 import { ViewProductComponent } from './products/components/view-product/view-product.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { TableUsersComponent } from './users/components/table-users/table-users.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'products', component: TableProductsComponent, canActivate: [authGuard] },
-    { path: 'products/edit/:id', component: EditProductComponent,  canActivate: [authGuard] },
+    { path: 'products/edit/:id', component: EditProductComponent,  canActivate: [authGuard] },//to do later, add  guards
     { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
     { path: 'products/view/:id', component: ViewProductComponent,  canActivate: [authGuard] },
-
+    { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
 ];

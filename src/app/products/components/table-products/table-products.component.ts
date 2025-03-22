@@ -3,14 +3,13 @@ import { ProductService } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../../shared/services/auth.service';
 
 
 
 @Component({
-	selector: 'ngbd-table-basic',
-	imports: [RouterModule, CommonModule, ButtonModule],
+	selector: 'app-table-products',
+	imports: [RouterModule, CommonModule],
 	templateUrl: './table-products.component.html',
 })
 export class TableProductsComponent {

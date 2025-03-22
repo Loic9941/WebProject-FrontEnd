@@ -27,4 +27,8 @@ export class NavbarPrivateComponent {
   showProducts() : boolean {
     return this.authService.isAdmin() || this.authService.isArtisan() || this.authService.isCustomer();
   }
+
+  showUsers() : boolean {
+    return this.authService.isAdmin();
+  }
 }
