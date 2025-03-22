@@ -9,8 +9,6 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class ProductService {
 
-  private baseUrl = environment.API_ENDPOINT;
-
   constructor(private apiService:ApiService) {
   }
 
@@ -28,6 +26,10 @@ export class ProductService {
 
   addProduct(product: any): Observable<any> {
     return this.apiService.postMedia(`Product`, product);
+  }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.apiService.delete(`Product`, id);
   }
 
 }

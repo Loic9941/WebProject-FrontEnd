@@ -19,18 +19,18 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.getUserRoles() == "Administrator";
+    return this.isAuthenticated() &&  this.getUserRoles() == "Administrator";
   }
 
   isArtisan(): boolean {
-    return this.getUserRoles() == "Artisan";
+    return this.isAuthenticated() && this.getUserRoles() == "Artisan";
   }
 
   isDeliveryPartner(): boolean {
-    return this.getUserRoles() == "DeliveryPartner";
+    return this.isAuthenticated() && this.getUserRoles() == "DeliveryPartner";
   }
 
   isCustomer(): boolean {
-    return this.getUserRoles() == "Customer";
+    return this.isAuthenticated() && this.getUserRoles() == "Customer";
   }
 }

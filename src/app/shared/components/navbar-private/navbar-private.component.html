@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Art'Online</a>
+    <a class="navbar-brand me-2" href="#">Art'Online</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -16,8 +16,8 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products">Produits</a>
+        <li *ngIf="showProducts()" class="nav-item">
+          <a class="nav-link" href="/products">articles</a>
         </li>
       </ul>
       <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">

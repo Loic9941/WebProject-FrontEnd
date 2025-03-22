@@ -45,4 +45,8 @@ export class ApiService {
   putMedia(endpoint: string, data: any){
     return this.http.put(`${this.baseUrl}/${endpoint}`, data, this.getHeadersMedia());
   }
+
+  delete(endpoint: string, id: number){
+    return this.http.delete(`${this.baseUrl}/${endpoint}/${id}`, this.getHeaders());
+  }
 }
