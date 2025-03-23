@@ -5,8 +5,6 @@ import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
 
-
-
 @Component({
 	selector: 'app-table-products',
 	imports: [RouterModule, CommonModule],
