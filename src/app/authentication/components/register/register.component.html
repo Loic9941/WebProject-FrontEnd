@@ -6,24 +6,6 @@
       <form [formGroup]="registerForm"  (ngSubmit)="register()">
         <div class="card-body">
           <div class="form-group">
-            <label for="lastname">Nom</label>
-            <input
-              formControlName="lastname"
-              type="text"
-              id="lastname"
-              name="lastname"
-              class="form-control border"
-            />
-          </div>
-          <div>
-            @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.errors && registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched){
-              @if(registerForm.get('lastname')?.hasError('required')){
-                <small class="form-text text-danger">Le nom est obligatoire</small>
-              }
-            }
-          </div>
-          <br />
-          <div class="form-group">
             <label for="firstname">Prénom</label>
             <input
               formControlName="firstname"
@@ -37,6 +19,24 @@
             @if(registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.errors && registerForm.get('firstname')?.dirty || registerForm.get('firstname')?.touched){
               @if(registerForm.get('firstname')?.hasError('required')){
                 <small class="form-text text-danger">Le prénom est obligatoire</small>
+              }
+            }
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="lastname">Nom</label>
+            <input
+              formControlName="lastname"
+              type="text"
+              id="lastname"
+              name="lastname"
+              class="form-control border"
+            />
+          </div>
+          <div>
+            @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.errors && registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched){
+              @if(registerForm.get('lastname')?.hasError('required')){
+                <small class="form-text text-danger">Le nom est obligatoire</small>
               }
             }
           </div>

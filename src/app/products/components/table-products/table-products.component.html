@@ -3,14 +3,17 @@
     <div class="text-end">
         <button *ngIf="showAddButton()" class="btn btn-outline-success"  
             [routerLink]="['/products/edit']"
-        >Ajouter un article</button>
+        >
+        Ajouter un article</button>
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Image</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prix</th>
+                <th scope="col" class="text-end">Actions</th>
             </tr>
         </thead>
         <tbody>
