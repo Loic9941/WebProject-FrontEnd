@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
-import { Product } from '../../interfaces/product';
+import { Product } from '../../interfaces/product.interface';
+import { Invoice } from '../../../invoices/interfaces/invoice.interface';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-view-product',
@@ -20,10 +22,13 @@ export class ViewProductComponent implements OnInit {
     contactId: 1, //Fix Me Later
     id: 0,
   };
+  @Output() productAddedToCart = new EventEmitter<Number>(); // EventEmitter to notify parent
+
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +40,16 @@ export class ViewProductComponent implements OnInit {
         this.product.image = 'data:image/jpeg;base64,' + this.product.image
       }
     });
+  }
 
+  addToInvoice(productId: number) {
+    this.productService.addToInvoice(productId).subscribe((data) => {
+      const invoice : Invoice = data;
+      console.log(invoice);
+      this.productAddedToCart.emit(invoice.invoiceItems.length);
+    });
+  }
+  showAddToInvoiceButton() {
+    return this.authService.isCustomer();
   }
 }

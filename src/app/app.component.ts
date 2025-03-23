@@ -10,4 +10,16 @@ import { NavbarWrapperComponent } from './shared/components/navbar-wrapper/navba
 })
 export class AppComponent {
   title = 'FrontEnd';
+  cartCount: number = 0;
+
+  onActivate(component: any): void {
+    if (component.productAddedToCart) {
+      component.productAddedToCart.subscribe((numberCart: number) => {
+        console.log(numberCart);
+        this.cartCount = numberCart
+      });
+    }
+
+    //to do later : manage toast from here
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Product } from '../../interfaces/product';
+import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';

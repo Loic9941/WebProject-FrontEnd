@@ -30,13 +30,17 @@
             
             <div class="card-footer d-flex justify-content-between">
                 <button [routerLink]="['/products']" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>   
                     Retour
                 </button>
                 <button 
                     type="submit" 
                     class="btn btn-primary"
+                    (click)="addToInvoice(product.id)"
+                    *ngIf="showAddToInvoiceButton()"
                 >
-                    Acheter
+                    <i class="fas fa-shopping-cart"></i>
+                    Ajouter au panier
                 </button>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../shared/services/api.service';
+import { Invoice } from '../../invoices/interfaces/invoice.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<any> {
     return this.apiService.delete(`Product`, id);
+  }
+
+  addToInvoice(id: number): Observable<any> {
+    return this.apiService.post(`Invoice/AddToInvoice/${id}`, {});
   }
 
 }

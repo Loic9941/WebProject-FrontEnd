@@ -19,10 +19,14 @@
         <li *ngIf="showProducts()" class="nav-item">
           <a class="nav-link" href="/products">Articles</a>
         </li>
-        <li *ngIf="showUsers()" class="nav-item">
+        <li *ngIf="showUsers()" class="nav-item"> 
           <a class="nav-link" href="/users">Utilisateurs</a>
         </li>
       </ul>
+      <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" >
+        <i class="fas fa-shopping-cart"></i>
+        Panier ({{ numberCart }})
+      </button>
       <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">
         Déconnexion
       </button>

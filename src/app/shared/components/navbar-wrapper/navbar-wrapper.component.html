@@ -1,2 +1,2 @@
 <app-navbar-public *ngIf="!isLoggedIn"></app-navbar-public>
-<app-navbar-private *ngIf="isLoggedIn"></app-navbar-private>
+<app-navbar-private *ngIf="isLoggedIn" [numberCart]="numberCart"></app-navbar-private>
