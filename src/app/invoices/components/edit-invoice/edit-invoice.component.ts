@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../interfaces/invoice.interface';
+import { ToastModule } from 'primeng/toast';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-edit-invoice',
-  imports: [],
+  imports: [ToastModule, FormsModule, CommonModule,],
   templateUrl: './edit-invoice.component.html',
-  styleUrl: './edit-invoice.component.css'
+  styleUrl: './edit-invoice.component.css',
+  providers: [MessageService]
 })
 export class EditInvoiceComponent {
   invoice: Invoice = {
@@ -20,5 +25,9 @@ export class EditInvoiceComponent {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       console.log(data);
     });
+  }
+
+  saveInvoice(invoiceForm: NgForm) {
+    console.log(invoiceForm);
   }
 }
