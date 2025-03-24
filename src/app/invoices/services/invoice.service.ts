@@ -8,7 +8,7 @@ export class InvoiceService {
 
   constructor(private apiService: ApiService) { }
 
-  getInvoices() {
+  getPendingInvoice() {
     return this.apiService.get('invoice/getPendingInvoice');
   }
 }

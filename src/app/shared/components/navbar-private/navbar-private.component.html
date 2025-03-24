@@ -23,7 +23,7 @@
           <a class="nav-link" href="/users">Utilisateurs</a>
         </li>
       </ul>
-      <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" >
+      <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
         <i class="fas fa-shopping-cart"></i>
         Panier ({{ numberCart }})
       </button>

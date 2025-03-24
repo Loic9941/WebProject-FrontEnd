@@ -6,6 +6,7 @@ import { EditProductComponent } from './products/components/edit-product/edit-pr
 import { ViewProductComponent } from './products/components/view-product/view-product.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { TableUsersComponent } from './users/components/table-users/table-users.component';
+import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,4 +17,5 @@ export const routes: Routes = [
     { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
     { path: 'products/view/:id', component: ViewProductComponent,  canActivate: [authGuard] },
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
+    { path: 'invoices/edit/:id', component: EditInvoiceComponent, canActivate: [authGuard] },
 ];

@@ -45,8 +45,11 @@ export class ViewProductComponent implements OnInit {
   addToInvoice(productId: number) {
     this.productService.addToInvoice(productId).subscribe((data) => {
       const invoice : Invoice = data;
-      console.log(invoice);
-      this.productAddedToCart.emit(invoice.invoiceItems.length);
+      let sum = 0;
+      for (let i = 0; i < invoice.invoiceItems.length; i++) {
+        sum += invoice.invoiceItems[i].quantity;
+      }
+      this.productAddedToCart.emit(sum);
     });
   }
   showAddToInvoiceButton() {

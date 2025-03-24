@@ -23,9 +23,15 @@ export class NavbarPrivateComponent {
   }
 
   ngOnInit() {
-    this.invoiceService.getInvoices().subscribe((data: any) => {
+    this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       const invoice : Invoice = data;
-      this.numberCart = invoice.invoiceItems.length;
+      if (invoice) {
+        let sum = 0;
+        for (let i = 0; i < invoice.invoiceItems.length; i++) {
+          sum += invoice.invoiceItems[i].quantity;
+        }
+        this.numberCart = sum;
+      }
     });
   }
 
@@ -44,5 +50,15 @@ export class NavbarPrivateComponent {
 
   showCart() : boolean {
     return this.authService.isCustomer();
+  }
+
+  goToCart() : void {
+    this.invoiceService.getPendingInvoice().subscribe((data: any) => {
+      const invoice : Invoice = data;
+      if (invoice) {
+        const invoiceId = invoice.id;
+        this.router.navigate(["/invoices/edit/" + invoiceId]);
+      }
+    });
   }
 }
