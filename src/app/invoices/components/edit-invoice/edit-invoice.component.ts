@@ -4,10 +4,16 @@ import { Invoice } from '../../interfaces/invoice.interface';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { User } from '../../../users/interfaces/user.interface';
+import { UserService } from '../../../users/services/user.service';
+
 
 @Component({
   selector: 'app-edit-invoice',
-  imports: [FormsModule, CommonModule,],
+  imports: [FormsModule, CommonModule, MatFormFieldModule, MatSelectModule, MatInputModule],
   templateUrl: './edit-invoice.component.html',
   styleUrl: './edit-invoice.component.css',
   providers: []
@@ -17,20 +23,32 @@ export class EditInvoiceComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter
   @Output() cartUpdated: EventEmitter<number> = new EventEmitter<number>();
   invoiceId!: number;
+  deliveryPartners: User[] = []; // Array to store delivery partners
+  selectedPartner: User = {
+    id: 0,
+    email: '',
+    firstname: '',
+    lastname: '',
+  };
+
   totalPrice!: number;
   invoice: Invoice = {
     id: 0,
     invoiceItems: [],
   };
+
   constructor(
     private invoiceService: InvoiceService, 
-    private route: ActivatedRoute) { }
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.invoiceId = +this.route.snapshot.paramMap.get('id')!;
     if (this.invoiceId) {
       this.getInvoice();
     }
+    this.loadDeliveryPartners();
   }
 
   getInvoice(): void {
@@ -42,6 +60,12 @@ export class EditInvoiceComponent {
         sum += this.invoice.invoiceItems[i].quantity;
       }
       this.cartUpdated.emit(sum);
+    });
+  }
+
+  loadDeliveryPartners(): void {
+    this.userService.getDeliveryPartners().subscribe((data) => {
+      this.deliveryPartners = data;
     });
   }
 

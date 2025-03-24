@@ -16,4 +16,8 @@ export class UserService {
   deleteUser(id: number): Observable<any> {
     return this.apiService.delete(`User`,id);
   }
+
+  getDeliveryPartners(): Observable<any> {
+    return this.apiService.get('User/getDeliveryPartners');
+  }
 }
