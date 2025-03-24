@@ -23,6 +23,7 @@ export class ViewProductComponent implements OnInit {
     id: 0,
   };
   @Output() productAddedToCart = new EventEmitter<Number>(); // EventEmitter to notify parent
+  @Output() showSuccessMessage = new EventEmitter<String>();
 
 
   constructor(
@@ -50,6 +51,7 @@ export class ViewProductComponent implements OnInit {
         sum += invoice.invoiceItems[i].quantity;
       }
       this.productAddedToCart.emit(sum);
+      this.showSuccessMessage.emit("Produit ajouté au panier");
     });
   }
   showAddToInvoiceButton() {

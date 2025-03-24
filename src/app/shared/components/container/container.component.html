@@ -1,0 +1,5 @@
+<app-navbar-wrapper  [numberCart]="cartCount"></app-navbar-wrapper>
+<p-toast />
+<div class="container" style="margin-top: 20px;">
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+</div>

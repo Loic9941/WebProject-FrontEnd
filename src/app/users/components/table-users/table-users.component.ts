@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-table-users',
-	imports: [RouterModule, CommonModule, ToastModule],
+	imports: [RouterModule, CommonModule],
   templateUrl: './table-users.component.html',
   styleUrl: './table-users.component.css',
-  providers: [MessageService]
+  providers: []
 })
 export class TableUsersComponent {
+    @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+    @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(
       private userService: UserService,
-      private messageService: MessageService,
     ) {
     }
     users: User[] = [];
@@ -32,14 +31,10 @@ export class TableUsersComponent {
       this.userService.deleteUser(id).subscribe({
         next: () => {
           this.users = this.users.filter((user) => user.id !== id);
+          this.showSuccessMessage.emit('Utilisateur supprimé');
         },
         error: (err) => {
-          console.error('Error deleting user:', err);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Error deleting user',
-          });
+          this.showErrorMessage.emit('Erreur lors de la suppression de l\'utilisateur');
         }
       });
     }

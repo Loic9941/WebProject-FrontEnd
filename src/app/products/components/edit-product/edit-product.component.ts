@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
-  imports: [FormsModule, CommonModule, RouterLink, ToastModule],
-  providers: [MessageService]
+  imports: [FormsModule, CommonModule, RouterLink],
+  providers: []
 
 })
-export class EditProductComponent implements OnInit {
+export class EditProductComponent {
+  @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+
   productId!: number;
   product: Product = {
     name: '',
@@ -30,7 +30,6 @@ export class EditProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private messageService: MessageService
   ) {
   }
 
@@ -86,6 +85,6 @@ export class EditProductComponent implements OnInit {
   }
 
   showSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Sauvegardé avec succès', life: 3000 });
+    this.showSuccessMessage.emit("Produit sauvegardé");
   }
 }
