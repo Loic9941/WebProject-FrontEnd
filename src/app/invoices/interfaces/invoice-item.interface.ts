@@ -1,6 +1,9 @@
+import { Product } from "../../products/interfaces/product.interface";
+
 export interface InvoiceItem {
     id : number
     quantity : number;
-    UnitPrice : number;
+    unitPrice : number;
     productId : number;
+    product : Product
 }

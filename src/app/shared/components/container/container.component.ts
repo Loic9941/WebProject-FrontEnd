@@ -17,8 +17,8 @@ export class ContainerComponent {
   cartCount: number = 0;
 
   onActivate(component: any): void {
-    if (component.productAddedToCart) {
-      component.productAddedToCart.subscribe((numberCart: number) => {
+    if (component.cartUpdated) {
+      component.cartUpdated.subscribe((numberCart: number) => {
         console.log(numberCart);
         this.cartCount = numberCart;
       });

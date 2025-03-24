@@ -4,15 +4,55 @@
             <form #invoiceForm="ngForm"  (ngSubmit)="saveInvoice(invoiceForm)">
                 <h4 class="card-header">Modification du panier</h4>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <b><label for="description" class="form-label">Description de l'article :</label></b>
-                        <input
-                        type="text"
-                        id="description"
-                        class="form-control"
-                        name="description"
-                        />
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th colspan="2">Article</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoice.invoiceItems; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td><img 
+                                    *ngIf="item.product.image" 
+                                    [src]="'data:image/jpeg;base64,' + item.product.image" 
+                                    class="card-img-top" 
+                                    style="height: 20px; object-fit: cover;"
+                                /></td>
+                                <td> {{ item.product.description }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.unitPrice |currency:'€' }}</td>
+                                <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
+                                <td>
+                                    <button 
+                                        class="btn btn-outline-danger btn-sm"
+                                        (click)="deleteItem(item.id)"
+                                    >
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <div class="d-flex justify-content-end">
+                        Total : {{ totalPrice |currency:'€' }}
                     </div>
+                    <br/>
+                    <div>
+                        <label for="deliveryPartner" class="form-label">Choix du partenaire de livraison</label>
+                        <select class="form-select">
+                            <option selected> -- </option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
+
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">
@@ -23,7 +63,7 @@
                         type="submit" 
                         class="btn btn-primary"
                     >
-                        Enregistrer
+                        Payer
                     </button>
                 </div>
             </form>

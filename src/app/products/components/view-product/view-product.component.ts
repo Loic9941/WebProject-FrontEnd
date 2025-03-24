@@ -22,7 +22,7 @@ export class ViewProductComponent implements OnInit {
     contactId: 1, //Fix Me Later
     id: 0,
   };
-  @Output() productAddedToCart = new EventEmitter<Number>(); // EventEmitter to notify parent
+  @Output() cartUpdated = new EventEmitter<Number>(); // EventEmitter to notify parent
   @Output() showSuccessMessage = new EventEmitter<String>();
 
 
@@ -50,7 +50,7 @@ export class ViewProductComponent implements OnInit {
       for (let i = 0; i < invoice.invoiceItems.length; i++) {
         sum += invoice.invoiceItems[i].quantity;
       }
-      this.productAddedToCart.emit(sum);
+      this.cartUpdated.emit(sum);
       this.showSuccessMessage.emit("Produit ajouté au panier");
     });
   }
