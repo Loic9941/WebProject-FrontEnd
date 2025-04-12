@@ -13,14 +13,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Accueil</a>
-        </li>
         <li *ngIf="showProducts()" class="nav-item">
-          <a class="nav-link" href="/products">Articles</a>
+          <a class="nav-link" href="/products">Articles en vente</a>
         </li>
         <li *ngIf="showUsers()" class="nav-item"> 
           <a class="nav-link" href="/users">Utilisateurs</a>
+        </li>
+        <li *ngIf="showOrders()" class="nav-item"> 
+          <a class="nav-link" href="/orders">Mes commandes</a>
         </li>
       </ul>
       <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">

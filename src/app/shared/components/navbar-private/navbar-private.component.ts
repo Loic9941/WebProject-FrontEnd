@@ -55,6 +55,10 @@ export class NavbarPrivateComponent {
     return this.authService.isCustomer();
   }
 
+  showOrders() : boolean {
+    return this.authService.isCustomer();
+  }
+
   goToCart() : void {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       const invoice : Invoice = data;
