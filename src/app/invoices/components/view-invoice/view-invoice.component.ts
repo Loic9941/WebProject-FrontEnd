@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
 import { Invoice } from '../../interfaces/invoice.interface';
+import { InvoiceItem } from '../../interfaces/invoice-item.interface';
 
 @Component({
   selector: 'app-view-invoice',
@@ -11,6 +12,8 @@ import { Invoice } from '../../interfaces/invoice.interface';
   styleUrl: './view-invoice.component.css'
 })
 export class ViewInvoiceComponent {
+  @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
+  
   invoiceId!: number;
   invoice: any = {
     id: 0,
@@ -21,7 +24,7 @@ export class ViewInvoiceComponent {
   constructor(
     private invoiceService: InvoiceService,
     private route: ActivatedRoute,
-    
+    private router: Router, 
   ) { }
 
   ngOnInit(): void {
@@ -40,8 +43,12 @@ export class ViewInvoiceComponent {
     return this.invoiceService.getInvoiceStatus(invoice);
   }
 
-  rateArticle(invoiceItem: any) {
-    // Logic to rate the article
-    console.log('Rate article:', invoiceItem);
+  rateArticle(invoice: Invoice, invoiceItem: InvoiceItem) {
+    if(invoice.status !== 'DELIVERED') { // FIx me : this will change
+      this.showErrorMessage.emit("Vous devez attendre Id'avoir reçu l'article pour le noter");
+    }
+    else {
+      this.router.navigate(['/products/rate', invoiceItem.productId]);
+    }
   }
 }

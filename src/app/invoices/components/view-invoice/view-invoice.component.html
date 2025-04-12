@@ -32,9 +32,8 @@
                                 <td>
                                     <button 
                                         class="btn btn-outline-default btn-sm"
-                                        [routerLink]="['/products/rate', item.product.id]"
                                         title="Noter l'article"
-                                        (click)="rateArticle(item.id)"
+                                        (click)="rateArticle(invoice, item)"
                                     >
                                         <i class="fas fa-star"></i>
                                     </button>
@@ -57,14 +56,6 @@
                 <div class="mb-3">
                     <b><label for="paidAt" class="form-label">Date de paiement : </label></b>
                     <p>{{ invoice.paidAt | date: 'dd/MM/yyyy' }}</p>
-                </div>
-                <div class="mb-3">
-                    <b><label for="shippedAt" class="form-label">Date d'expédition : </label></b>
-                    <p>{{ invoice.shippedAt | date: 'dd/MM/yyyy' }}</p>
-                </div>
-                <div class="mb-3">
-                    <b><label for="deliveredAt" class="form-label">Date de livraison : </label></b>
-                    <p>{{ invoice.shippedAt | date: 'dd/MM/yyyy' }}</p>
                 </div>
                 <div class="mb-3">
                     <b><label for="deliveryPartner" class="form-label">Transporteur : </label></b>

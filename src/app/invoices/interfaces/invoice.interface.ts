@@ -7,6 +7,4 @@ export interface Invoice {
     deliveryPartnerId? : number;
     createdAt? : string;
     paidAt? : string;
-    shippedAt? : string;
-    deliveredAt? : string;
 }

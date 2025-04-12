@@ -8,8 +8,6 @@
                 <th scope="col">Statut</th>
                 <th scope="col">Date de création</th>
                 <th scope="col">Date de paiement</th>
-                <th scope="col">Date d'expédition</th>
-                <th scope="col">Date de livraison</th>
                 <th scope="col" class="text-end"></th>
            
             </tr>
@@ -29,12 +27,6 @@
                     </td>
                     <td>
                         {{ invoice.paidAt | date: 'dd/MM/yyyy' }}   
-                    </td>
-                    <td>
-                        {{ invoice.shippedAt | date: 'dd/MM/yyyy' }}
-                    </td>
-                    <td>
-                        {{ invoice.deliveredAt | date: 'dd/MM/yyyy' }}
                     </td>
                     <td>
                         <button class="btn btn-outline-secondary btn-sm me-2" 
