@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../interfaces/invoice.interface';
-import { FormControl, FormsModule, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,11 +10,6 @@ import { MatInputModule } from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import { User } from '../../../users/interfaces/user.interface';
 import { UserService } from '../../../users/services/user.service';
-
-interface Animal {
-  name: string;
-  sound: string;
-}
 
 @Component({
   selector: 'app-edit-invoice',
@@ -27,6 +22,9 @@ export class EditInvoiceComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter
   @Output() cartUpdated: EventEmitter<number> = new EventEmitter<number>();
+  invoiceForm: FormGroup;
+  
+
   invoiceId!: number;
   deliveryPartners: User[] = []; // Array to store delivery partners
   selectedPartner: User = {
@@ -47,7 +45,11 @@ export class EditInvoiceComponent {
     private invoiceService: InvoiceService, 
     private userService: UserService,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    this.invoiceForm = new FormGroup({
+      selectDeliveryPartner : new FormControl<User | null>(null, Validators.required),
+    });
+  }
 
   ngOnInit() {
     this.invoiceId = +this.route.snapshot.paramMap.get('id')!;
@@ -75,7 +77,7 @@ export class EditInvoiceComponent {
     });
   }
 
-  MarkInvoiceAsPaid(invoiceForm: NgForm) {
+  MarkInvoiceAsPaid() {
     let deliveryPartnerId = this.selectedPartner.id;
     this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe(
       (response) => {
