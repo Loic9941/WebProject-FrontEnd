@@ -7,6 +7,8 @@ import { ViewProductComponent } from './products/components/view-product/view-pr
 import { authGuard } from './shared/guards/auth.guard';
 import { TableUsersComponent } from './users/components/table-users/table-users.component';
 import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
+import { TableInvoicesComponent } from './invoices/components/table-invoices/table-invoices.component';
+import { ViewInvoiceComponent } from './invoices/components/view-invoice/view-invoice.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,4 +20,6 @@ export const routes: Routes = [
     { path: 'products/view/:id', component: ViewProductComponent,  canActivate: [authGuard] },
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
     { path: 'invoices/edit/:id', component: EditInvoiceComponent, canActivate: [authGuard] },
+    { path: 'invoices', component : TableInvoicesComponent, canActivate: [authGuard] },
+    { path: 'invoices/view/:id', component: ViewInvoiceComponent, canActivate: [authGuard] },
 ];

@@ -55,7 +55,7 @@ export class NavbarPrivateComponent {
     return this.authService.isCustomer();
   }
 
-  showOrders() : boolean {
+  showInvoices  () : boolean {
     return this.authService.isCustomer();
   }
 

@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <h1>Commandes</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Date de paiement</th>
+                <th scope="col">Date d'expédition</th>
+                <th scope="col">Date de livraison</th>
+                <th scope="col" class="text-end"></th>
+           
+            </tr>
+        </thead>
+        <tbody>
+            @for (invoice of invoices; track invoice.id; let i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        {{ getPrice(invoice) | currency: 'EUR' }}
+                    </td>
+                    <td>
+                        {{ getInvoiceStatus(invoice) }}
+                    </td>
+                    <td>
+                        {{ invoice.createdAt | date: 'dd/MM/yyyy' }}
+                    </td>
+                    <td>
+                        {{ invoice.paidAt | date: 'dd/MM/yyyy' }}   
+                    </td>
+                    <td>
+                        {{ invoice.shippedAt | date: 'dd/MM/yyyy' }}
+                    </td>
+                    <td>
+                        {{ invoice.deliveredAt | date: 'dd/MM/yyyy' }}
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-secondary btn-sm me-2" 
+                            [routerLink]="['/invoices/view', invoice.id]"
+                            title="Voir"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

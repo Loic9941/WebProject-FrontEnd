@@ -15,7 +15,9 @@ export class TableProductsComponent {
   /**
    *
    */
-  constructor(private productService: ProductService, private authService: AuthService) {
+  constructor(
+    private productService: ProductService, 
+    private authService: AuthService) {
   }
   products: Product[] = [];
 

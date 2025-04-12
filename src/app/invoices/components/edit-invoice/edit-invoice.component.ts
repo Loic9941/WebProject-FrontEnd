@@ -3,7 +3,7 @@ import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../interfaces/invoice.interface';
 import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -27,12 +27,6 @@ export class EditInvoiceComponent {
 
   invoiceId!: number;
   deliveryPartners: User[] = []; // Array to store delivery partners
-  selectedPartner: User = {
-    id: 0,
-    email: '',
-    firstname: '',
-    lastname: '',
-  };
   
   totalPrice!: number;
   invoice: Invoice = {
@@ -44,7 +38,8 @@ export class EditInvoiceComponent {
   constructor(
     private invoiceService: InvoiceService, 
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router, 
   ) { 
     this.invoiceForm = new FormGroup({
       selectDeliveryPartner : new FormControl<User | null>(null, Validators.required),
@@ -78,11 +73,11 @@ export class EditInvoiceComponent {
   }
 
   MarkInvoiceAsPaid() {
-    let deliveryPartnerId = this.selectedPartner.id;
+    let deliveryPartnerId = this.invoiceForm.get('selectDeliveryPartner')?.value?.id;
     this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe(
       (response) => {
         this.showSuccessMessage.emit("Facture marquée comme payée");
-        this.getInvoice();
+        this.router.navigate(["/invoices"]);
       },
       (error) => {
         this.showErrorMessage.emit("Erreur lors de la mise à jour de la facture");

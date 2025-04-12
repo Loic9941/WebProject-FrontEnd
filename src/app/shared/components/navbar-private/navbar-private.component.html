@@ -19,8 +19,8 @@
         <li *ngIf="showUsers()" class="nav-item"> 
           <a class="nav-link" href="/users">Utilisateurs</a>
         </li>
-        <li *ngIf="showOrders()" class="nav-item"> 
-          <a class="nav-link" href="/orders">Mes commandes</a>
+        <li *ngIf="showInvoices()" class="nav-item"> 
+          <a class="nav-link" href="/invoices">Mes commandes</a>
         </li>
       </ul>
       <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
