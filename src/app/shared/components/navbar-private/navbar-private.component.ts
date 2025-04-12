@@ -23,16 +23,19 @@ export class NavbarPrivateComponent {
   }
 
   ngOnInit() {
-    this.invoiceService.getPendingInvoice().subscribe((data: any) => {
-      const invoice : Invoice = data;
-      if (invoice) {
-        let sum = 0;
-        for (let i = 0; i < invoice.invoiceItems.length; i++) {
-          sum += invoice.invoiceItems[i].quantity;
+    //if the user is a customer
+    if (this.authService.isCustomer()) {
+      this.invoiceService.getPendingInvoice().subscribe((data: any) => {
+        const invoice : Invoice = data;
+        if (invoice) {
+          let sum = 0;
+          for (let i = 0; i < invoice.invoiceItems.length; i++) {
+            sum += invoice.invoiceItems[i].quantity;
+          }
+          this.numberCart = sum;
         }
-        this.numberCart = sum;
-      }
-    });
+      });
+    }
   }
 
   logout() : void {

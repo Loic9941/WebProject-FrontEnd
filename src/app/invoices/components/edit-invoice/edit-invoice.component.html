@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card shadow my-5">
-            <form #invoiceForm="ngForm"  (ngSubmit)="saveInvoice(invoiceForm)">
+            <form #invoiceForm="ngForm"  (ngSubmit)="MarkInvoiceAsPaid(invoiceForm)">
                 <h4 class="card-header">Modification du panier</h4>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -45,13 +45,12 @@
                     <br/>
                     <mat-form-field>
                       <mat-label>Transporteur</mat-label>
-                      <select matNativeControl [(ngModel)]="selectedPartner" name="deliveryPartner" required>
-                        <option *ngFor="let partner of deliveryPartners" [value]="partner.id">
+                      <mat-select matNativeControl [(ngModel)]="selectedPartner" name="deliveryPartner" required>
+                        <mat-option *ngFor="let partner of deliveryPartners" [value]="partner">
                           {{ partner.firstname }}
-                        </option>
-                      </select>
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
-
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">

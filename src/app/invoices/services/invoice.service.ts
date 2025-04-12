@@ -20,4 +20,12 @@ export class InvoiceService {
   deleteInvoiceItem(invoiceItemId: number) {
     return this.apiService.delete(`invoiceItem`,invoiceItemId);
   }
+
+  markInvoiceAsPaid(invoiceId: number, deliveryPartnerId: number) {
+    let data = {
+      deliveryPartnerId: deliveryPartnerId
+    };
+    return this.apiService.put(`invoice/${invoiceId}/markAsPaid`, data);
+  }
+
 }

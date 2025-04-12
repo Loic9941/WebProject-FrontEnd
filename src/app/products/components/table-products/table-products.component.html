@@ -8,6 +8,11 @@
         </button>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (products.length === 0) {
+            <div class="col text-center">
+                <p>Aucun produit trouvé.</p>
+            </div>
+        } 
         @for (product of products; track product.id; let i = $index) {
             <div class="col">
                 <div class="card h-100">

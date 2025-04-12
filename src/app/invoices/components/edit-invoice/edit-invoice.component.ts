@@ -1,19 +1,24 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../interfaces/invoice.interface';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormsModule, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
 import { User } from '../../../users/interfaces/user.interface';
 import { UserService } from '../../../users/services/user.service';
 
+interface Animal {
+  name: string;
+  sound: string;
+}
 
 @Component({
   selector: 'app-edit-invoice',
-  imports: [FormsModule, CommonModule, MatFormFieldModule, MatSelectModule, MatInputModule],
+  imports: [FormsModule, CommonModule, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './edit-invoice.component.html',
   styleUrl: './edit-invoice.component.css',
   providers: []
@@ -30,12 +35,13 @@ export class EditInvoiceComponent {
     firstname: '',
     lastname: '',
   };
-
+  
   totalPrice!: number;
   invoice: Invoice = {
     id: 0,
     invoiceItems: [],
   };
+  
 
   constructor(
     private invoiceService: InvoiceService, 
@@ -69,8 +75,16 @@ export class EditInvoiceComponent {
     });
   }
 
-  saveInvoice(invoiceForm: NgForm) {
-    console.log(invoiceForm);
+  MarkInvoiceAsPaid(invoiceForm: NgForm) {
+    let deliveryPartnerId = this.selectedPartner.id;
+    this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe(
+      (response) => {
+        this.showSuccessMessage.emit("Facture marquée comme payée");
+        this.getInvoice();
+      },
+      (error) => {
+        this.showErrorMessage.emit("Erreur lors de la mise à jour de la facture");
+      });
   }
 
   deleteItem(invoiceItemId : number) {
