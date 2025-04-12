@@ -9,6 +9,7 @@ import { TableUsersComponent } from './users/components/table-users/table-users.
 import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
 import { TableInvoicesComponent } from './invoices/components/table-invoices/table-invoices.component';
 import { ViewInvoiceComponent } from './invoices/components/view-invoice/view-invoice.component';
+import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,4 +23,5 @@ export const routes: Routes = [
     { path: 'invoices/edit/:id', component: EditInvoiceComponent, canActivate: [authGuard] },
     { path: 'invoices', component : TableInvoicesComponent, canActivate: [authGuard] },
     { path: 'invoices/view/:id', component: ViewInvoiceComponent, canActivate: [authGuard] },
+    { path: 'products/rate/:id', component: RateProductComponent, canActivate: [authGuard] },
 ];

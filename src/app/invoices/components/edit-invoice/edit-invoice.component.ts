@@ -13,7 +13,13 @@ import { UserService } from '../../../users/services/user.service';
 
 @Component({
   selector: 'app-edit-invoice',
-  imports: [FormsModule, CommonModule, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule],
+  imports: [
+    FormsModule, 
+    CommonModule, 
+    MatFormFieldModule, 
+    MatSelectModule, 
+    MatInputModule, 
+    ReactiveFormsModule],
   templateUrl: './edit-invoice.component.html',
   styleUrl: './edit-invoice.component.css',
   providers: []
@@ -26,7 +32,7 @@ export class EditInvoiceComponent {
   
 
   invoiceId!: number;
-  deliveryPartners: User[] = []; // Array to store delivery partners
+  deliveryPartners: User[] = [];
   
   totalPrice!: number;
   invoice: Invoice = {
