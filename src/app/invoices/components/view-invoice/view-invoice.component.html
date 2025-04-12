@@ -1,1 +1,83 @@
-<p>view-invoice works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow my-5">
+            <h4 class="card-header">Détails de la commande</h4>
+            <div class="card-body">
+                <div class="mb-3">
+                    <b><label for="name" class="form-label">Détails des articles : </label></b>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th colspan="2">Article</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoice.invoiceItems; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td><img 
+                                    *ngIf="item.product.image" 
+                                    [src]="'data:image/jpeg;base64,' + item.product.image" 
+                                    class="card-img-top" 
+                                    style="height: 20px; object-fit: cover;"
+                                /></td>
+                                <td> {{ item.product.description }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.unitPrice |currency:'€' }}</td>
+                                <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
+                                <td>
+                                    <button 
+                                        class="btn btn-outline-default btn-sm"
+                                        [routerLink]="['/products/rate', item.product.id]"
+                                        title="Noter l'article"
+                                        (click)="rateArticle(item.id)"
+                                    >
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb-3">
+                    <b><label for="total" class="form-label">Total de la commande : </label></b>
+                    <p>{{ totalPrice |currency:'€' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="status" class="form-label">Statut de la commande : </label></b>
+                    <p>{{ getInvoiceStatus(invoice) }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="createdAt" class="form-label">Date de création : </label></b>
+                    <p>{{ invoice.createdAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="paidAt" class="form-label">Date de paiement : </label></b>
+                    <p>{{ invoice.paidAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="shippedAt" class="form-label">Date d'expédition : </label></b>
+                    <p>{{ invoice.shippedAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="deliveredAt" class="form-label">Date de livraison : </label></b>
+                    <p>{{ invoice.shippedAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="deliveryPartner" class="form-label">Transporteur : </label></b>
+                    <p>{{ invoice.deliveryPartner?.firstname }}</p>
+            </div>
+            
+            
+            <div class="card-footer d-flex justify-content-between">
+                <button [routerLink]="['/invoices']" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>   
+                    Retour
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
