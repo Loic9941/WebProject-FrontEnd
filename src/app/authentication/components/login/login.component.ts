@@ -29,8 +29,8 @@ export class LoginComponent {
         (response) => {
           if(response.token){
             sessionStorage.setItem("jwt", response.token);
-            this.router.navigate(["/products"]);
             this.showSuccessMessage.emit("Connexion réussie");
+            this.router.navigate(["/products"]);
           }
         },
         (error) => {

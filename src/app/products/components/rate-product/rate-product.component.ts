@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, OutletContext, Router, RouterLink } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -17,13 +17,15 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './rate-product.component.html',
   styleUrl: './rate-product.component.css'
 })
 export class RateProductComponent {
-  rating: number = 0;
-  comment: string = '';
+  @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+  @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
   productId!: number;
   product: Product = {
     id: 0,
@@ -32,12 +34,18 @@ export class RateProductComponent {
     contactId: 0,
     image: undefined
   };
-  productRateForm : NgForm = new NgForm([], []);
+  productRateForm : FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private router: Router
   ) {  
+    this.productRateForm = new FormGroup({
+      comment: new FormControl<string>(''),
+      rating: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5)]),
+    });
+      
   }
 
   ngOnInit(): void {
@@ -48,11 +56,24 @@ export class RateProductComponent {
   }
 
   saveRatingProduct() {
-    // Logic to submit the rating and comment
-    console.log('Rating:', this.rating);
-    console.log('Comment:', this.comment);
-    // Reset the form after submission
-    this.rating = 0;
-    this.comment = '';
+    this.productService.rateProduct(
+      this.productId, 
+      this.productRateForm.get('rating')!.value!,
+      this.productRateForm.get('comment')!.value!
+    ).subscribe({
+      next: (response) => {
+        this.showSuccessMessage.emit('Produit noté avec succès');
+        this.router.navigate(["/invoices"]);
+      },
+      error: (error) => {
+        if(error.status === 409) {
+          this.showErrorMessage.emit('Vous avez déjà noté ce produit');
+        }
+        else{
+          this.showErrorMessage.emit('Erreur lors de la notation du produit');
+        }
+      }
+    });
+          
   }
 }

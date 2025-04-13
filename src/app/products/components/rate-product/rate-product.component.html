@@ -1,23 +1,17 @@
 <div class="row justify-content-center">
     <div class="col-md-9">
         <div class="card shadow my-5">
-            <form #productRateForm="ngForm"  (ngSubmit)="saveRatingProduct()">
+            <form [formGroup]="productRateForm"  (ngSubmit)="saveRatingProduct()">
                 <h4 class="card-header">Evaluer l'article</h4>
                 <div class="card-body">
                     <div class="mb-3">
                         <b><label for="name" class="form-label">Nom de l'article :</label></b>
-                        <input
-                        [(ngModel)]="product.name"
-                        type="text"
-                        id="name"
-                        class="form-control"
-                        name="name"
-                        />
+                        <p>{{ product.name }}</p>
                     </div>
                     <div class="mb-3">
                         <b><label for="description" class="form-label">Qu'avez-vous pensez de l'article ?</label></b>
                         <textarea
-                        [(ngModel)]="comment"
+                        formControlName="comment"
                         type="textArea"
                         id="description"
                         class="form-control"
@@ -27,7 +21,7 @@
                     <div class="mb-3">
                         <b><label for="rating" class="form-label">Combien d'étoiles donneriez-vous à cet article ? </label></b>
                         <select
-                            [(ngModel)]="rating"
+                            formControlName="rating"
                             id="rating"
                             class="form-control"
                             name="rating"
@@ -53,9 +47,16 @@
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-secondary"
+                        [routerLink]="['/products']"
+                        >
+                        <i class="fas fa-arrow-left"></i>
+                        Retour
+                    </button>
                     <button 
                         type="submit" 
                         class="btn btn-primary"
+                        [disabled]="productRateForm.invalid"
                     >
                         Enregistrer
                     </button>

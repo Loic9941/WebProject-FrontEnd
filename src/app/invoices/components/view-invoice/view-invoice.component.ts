@@ -50,8 +50,10 @@ export class ViewInvoiceComponent {
   }
 
   rateArticle(invoice: Invoice, invoiceItem: InvoiceItem) {
-    //Fix me : missing checks here
+      if (invoiceItem.status !== 'delivered') {
+        this.showErrorMessage.emit('Vous ne pouvez pas noter un article qui n\'est pas livré');
+        return;
+      }
       this.router.navigate(['/products/rate', invoiceItem.productId]);
-    
   }
 }
