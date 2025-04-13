@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
-import { AuthService } from '../../../shared/services/auth.service';
 import { Invoice } from '../../interfaces/invoice.interface';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -14,7 +13,6 @@ import { RouterLink } from '@angular/router';
 export class TableInvoicesComponent {
   constructor(
     private invoiceService: InvoiceService,
-    private authService: AuthService
   ) {
   }
 

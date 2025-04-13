@@ -11,6 +11,7 @@ import { TableInvoicesComponent } from './invoices/components/table-invoices/tab
 import { ViewInvoiceComponent } from './invoices/components/view-invoice/view-invoice.component';
 import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 import { TableInvoiceItemsComponent } from './invoice-items/components/table-invoice-items/table-invoice-items.component';
+import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,4 +31,5 @@ export const routes: Routes = [
     { path: 'invoices/view/:id', component: ViewInvoiceComponent, canActivate: [authGuard] },
 
     { path: 'invoice-items', component: TableInvoiceItemsComponent, canActivate: [authGuard] },
+    { path: 'invoice-items/edit/:id', component: EditInvoiceItemComponent, canActivate: [authGuard] },
 ];

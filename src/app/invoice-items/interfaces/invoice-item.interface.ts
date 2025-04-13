@@ -5,5 +5,6 @@ export interface InvoiceItem {
     quantity : number;
     unitPrice : number;
     productId : number;
-    product : Product
+    product : Product;
+    createdAt : string;
 }
