@@ -7,6 +7,7 @@ export interface InvoiceItem {
     productId : number;
     product? : Product;
     createdAt : string;
+    deliveredAt? : string;
     name : string;
     status : string;
     estimatedDeliveryDate? : string;

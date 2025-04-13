@@ -2,13 +2,14 @@ import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angul
 import { InvoiceItemService } from '../../services/invoice-item.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { InvoiceItem } from '../../interfaces/invoice-item.interface';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {provideNativeDateAdapter} from '@angular/material/core';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { provideNativeDateAdapter} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { AuthService } from '../../../shared/services/auth.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     RouterLink,
     MatDatepickerModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule, 
   ],
   templateUrl: './edit-invoice-item.component.html',
   styleUrl: './edit-invoice-item.component.css',
@@ -44,14 +45,12 @@ export class EditInvoiceItemComponent {
     name: '', 
     status: '',
   };
-  invoiceItemForm: FormGroup;
 
   constructor(
     private invoiceItemService: InvoiceItemService,
     private route: ActivatedRoute,
+    private authService: AuthService
   ) {
-    this.invoiceItemForm = new FormGroup({
-    });
   }
   
 
@@ -69,7 +68,7 @@ export class EditInvoiceItemComponent {
   }
 
   updateInvoiceItem() {
-    //Fix me : To do later
+    console.log("coucou");
   }
 
   markAsReadyToBeShipped() {
@@ -84,12 +83,76 @@ export class EditInvoiceItemComponent {
     });
   }
 
+  showMarkAsPickedUpButton() {
+    return (this.invoiceItem.status === 'readyToBePickedUp' && 
+      this.authService.isDeliveryPartner());
+  }
+
+  markAsPickedUp() {
+    this.invoiceItemService.markAsPickedUp(this.invoiceItemId, this.invoiceItem.estimatedDeliveryDate).subscribe({
+      next: (response) => {
+        this.getInvoiceItem();
+        this.showSuccessMessage.emit("commande marquée comme prise en charge par le transporteur");
+      },
+      error: (error) => {
+        this.showErrorMessage.emit("Erreur lors de la mise à jour de la commande");
+      }
+    });
+  }
+
+  markAsInTransit() {
+    this.invoiceItemService.markAsInTransit(this.invoiceItemId, this.invoiceItem.estimatedDeliveryDate).subscribe({
+      next: (response) => {
+        this.getInvoiceItem();
+        this.showSuccessMessage.emit("commande marquée comme en transit");
+      },
+      error: (error) => {
+        this.showErrorMessage.emit("Erreur lors de la mise à jour de la commande");
+      }
+    });
+  }
+
   showMarkAsReadyToBeShippedButton(){
-    return (this.invoiceItem.status === 'inPreparation')
+    return (this.invoiceItem.status === 'inPreparation' && 
+      this.authService.isArtisan());
+  }
+
+  showMarkAsInTransitButton() {
+    return (this.invoiceItem.status === 'pickedUp' && 
+      this.authService.isDeliveryPartner());
+  }
+
+  showMarkAsDeliveredButton() {
+    return (this.invoiceItem.status === 'inTransit' && 
+      this.authService.isDeliveryPartner());
+  }
+
+  markAsDelivered() {
+    this.invoiceItemService.markAsDelivered(this.invoiceItemId).subscribe({
+      next: (response) => {
+        this.getInvoiceItem();
+        this.showSuccessMessage.emit("commande marquée comme livrée");
+      },
+      error: (error) => {
+        this.showErrorMessage.emit("Erreur lors de la mise à jour de la commande");
+      }
+    });
+  }
+
+  shouldDisableDatePicker(){
+    return (this.invoiceItem.status == 'delivered' || this.invoiceItem.status == 'inTransit');
+  }
+
+
+  showEstimatedDeliveryDate() {
+    return this.authService.isDeliveryPartner();
+  }
+
+  showRealDeliveryDate() {
+    return (this.invoiceItem.status == 'delivered');
   }
 
   getInvoiceItemStatus() {
     return this.invoiceItemService.getInvoiceItemStatus(this.invoiceItem);   
   }
-
 }

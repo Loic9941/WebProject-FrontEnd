@@ -1,55 +1,86 @@
 <div class="row justify-content-center">
     <div class="col-md-9">
         <div class="card shadow my-5">
-            <form [formGroup]="invoiceItemForm"  (ngSubmit)="updateInvoiceItem()">
-                <h4 class="card-header">Modification d'une commande</h4>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <b><label for="name" class="form-label">Nom de l'article</label></b>
-                        <p>{{ invoiceItem.name }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <b><label for="quantity" class="form-label">Quantité : </label></b>
-                        <p>{{ invoiceItem.quantity }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <b><label for="createdAt" class="form-label">Date de la commande : </label></b>
-                        <p>{{ invoiceItem.createdAt | date: 'dd/MM/yyyy' }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <b><label for="status" class="form-label">Statut de la commande : </label></b>
-                        <p>{{ getInvoiceItemStatus() }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <b><label for="estimatedDeliveryDate" class="form-label">Date estimée de livraison : </label></b>
-                        <p>
-                            <mat-form-field>
+            <h4 class="card-header">Modification d'une commande</h4>
+            <div class="card-body">
+                <div class="mb-3">
+                    <b><label for="name" class="form-label">Nom de l'article</label></b>
+                    <p>{{ invoiceItem.name }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="quantity" class="form-label">Quantité : </label></b>
+                    <p>{{ invoiceItem.quantity }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="createdAt" class="form-label">Date de la commande : </label></b>
+                    <p>{{ invoiceItem.createdAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="mb-3">
+                    <b><label for="status" class="form-label">Statut de la commande : </label></b>
+                    <p>{{ getInvoiceItemStatus() }}</p>
+                </div>
+                <div *ngIf="showEstimatedDeliveryDate()" class="mb-3">
+                    <b><label for="estimatedDeliveryDate" class="form-label">Date estimée de livraison : </label></b>
+                    <p>
+                        <mat-form-field>
                             <mat-label>Choisissez une date</mat-label>
-                            <input matInput [matDatepicker]="picker">
+                            <input 
+                                matInput 
+                                [matDatepicker]="picker" 
+                                [(ngModel)]="invoiceItem.estimatedDeliveryDate" 
+                                placeholder="jj/mm/aaaa" 
+                                [disabled]="shouldDisableDatePicker()" 
+                                required>
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>                        
-                        </p>
-                    </div>
+                        </mat-form-field>                        
+                    </p>
                 </div>
-                
-                <div class="card-footer d-flex justify-content-between">
-                    <button class="btn btn-secondary"
-                        [routerLink]="['/invoice-items']">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour
-                    </button>
-                    <button 
-                        type="submit" 
-                        class="btn btn-success"
-                        (click)="markAsReadyToBeShipped()"
-                        *ngIf="showMarkAsReadyToBeShippedButton()"
-                    >
-                        <i class="fas fa-check"></i>
-                        Cet article est prêt à être expédié
-                    </button>
+                <div *ngIf="showRealDeliveryDate()" class="mb-3">
+                    <b><label for="estimatedDeliveryDate" class="form-label">Date de livraison : </label></b>
+                    <p>{{ invoiceItem.deliveredAt | date: 'dd/MM/yyyy' }}</p>
                 </div>
-            </form>
+            </div>
+            
+            <div class="card-footer d-flex justify-content-between">
+                <button class="btn btn-secondary"
+                    [routerLink]="['/invoice-items']">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour
+                </button>
+                <button 
+                    class="btn btn-success"
+                    (click)="markAsReadyToBeShipped()"
+                    *ngIf="showMarkAsReadyToBeShippedButton()"
+                >
+                    <i class="fas fa-check"></i>
+                    Cet article est prêt à être expédié
+                </button>
+                <button 
+                    class="btn btn-success"
+                    (click)="markAsPickedUp()"
+                    *ngIf="showMarkAsPickedUpButton()"
+                >
+                    <i class="fas fa-check"></i>
+                    Cet article a été récupéré par le transporteur
+                </button>
+                <button 
+                    class="btn btn-success"
+                    (click)="markAsInTransit()"
+                    *ngIf="showMarkAsInTransitButton()"
+                >
+                    <i class="fas fa-check"></i>
+                    Cet article est en transit
+                </button>
+                <button 
+                    class="btn btn-success"
+                    (click)="markAsDelivered()"
+                    *ngIf="showMarkAsDeliveredButton()"
+                >
+                    <i class="fas fa-check"></i>
+                    Cet article a été livré
+                </button>
+            </div>
         </div>
     </div>
 </div>

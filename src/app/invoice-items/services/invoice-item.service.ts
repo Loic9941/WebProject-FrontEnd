@@ -24,7 +24,7 @@ export class InvoiceItemService {
     } else if (invoiceItem.status === 'readyToBePickedUp') {
       return 'En attente du transporteur';
     } else if (invoiceItem.status === 'pickedUp') {
-      return 'Pris en charge par le transporteur';
+      return 'Prise en charge par le transporteur';
     } else if (invoiceItem.status === 'inTransit') {
       return 'En transit';
     } else if (invoiceItem.status === 'delivered') {
@@ -35,5 +35,23 @@ export class InvoiceItemService {
 
   markAsReadyToBeShipped(invoiceItemId: number) {
     return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsReadyToBeShipped`, {});
+  }
+
+  markAsPickedUp(invoiceItemId: number, estimatedDeliveryDate?: string) {
+    let data = {
+      estimatedDeliveryDate: estimatedDeliveryDate ? new Date(estimatedDeliveryDate).toISOString().split('T')[0] : undefined
+    };
+    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsPickedUp`, data);
+  }
+
+  markAsInTransit(invoiceItemId: number, estimatedDeliveryDate?: string) {
+    let data = {
+      estimatedDeliveryDate: estimatedDeliveryDate ? new Date(estimatedDeliveryDate).toISOString().split('T')[0] : undefined
+    };
+    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsInTransit`, data);
+  }
+
+  markAsDelivered(invoiceItemId: number) {
+    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsDelivered`, {});
   }
 }
