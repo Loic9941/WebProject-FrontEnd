@@ -37,14 +37,14 @@ export class RegisterComponent {
 
   register() {
     this.authenticationService.register(this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.role, this.registerForm.value.firstname, this.registerForm.value.lastname)
-    .subscribe(
-      (response) => {
+    .subscribe({
+      next: () => {
         this.showSuccessMessage.emit("Utilisateur créé avec succès");
         this.router.navigate(["/login"]);
-       },
-      (error) => {
+      },
+      error: () => {
         this.showErrorMessage.emit("Erreur lors de la création de l'utilisateur");
       }
-    );
+    });
   }
 }

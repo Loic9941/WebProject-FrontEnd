@@ -80,26 +80,27 @@ export class EditInvoiceComponent {
 
   MarkInvoiceAsPaid() {
     let deliveryPartnerId = this.invoiceForm.get('selectDeliveryPartner')?.value?.id;
-    this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe(
-      (response) => {
+    this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe({
+      next: (response) => {
         this.showSuccessMessage.emit("Facture marquée comme payée");
         this.router.navigate(["/invoices"]);
       },
-      (error) => {
+      error: (error) => {
         this.showErrorMessage.emit("Erreur lors de la mise à jour de la facture");
-      });
+      }
+    });
   }
 
   deleteItem(invoiceItemId : number) {
     this.invoiceService.deleteInvoiceItem(invoiceItemId)
-    .subscribe(
-      (response) => {
+    .subscribe({
+      next: () => {
         this.getInvoice();
         this.showSuccessMessage.emit("Produit supprimé du panier");
-       },
-      (error) => {
+      },
+      error: () => {
         this.showErrorMessage.emit("Erreur lors de la suppression du produit");
       }
-    );
+    });
   }
 }

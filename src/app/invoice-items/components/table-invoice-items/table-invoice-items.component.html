@@ -15,7 +15,7 @@
             @for (invoiceItem of invoiceItems; track invoiceItem.id; let i = $index) {
                 <tr>
                     <td>{{ i + 1 }}</td>
-                    <td>{{ invoiceItem.product.description }}</td>
+                    <td>{{ invoiceItem.name }}</td>
                     <td>{{ invoiceItem.quantity }}</td>
                     <td>{{ getInvoiceItemStatus(invoiceItem) }}</td>
                     <td>{{ invoiceItem.createdAt | date: 'dd/MM/yyyy' }}</td>

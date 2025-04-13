@@ -32,4 +32,8 @@ export class InvoiceItemService {
     }
     return 'Statut inconnu';
   }
+
+  markAsReadyToBeShipped(invoiceItemId: number) {
+    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsReadyToBeShipped`, {});
+  }
 }
