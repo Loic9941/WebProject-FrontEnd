@@ -33,17 +33,12 @@ export class InvoiceService {
     return this.apiService.put(`invoice/${invoiceId}/markAsPaid`, data);
   }
 
-    getInvoiceStatus(invoice: Invoice) {
-      if (invoice.status === 'pending') {
-        return 'Dans le panier';
-      } else if (invoice.status === 'paid') {
-        return 'Payée';
-      } else if (invoice.status === 'Shipped') {
-        return 'En cours de livraison';
-      } else if (invoice.status === 'delivered') {
-        return 'Livrée';
-      }
-      return 'Statut inconnu';
+  getInvoiceStatus(invoice: Invoice) {
+    if (invoice.status === 'pending') {
+      return 'Dans le panier';
+    } else if (invoice.status === 'paid') {
+      return 'Payée';
     }
-
+    return 'Statut inconnu';
+  }
 }

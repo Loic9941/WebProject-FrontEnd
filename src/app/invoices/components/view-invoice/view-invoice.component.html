@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-9">
         <div class="card shadow my-5">
             <h4 class="card-header">Détails de la commande</h4>
             <div class="card-body">
@@ -13,6 +13,7 @@
                                 <th>Quantité</th>
                                 <th>Prix</th>
                                 <th>Total</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -29,6 +30,7 @@
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.unitPrice |currency:'€' }}</td>
                                 <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
+                                <td>{{ getInvoiceItemStatus(item) }}</td>
                                 <td>
                                     <button 
                                         class="btn btn-outline-default btn-sm"
@@ -60,9 +62,11 @@
                 <div class="mb-3">
                     <b><label for="deliveryPartner" class="form-label">Transporteur : </label></b>
                     <p>{{ invoice.deliveryPartner?.firstname }}</p>
+                </div>
+            
+            
+            
             </div>
-            
-            
             <div class="card-footer d-flex justify-content-between">
                 <button [routerLink]="['/invoices']" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i>   

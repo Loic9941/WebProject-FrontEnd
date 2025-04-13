@@ -1,4 +1,4 @@
-import { InvoiceItem } from "./invoice-item.interface";
+import { InvoiceItem } from "../../invoice-items/interfaces/invoice-item.interface";
 
 export interface Invoice {
     id : number

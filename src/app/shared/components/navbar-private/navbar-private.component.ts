@@ -58,6 +58,10 @@ export class NavbarPrivateComponent {
   showInvoices  () : boolean {
     return this.authService.isCustomer();
   }
+  
+  showInvoiceItems() : boolean {
+    return this.authService.isArtisan() || this.authService.isAdmin() || this.authService.isDeliveryPartner();
+  }
 
   goToCart() : void {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {

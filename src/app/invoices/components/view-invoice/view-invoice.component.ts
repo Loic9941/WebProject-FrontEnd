@@ -3,7 +3,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
 import { Invoice } from '../../interfaces/invoice.interface';
-import { InvoiceItem } from '../../interfaces/invoice-item.interface';
+import { InvoiceItem } from '../../../invoice-items/interfaces/invoice-item.interface';
+import { InvoiceItemService } from '../../../invoice-items/services/invoice-item.service';
 
 @Component({
   selector: 'app-view-invoice',
@@ -23,6 +24,7 @@ export class ViewInvoiceComponent {
 
   constructor(
     private invoiceService: InvoiceService,
+    private invoiceItemService: InvoiceItemService,
     private route: ActivatedRoute,
     private router: Router, 
   ) { }
@@ -42,13 +44,14 @@ export class ViewInvoiceComponent {
   getInvoiceStatus(invoice: Invoice) {
     return this.invoiceService.getInvoiceStatus(invoice);
   }
+  
+  getInvoiceItemStatus(invoiceItem: InvoiceItem) {
+    return this.invoiceItemService.getInvoiceItemStatus(invoiceItem);
+  }
 
   rateArticle(invoice: Invoice, invoiceItem: InvoiceItem) {
-    if(invoice.status !== 'DELIVERED') { // FIx me : this will change
-      this.showErrorMessage.emit("Vous devez attendre Id'avoir reçu l'article pour le noter");
-    }
-    else {
+    //Fix me : missing checks here
       this.router.navigate(['/products/rate', invoiceItem.productId]);
-    }
+    
   }
 }

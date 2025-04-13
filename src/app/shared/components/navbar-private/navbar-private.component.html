@@ -22,6 +22,9 @@
         <li *ngIf="showInvoices()" class="nav-item"> 
           <a class="nav-link" href="/invoices">Mes commandes</a>
         </li>
+        <li *ngIf="showInvoiceItems()" class="nav-item"> 
+          <a class="nav-link" href="/invoice-items">Gestion des commandes</a>
+        </li>
       </ul>
       <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
         <i class="fas fa-shopping-cart"></i>
