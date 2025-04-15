@@ -24,6 +24,7 @@ export class EditProductComponent {
     image: undefined,
     contactId: 1, //Fix Me Later
     id: 0,
+    ratings: []
   };
   selectedFile: File | null = null;
 

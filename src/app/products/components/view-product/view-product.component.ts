@@ -21,7 +21,9 @@ export class ViewProductComponent implements OnInit {
     image: undefined,
     contactId: 1, //Fix Me Later
     id: 0,
+    ratings: []
   };
+  rating: number = 0; // Initialize rating to 0
   @Output() cartUpdated = new EventEmitter<Number>(); // EventEmitter to notify parent
   @Output() showSuccessMessage = new EventEmitter<String>();
 
@@ -40,6 +42,11 @@ export class ViewProductComponent implements OnInit {
       if (this.product.image) {
         this.product.image = 'data:image/jpeg;base64,' + this.product.image
       }
+      console.log(this.product.ratings);
+      this.product.ratings.forEach((rating) => {
+        this.rating += rating.rate;
+      });
+      this.rating = this.rating / this.product.ratings.length;
     });
   }
 

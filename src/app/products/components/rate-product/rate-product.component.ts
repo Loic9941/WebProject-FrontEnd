@@ -32,7 +32,8 @@ export class RateProductComponent {
     name: '',
     price: 0,
     contactId: 0,
-    image: undefined
+    image: undefined,
+    ratings: [],
   };
   productRateForm : FormGroup;
 
