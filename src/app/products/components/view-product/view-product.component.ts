@@ -64,4 +64,9 @@ export class ViewProductComponent implements OnInit {
   showAddToInvoiceButton() {
     return this.authService.isCustomer();
   }
+  
+  getStars(rating: number): number[] {
+    const fullStars = Math.floor(rating);
+    return Array(fullStars).fill(0);
+  }
 }

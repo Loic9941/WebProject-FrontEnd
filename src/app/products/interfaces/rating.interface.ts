@@ -4,5 +4,6 @@ export interface Rating {
     id : number
     comment : string;
     rate : number;
-    user : User
+    user : User,
+    createdAt : Date;
 }
