@@ -7,4 +7,5 @@ body {
     background-size: cover; /* Ensures the image covers the entire page */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the image fixed during scrolling */
+    background-color: #ECEFF1;
 }

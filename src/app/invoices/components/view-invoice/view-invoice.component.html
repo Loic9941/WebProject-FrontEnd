@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-10">
         <div class="card shadow my-5">
             <h4 class="card-header">Détails de la commande</h4>
             <div class="card-body">
@@ -52,7 +52,7 @@
                     <p>{{ getInvoiceStatus(invoice) }}</p>
                 </div>
                 <div class="mb-3">
-                    <b><label for="createdAt" class="form-label">Date de création : </label></b>
+                    <b><label for="createdAt" class="form-label">Date de commande : </label></b>
                     <p>{{ invoice.createdAt | date: 'dd/MM/yyyy' }}</p>
                 </div>
                 <div class="mb-3">
