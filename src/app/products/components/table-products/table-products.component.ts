@@ -11,10 +11,6 @@ import { AuthService } from '../../../shared/services/auth.service';
 	templateUrl: './table-products.component.html',
 })
 export class TableProductsComponent {
-  
-  /**
-   *
-   */
   constructor(
     private productService: ProductService, 
     private authService: AuthService) {

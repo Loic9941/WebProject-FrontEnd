@@ -1,60 +1,54 @@
 <div class="row justify-content-center">
-    <h1 class="mb-4">Articles en vente</h1>
-    <div class="text-end mb-3">
-        <button *ngIf="showAddButton()" class="btn btn-success"  
-            [routerLink]="['/products/edit']"
-        >
-            <i class="fas fa-plus"></i> Ajouter un article
-        </button>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @if (products.length === 0) {
-            <div class="col text-center">
-                <p>Aucun produit trouvé.</p>
+    <div class="col-md-10">
+        <div class="card shadow-lg rounded-3 my-5">
+            <div class="card-header bg-default">
+                <h1 class="mb-0">Mes articles</h1>
             </div>
-        } 
-        @for (product of products; track product.id; let i = $index) {
-            <div class="col">
-                <div class="card h-100">
-                    <img 
-                        *ngIf="product.image" 
-                        [src]="'data:image/jpeg;base64,' + product.image" 
-                        class="card-img-top" 
-                        alt="{{ product.name }}" 
-                        style="height: 200px; object-fit: cover;"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">
-                            <span class="badge bg-primary">{{ product.price }} €</span>
-                        </p>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button class="btn btn-outline-secondary btn-sm me-2" 
-                            [routerLink]="['/products/view', product.id]"
-                            title="Voir"
-                        >
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button 
-                            class="btn btn-outline-secondary btn-sm me-2" 
-                            [routerLink]="['/products/edit', product.id]"
-                            *ngIf="showEditButton()"
-                            title="Modifier"
-                        >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button 
-                            class="btn btn-outline-danger btn-sm"
-                            *ngIf="showDeleteButton()"
-                            (click)="deleteProduct(product.id)"
-                            title="Supprimer"
-                        >
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col" class="text-end"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for  (product of products; track product.id; let i = $index)  {
+                            <tr>
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>
+                                    {{ product.name }}
+                                </td>
+                                <td>
+                                    {{ product.price }} €
+                                </td>
+                                <td></td>
+                                <td class="text-end">
+                                    <button
+                                        class="btn btn-outline-secondary btn-sm me-2"
+                                        [routerLink]="['/products/edit', product.id]"
+                                        *ngIf="showEditButton()"
+                                        title="Modifier"
+                                    >
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button
+                                        class="btn btn-outline-danger btn-sm me-2"
+                                        [routerLink]="['/products/edit', product.id]"
+                                        title="Supprimer"
+                                        *ngIf="showDeleteButton()"
+                                    >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        }
+        </div>
     </div>
 </div>

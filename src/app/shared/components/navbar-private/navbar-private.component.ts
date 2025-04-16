@@ -19,7 +19,6 @@ export class NavbarPrivateComponent {
     private authService: AuthService,
     private invoiceService: InvoiceService
   ) {
-    
   }
 
   ngOnInit() {
@@ -44,7 +43,11 @@ export class NavbarPrivateComponent {
   }
 
   showProducts() : boolean {
-    return this.authService.isAdmin() || this.authService.isArtisan() || this.authService.isCustomer();
+    return this.authService.isAdmin() || this.authService.isArtisan();
+  }
+
+  showShop() : boolean {
+    return this.authService.isCustomer() || this.authService.isAdmin();
   }
 
   showUsers() : boolean {

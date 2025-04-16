@@ -12,6 +12,7 @@ import { ViewInvoiceComponent } from './invoices/components/view-invoice/view-in
 import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 import { TableInvoiceItemsComponent } from './invoice-items/components/table-invoice-items/table-invoice-items.component';
 import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
+import { ShopProductsComponent } from './products/components/shop-products/shop-products.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,8 @@ export const routes: Routes = [
     { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
     { path: 'products/rate/:id', component: RateProductComponent, canActivate: [authGuard] },
     { path: 'products/view/:id', component: ViewProductComponent,  canActivate: [authGuard] },
+    
+    { path: 'shop', component: ShopProductsComponent, canActivate: [authGuard] },
 
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
 
