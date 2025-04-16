@@ -9,5 +9,5 @@ export interface Product {
     contactId : number;
     image : string | undefined;
     ratings: Rating[];
-    Category? : Category;
+    category? : Category;
 }

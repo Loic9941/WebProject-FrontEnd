@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { Category } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-edit-product',
@@ -26,8 +27,10 @@ export class EditProductComponent {
     id: 0,
     ratings: []
   };
+  categories: Category[] = [];
   selectedFile: File | null = null;
-
+  newCategoryName: string = '';
+  
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -38,6 +41,7 @@ export class EditProductComponent {
     this.productId = +this.route.snapshot.paramMap.get('id')!;
     if (this.productId) {
       this.getProduct();
+      this.getCategories();
     }
   }
 
@@ -50,12 +54,19 @@ export class EditProductComponent {
     });
   }
 
+  getCategories(): void {
+    this.productService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
   saveProduct(form: NgForm): void {
     if (form.valid) {
       const formData = new FormData();
       formData.append('name', this.product.name);
       formData.append('description', this.product.description || '');
       formData.append('price', this.product.price.toString());
+      formData.append('category', JSON.stringify(this.product.category));
 
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
@@ -87,5 +98,17 @@ export class EditProductComponent {
 
   showSuccess() {
     this.showSuccessMessage.emit("Produit sauvegardé");
+  }
+
+
+  addNewCategory() {
+    if (this.newCategoryName.trim()) {
+        const newCategory = { id: 0, name: this.newCategoryName.trim() };
+        this.categories.push(newCategory);
+        this.product.category = newCategory;
+        this.newCategoryName = '';
+        console.log(newCategory);
+        console.log( this.product.category);
+    }
   }
 }
