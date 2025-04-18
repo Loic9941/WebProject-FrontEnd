@@ -13,6 +13,8 @@ import { RateProductComponent } from './products/components/rate-product/rate-pr
 import { TableInvoiceItemsComponent } from './invoice-items/components/table-invoice-items/table-invoice-items.component';
 import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
 import { ShopProductsComponent } from './products/components/shop-products/shop-products.component';
+import { FinancialReportComponent } from './accounting/components/financial-report/financial-report.component';
+import { TableRatingComponent } from './products/components/table-rating/table-rating.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,7 +27,10 @@ export const routes: Routes = [
     { path: 'products/rate/:id', component: RateProductComponent, canActivate: [authGuard] },
     { path: 'products/view/:id', component: ViewProductComponent,  canActivate: [authGuard] },
     
+    { path: 'rates', component: TableRatingComponent, canActivate: [authGuard] },
     { path: 'shop', component: ShopProductsComponent, canActivate: [authGuard] },
+
+    { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard] }, // Replace with actual component
 
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
 

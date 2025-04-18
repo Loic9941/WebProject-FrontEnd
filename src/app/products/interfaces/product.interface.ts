@@ -1,3 +1,4 @@
+import { InvoiceItem } from "../../invoice-items/interfaces/invoice-item.interface";
 import { Rating } from "./rating.interface";
 
 export interface Product {
@@ -7,6 +8,6 @@ export interface Product {
     price : number;
     contactId : number;
     image : string | undefined;
-    ratings: Rating[];
     category? : string 
+    invoiceItems : InvoiceItem[] ;
 }

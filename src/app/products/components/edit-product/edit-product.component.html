@@ -2,11 +2,11 @@
     <div class="col-md-10">
         <div class="card shadow my-5">
             <form #productForm="ngForm"  (ngSubmit)="saveProduct(productForm)">
-                @if (product) {
-                    <h4 class="card-header">Modification de l'article</h4>
+                @if (productId) {
+                    <h1 class="card-header">Modification de l'article</h1>
                 }
                 @else {
-                    <h4 class="card-header">Ajouter un article</h4>
+                    <h1 class="card-header">Ajouter un article</h1>
                 }
                 <div class="card-body">
                     <div class="mb-3">

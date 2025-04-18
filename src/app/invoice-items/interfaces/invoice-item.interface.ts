@@ -1,4 +1,5 @@
 import { Product } from "../../products/interfaces/product.interface";
+import { Rating } from "../../products/interfaces/rating.interface";
 
 export interface InvoiceItem {
     id : number
@@ -11,4 +12,5 @@ export interface InvoiceItem {
     name : string;
     status : string;
     estimatedDeliveryDate? : string;
+    rating? : Rating;
 }

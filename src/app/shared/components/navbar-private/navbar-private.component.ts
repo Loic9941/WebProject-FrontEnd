@@ -66,6 +66,14 @@ export class NavbarPrivateComponent {
     return this.authService.isArtisan() || this.authService.isAdmin() || this.authService.isDeliveryPartner();
   }
 
+  showFinancialReports() : boolean {
+    return this.authService.isArtisan();
+  }
+
+  showRates() : boolean {
+    return this.authService.isArtisan() || this.authService.isAdmin();
+  }
+  
   goToCart() : void {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       const invoice : Invoice = data;

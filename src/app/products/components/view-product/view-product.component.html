@@ -62,8 +62,8 @@
                 <h5 class="mb-0">Avis des clients</h5>
             </div>
             <div class="card-body">
-                <div *ngIf="product.ratings.length > 0; else noComments">
-                    <div class="mb-3" *ngFor="let comment of product.ratings">
+                <div *ngIf="ratings.length > 0; else noComments">
+                    <div class="mb-3" *ngFor="let comment of ratings">
                         <div class="d-flex align-items-start">
                             <div class="me-3">
                                 <i class="fas fa-user-circle fa-2x text-secondary"></i>

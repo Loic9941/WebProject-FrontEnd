@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-lg rounded-3 my-5">
+            <div class="card-header bg-default d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Mes notes</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Commentaire</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col" class="text-end"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for  (rating of ratings; track rating.id; let i = $index)  {
+                            <tr>
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>
+                                    {{ rating.rate }}
+                                </td>
+                                <td>
+                                    {{ rating.comment }}
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

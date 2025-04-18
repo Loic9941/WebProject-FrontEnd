@@ -33,7 +33,7 @@ export class RateProductComponent {
     price: 0,
     contactId: 0,
     image: undefined,
-    ratings: [],
+    invoiceItems: [],
   };
   productRateForm : FormGroup;
 
@@ -57,6 +57,8 @@ export class RateProductComponent {
   }
 
   saveRatingProduct() {
+    console.log("ici")
+
     this.productService.rateProduct(
       this.productId, 
       this.productRateForm.get('rating')!.value!,
