@@ -16,6 +16,8 @@ export class ProductService {
     category: string = '',
     search: string = ''
   ):Observable<any> {
+    if (minPrice == null) minPrice = 0;
+    if (maxPrice == null) maxPrice = 0;
     return this.apiService.get(`Product?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}`);
   }
 

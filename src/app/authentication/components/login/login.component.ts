@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import {  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 
 @Component({
@@ -16,7 +17,11 @@ export class LoginComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
   loginForm: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(
+    private authenticationService: AuthenticationService, 
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -30,7 +35,16 @@ export class LoginComponent {
           if(response.token){
             sessionStorage.setItem("jwt", response.token);
             this.showSuccessMessage.emit("Connexion réussie");
-            this.router.navigate(["/products"]);
+            if (this.authService.isCustomer()) {
+              this.router.navigate(["/shop"]);
+            } else if (this.authService.isAdmin()) {
+              this.router.navigate(["/users"]);
+            } else if (this.authService.isDeliveryPartner()) {
+              this.router.navigate(["/invoice-items"]);
+            }
+            else if (this.authService.isArtisan()) {
+              this.router.navigate(["/products"]);
+            }
           }
         },
         (error) => {

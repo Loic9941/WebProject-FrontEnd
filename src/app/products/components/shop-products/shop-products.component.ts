@@ -47,8 +47,15 @@ export class ShopProductsComponent {
     });
   }
 
+  private filterTimeout: any;
+
   applyFilters() {
-    this.getProducts();
+    if (this.filterTimeout) {
+      clearTimeout(this.filterTimeout);
+    }
+    this.filterTimeout = setTimeout(() => {
+      this.getProducts();
+    }, 500);
   }
 
   clearFilters() {
