@@ -37,8 +37,4 @@ export class ProductService {
   rateProduct(id: number, rate: number, comment: string): Observable<any> {
     return this.apiService.post(`Product/${id}/rate`, { rate, comment });
   }
-
-  getCategories(): Observable<any> {
-    return this.apiService.get(`Category`);
-  }
 }

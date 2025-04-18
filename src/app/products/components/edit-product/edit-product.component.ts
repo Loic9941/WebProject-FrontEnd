@@ -4,7 +4,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { Category } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-edit-product',
@@ -27,9 +26,21 @@ export class EditProductComponent {
     id: 0,
     ratings: []
   };
-  categories: Category[] = [];
   selectedFile: File | null = null;
   newCategoryName: string = '';
+  categories: string[] = [
+    'Peinture',
+    'Sculpture',
+    'Céramique',
+    'Photographie',
+    'Art numérique',
+    'Artisanat',
+    'Impressions',
+    'Art personnalisé',
+    'Bijoux',
+    'Décoration murale',
+    'Poterie',
+  ];
   
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +52,6 @@ export class EditProductComponent {
     this.productId = +this.route.snapshot.paramMap.get('id')!;
     if (this.productId) {
       this.getProduct();
-      this.getCategories();
     }
   }
 
@@ -51,12 +61,6 @@ export class EditProductComponent {
       if (this.product.image) {
         this.product.image = 'data:image/jpeg;base64,' + this.product.image
       }
-    });
-  }
-
-  getCategories(): void {
-    this.productService.getCategories().subscribe((data) => {
-      this.categories = data;
     });
   }
 
@@ -98,17 +102,5 @@ export class EditProductComponent {
 
   showSuccess() {
     this.showSuccessMessage.emit("Produit sauvegardé");
-  }
-
-
-  addNewCategory() {
-    if (this.newCategoryName.trim()) {
-        const newCategory = { id: 0, name: this.newCategoryName.trim() };
-        this.categories.push(newCategory);
-        this.product.category = newCategory;
-        this.newCategoryName = '';
-        console.log(newCategory);
-        console.log( this.product.category);
-    }
   }
 }

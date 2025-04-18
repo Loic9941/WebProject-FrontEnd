@@ -1,4 +1,3 @@
-import { Category } from "./category.interface";
 import { Rating } from "./rating.interface";
 
 export interface Product {
@@ -9,5 +8,5 @@ export interface Product {
     contactId : number;
     image : string | undefined;
     ratings: Rating[];
-    category? : Category;
+    category? : string 
 }
