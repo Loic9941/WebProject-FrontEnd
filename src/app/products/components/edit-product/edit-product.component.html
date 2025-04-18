@@ -50,17 +50,42 @@
                     </div>
                     <div class="mb-3">
                         <label for="category" class="form-label">Catégorie :</label>
-                        <select
-                            [(ngModel)]="product.category"
-                            id="category"
-                            class="form-select"
-                            name="category"
-                        >
-                            <option *ngFor="let category of categories" [value]="category">
-                                {{ category}}
-                            </option>
-                            
-                        </select>                    
+                        <div class="row">
+                            <!-- Existing Category Dropdown -->
+                            <div class="col-md-6">
+                                <select
+                                    [(ngModel)]="product.category"
+                                    id="category"
+                                    class="form-select"
+                                    name="category"
+                                >
+                                    <option *ngFor="let category of categories" [value]="category">
+                                        {{ category }}
+                                    </option>
+                                </select>
+                            </div>
+                    
+                            <!-- Add New Category -->
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input
+                                        [(ngModel)]="newCategory"
+                                        [ngModelOptions]="{standalone: true}"
+                                        type="text"
+                                        id="newCategory"
+                                        class="form-control"
+                                        placeholder="Nouvelle catégorie"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-primary"
+                                        (click)="addCategory()"
+                                    >
+                                        Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div *ngIf="product.image " class="mt-3">
                         <b><p>photo :</p></b>

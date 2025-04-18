@@ -28,19 +28,9 @@ export class EditProductComponent {
   };
   selectedFile: File | null = null;
   newCategoryName: string = '';
-  categories: string[] = [
-    'Peinture',
-    'Sculpture',
-    'Céramique',
-    'Photographie',
-    'Art numérique',
-    'Artisanat',
-    'Impressions',
-    'Art personnalisé',
-    'Bijoux',
-    'Décoration murale',
-    'Poterie',
-  ];
+  categories: string[] = [];
+  newCategory: string = '';
+
   
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +39,7 @@ export class EditProductComponent {
   }
 
   ngOnInit(): void {    
+    this.getCategories();
     this.productId = +this.route.snapshot.paramMap.get('id')!;
     if (this.productId) {
       this.getProduct();
@@ -70,7 +61,7 @@ export class EditProductComponent {
       formData.append('name', this.product.name);
       formData.append('description', this.product.description || '');
       formData.append('price', this.product.price.toString());
-      formData.append('category', JSON.stringify(this.product.category));
+      formData.append('category', this.product.category || '');
 
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
@@ -88,6 +79,12 @@ export class EditProductComponent {
     }
   }
 
+  getCategories(): void {
+    this.productService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -103,4 +100,19 @@ export class EditProductComponent {
   showSuccess() {
     this.showSuccessMessage.emit("Produit sauvegardé");
   }
+
+  addCategory() {
+    if (this.newCategory.trim()) {
+        // Add the new category to the categories array
+        this.categories.push(this.newCategory.trim());
+
+        // Automatically select the new category
+        this.product.category = this.newCategory.trim();
+
+        // Clear the input field
+        this.newCategory = '';
+    } else {
+        alert('Veuillez entrer un nom pour la nouvelle catégorie.');
+    }
+}
 }
