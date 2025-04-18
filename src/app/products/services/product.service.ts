@@ -10,8 +10,13 @@ export class ProductService {
   constructor(private apiService: ApiService) {
   }
 
-  getProducts():Observable<any> {
-    return this.apiService.get(`Product`);
+  getProducts(
+    minPrice: number = 0,
+    maxPrice: number = 0,
+    category: string = '',
+    search: string = ''
+  ):Observable<any> {
+    return this.apiService.get(`Product?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}`);
   }
 
   getProductById(id: number): Observable<any> {

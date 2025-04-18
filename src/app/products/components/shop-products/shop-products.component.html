@@ -1,5 +1,67 @@
 <div class="row justify-content-center">
     <h1 class="mb-4">Articles en vente</h1>
+    <!-- Filters Section -->
+    <div class="row mb-4 align-items-end">
+        <!-- Category Filter -->
+        <div class="col-md-3">
+            <label for="categoryFilter" class="form-label fw-bold">Catégorie :</label>
+            <select
+                [(ngModel)]="selectedCategory"
+                id="categoryFilter"
+                class="form-select"
+                (change)="applyFilters()"
+            >
+                <option value="">Toutes les catégories</option>
+                <option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                </option>
+            </select>
+        </div>
+    
+        <!-- Minimum Price Filter -->
+        <div class="col-md-3">
+            <label for="minPriceFilter" class="form-label fw-bold">Prix minimum :</label>
+            <input
+                [(ngModel)]="minPrice"
+                type="number"
+                id="minPriceFilter"
+                class="form-control"
+                placeholder="Prix minimum"
+                (input)="applyFilters()"
+            />
+        </div>
+    
+        <!-- Maximum Price Filter -->
+        <div class="col-md-3">
+            <label for="maxPriceFilter" class="form-label fw-bold">Prix maximum :</label>
+            <input
+                [(ngModel)]="maxPrice"
+                type="number"
+                id="maxPriceFilter"
+                class="form-control"
+                placeholder="Prix maximum"
+                (input)="applyFilters()"
+            />
+        </div>
+    
+        <!-- Search Filter -->
+        <div class="col-md-3">
+            <label for="searchFilter" class="form-label fw-bold">Rechercher :</label>
+            <div class="input-group">
+                <input
+                    [(ngModel)]="searchQuery"
+                    type="text"
+                    id="searchFilter"
+                    class="form-control"
+                    placeholder="Nom du produit"
+                    (input)="applyFilters()"
+                />
+                <button class="btn btn-outline-secondary" type="button" (click)="clearFilters()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @if (products.length === 0) {
             <div class="col text-center">
