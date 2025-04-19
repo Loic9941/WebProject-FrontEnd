@@ -1,99 +1,112 @@
 <div class="row justify-content-center">
-    <h1 class="mb-4">Articles en vente</h1>
-    <!-- Filters Section -->
-    <div class="row mb-4 align-items-end">
-        <!-- Category Filter -->
-        <div class="col-md-3">
-            <label for="categoryFilter" class="form-label fw-bold">Catégorie :</label>
-            <select
-                [(ngModel)]="selectedCategory"
-                id="categoryFilter"
-                class="form-select"
-                (change)="applyFilters()"
-            >
-                <option value="">Toutes les catégories</option>
-                <option *ngFor="let category of categories" [value]="category">
-                    {{ category }}
-                </option>
-            </select>
-        </div>
-    
-        <!-- Minimum Price Filter -->
-        <div class="col-md-3">
-            <label for="minPriceFilter" class="form-label fw-bold">Prix minimum :</label>
-            <input
-                [(ngModel)]="minPrice"
-                type="number"
-                id="minPriceFilter"
-                class="form-control"
-                placeholder="Prix minimum"
-                (input)="applyFilters()"
-            />
-        </div>
-    
-        <!-- Maximum Price Filter -->
-        <div class="col-md-3">
-            <label for="maxPriceFilter" class="form-label fw-bold">Prix maximum :</label>
-            <input
-                [(ngModel)]="maxPrice"
-                type="number"
-                id="maxPriceFilter"
-                class="form-control"
-                placeholder="Prix maximum"
-                (input)="applyFilters()"
-            />
-        </div>
-    
-        <!-- Search Filter -->
-        <div class="col-md-3">
-            <label for="searchFilter" class="form-label fw-bold">Rechercher :</label>
-            <div class="input-group">
-                <input
-                    [(ngModel)]="searchQuery"
-                    type="text"
-                    id="searchFilter"
-                    class="form-control"
-                    placeholder="Nom du produit"
-                    (input)="applyFilters()"
-                />
-                <button class="btn btn-outline-secondary" type="button" (click)="clearFilters()">
-                    <i class="fas fa-times"></i>
-                </button>
+    <div class="col-md-12">
+        <div class="card shadow-lg rounded-3 my-5">
+            <!-- Card Header -->
+            <div class="card-header">
+                <h1 class="mb-0 text-center">Boutique en ligne</h1>
             </div>
-        </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @if (products.length === 0) {
-            <div class="col text-center">
-                <p>Aucun produit trouvé.</p>
-            </div>
-        } 
-        @for (product of products; track product.id; let i = $index) {
-            <div class="col">
-                <div class="card h-100">
-                    <img 
-                        *ngIf="product.image" 
-                        [src]="'data:image/jpeg;base64,' + product.image" 
-                        class="card-img-top" 
-                        alt="{{ product.name }}" 
-                        style="height: 200px; object-fit: cover;"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">
-                            <span class="badge bg-primary">{{ product.price }} €</span>
-                        </p>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button class="btn btn-outline-secondary btn-sm me-2" 
-                            [routerLink]="['/products/view', product.id]"
-                            title="Voir"
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <!-- Filters Section -->
+                <div class="row mb-4 align-items-end">
+                    <!-- Category Filter -->
+                    <div class="col-md-3">
+                        <label for="categoryFilter" class="form-label fw-bold">Catégorie :</label>
+                        <select
+                            [(ngModel)]="selectedCategory"
+                            id="categoryFilter"
+                            class="form-select"
+                            (change)="applyFilters()"
                         >
-                            <i class="fas fa-eye"></i>
-                        </button>
+                            <option value="">Toutes les catégories</option>
+                            <option *ngFor="let category of categories" [value]="category">
+                                {{ category }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Minimum Price Filter -->
+                    <div class="col-md-3">
+                        <label for="minPriceFilter" class="form-label fw-bold">Prix minimum :</label>
+                        <input
+                            [(ngModel)]="minPrice"
+                            type="number"
+                            id="minPriceFilter"
+                            class="form-control"
+                            placeholder="Prix minimum"
+                            (input)="applyFilters()"
+                        />
+                    </div>
+
+                    <!-- Maximum Price Filter -->
+                    <div class="col-md-3">
+                        <label for="maxPriceFilter" class="form-label fw-bold">Prix maximum :</label>
+                        <input
+                            [(ngModel)]="maxPrice"
+                            type="number"
+                            id="maxPriceFilter"
+                            class="form-control"
+                            placeholder="Prix maximum"
+                            (input)="applyFilters()"
+                        />
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div class="col-md-3">
+                        <label for="searchFilter" class="form-label fw-bold">Rechercher :</label>
+                        <div class="input-group">
+                            <input
+                                [(ngModel)]="searchQuery"
+                                type="text"
+                                id="searchFilter"
+                                class="form-control"
+                                placeholder="Nom du produit"
+                                (input)="applyFilters()"
+                            />
+                            <button class="btn btn-outline-secondary" type="button" (click)="clearFilters()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Products Grid -->
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    @if (products.length === 0) {
+                        <div class="col text-center">
+                            <p>Aucun produit trouvé.</p>
+                        </div>
+                    } 
+                    @for (product of products; track product.id; let i = $index) {
+                        <div class="col">
+                            <div class="card h-100">
+                                <img 
+                                    *ngIf="product.image" 
+                                    [src]="'data:image/jpeg;base64,' + product.image" 
+                                    class="card-img-top" 
+                                    alt="{{ product.name }}" 
+                                    style="height: 200px; object-fit: cover;"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">
+                                        <span class="badge bg-primary">{{ product.price }} €</span>
+                                    </p>
+                                </div>
+                                <div class="card-footer text-end">
+                                    <button class="btn btn-outline-secondary btn-sm me-2" 
+                                        [routerLink]="['/products/view', product.id]"
+                                        title="Voir"
+                                    >
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
-        }
+        </div>
     </div>
 </div>

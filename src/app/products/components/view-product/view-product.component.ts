@@ -46,8 +46,8 @@ export class ViewProductComponent implements OnInit {
       if (this.product.image) {
         this.product.image = 'data:image/jpeg;base64,' + this.product.image
       }
-      this.ratings = this.product.invoiceItems.map((item) => item.rating).filter((rating) => rating !== undefined) as Rating[];
-
+      this.ratings = this.product.invoiceItems.map((item) => item.rating).filter((rating) => rating !== null) as Rating[];
+      console.log(this.ratings);
       this.numberOfRatings = this.ratings.length;
       this.ratings.forEach((rating) => {
         this.rating += rating.rate;

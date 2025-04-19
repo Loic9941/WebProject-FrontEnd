@@ -9,5 +9,5 @@ export interface Product {
     contactId : number;
     image : string | undefined;
     category? : string 
-    invoiceItems : InvoiceItem[] ;
+    invoiceItems : InvoiceItem[];
 }

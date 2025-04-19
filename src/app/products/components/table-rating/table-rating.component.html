@@ -11,8 +11,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Note</th>
                             <th scope="col">Commentaire</th>
-                            <th scope="col">Catégorie</th>
-                            <th scope="col" class="text-end"></th>
+                            <th scope="col">Article</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,12 +19,18 @@
                             <tr>
                                 <th scope="row">{{ i + 1 }}</th>
                                 <td>
-                                    {{ rating.rate }}
+                                    <span *ngFor="let star of [].constructor(rating.rate); let i = index">
+                                        <i class="fa fa-star text-warning"></i>
+                                    </span>
+                                    <span *ngFor="let star of [].constructor(5 - rating.rate); let i = index">
+                                        <i class="fa fa-star text-secondary"></i>
+                                    </span>
                                 </td>
                                 <td>
                                     {{ rating.comment }}
                                 </td>
                                 <td>
+                                    {{ rating.invoiceItem.name }}
                                 </td>
                             </tr>
                         }

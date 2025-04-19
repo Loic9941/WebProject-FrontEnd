@@ -1,11 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;}
 body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Set Montserrat as the global font */
+    font-size: 20px; /* Adjust font size as needed */
     background-size: cover; /* Ensures the image covers the entire page */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the image fixed during scrolling */
-    background-color: #ECEFF1;
+    background-image: url('assets/blurry-background-v2.png');
 }

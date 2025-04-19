@@ -7,7 +7,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import { InvoiceItemService } from '../../../invoice-items/services/invoice-item.service';
+import { RatingService } from '../../services/rating.service';
+import { Invoice } from '../../../invoices/interfaces/invoice.interface';
+import { InvoiceItem } from '../../../invoice-items/interfaces/invoice-item.interface';
 
 @Component({
   selector: 'app-rate-product',
@@ -26,20 +29,24 @@ import { MatInputModule } from '@angular/material/input';
 export class RateProductComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
-  productId!: number;
-  product: Product = {
+  invoiceItemId!: number;
+  invoiceItem: InvoiceItem = {
     id: 0,
+    product : undefined,
+    quantity: 0,
+    unitPrice: 0,
     name: '',
-    price: 0,
-    contactId: 0,
-    image: undefined,
-    invoiceItems: [],
-  };
+    createdAt: '',
+    productId: 0,
+    status: '',
+  }
+
   productRateForm : FormGroup;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private invoiceItemService: InvoiceItemService,
+    private ratingService: RatingService,
     private router: Router
   ) {  
     this.productRateForm = new FormGroup({
@@ -50,17 +57,15 @@ export class RateProductComponent {
   }
 
   ngOnInit(): void {
-    this.productId = +this.route.snapshot.paramMap.get('id')!;
-    this.productService.getProductById(this.productId).subscribe((data) => {
-      this.product = data;
+    this.invoiceItemId = +this.route.snapshot.paramMap.get('id')!;
+    this.invoiceItemService.getInvoiceItemById(this.invoiceItemId).subscribe((data) => {
+      this.invoiceItem = data;
     });
   }
 
   saveRatingProduct() {
-    console.log("ici")
-
-    this.productService.rateProduct(
-      this.productId, 
+    this.ratingService.rateInvoiceItem(
+      this.invoiceItemId, 
       this.productRateForm.get('rating')!.value!,
       this.productRateForm.get('comment')!.value!
     ).subscribe({
@@ -70,7 +75,7 @@ export class RateProductComponent {
       },
       error: (error) => {
         if(error.status === 409) {
-          this.showErrorMessage.emit('Vous avez déjà noté ce produit');
+          this.showErrorMessage.emit('Vous avez déjà noté cette commande');
         }
         else{
           this.showErrorMessage.emit('Erreur lors de la notation du produit');

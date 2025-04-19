@@ -1,3 +1,4 @@
+import { InvoiceItem } from "../../invoice-items/interfaces/invoice-item.interface";
 import { User } from "../../users/interfaces/user.interface";
 
 export interface Rating {
@@ -6,4 +7,5 @@ export interface Rating {
     rate : number;
     user : User,
     createdAt : Date;
+    invoiceItem : InvoiceItem
 }
