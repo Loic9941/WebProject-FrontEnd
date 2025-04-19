@@ -50,7 +50,7 @@ export class RateProductComponent {
     private router: Router
   ) {  
     this.productRateForm = new FormGroup({
-      comment: new FormControl<string>(''),
+      text: new FormControl<string>(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5)]),
     });
       
@@ -67,7 +67,7 @@ export class RateProductComponent {
     this.ratingService.rateInvoiceItem(
       this.invoiceItemId, 
       this.productRateForm.get('rating')!.value!,
-      this.productRateForm.get('comment')!.value!
+      this.productRateForm.get('text')!.value!
     ).subscribe({
       next: (response) => {
         this.showSuccessMessage.emit('Produit noté avec succès');

@@ -1,1 +1,83 @@
-<p>financial-report works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-lg rounded-3 my-5">
+            <div class="card-header bg-default">
+                <h1 class="mb-0">Produits les plus vendus</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (invoiceItem of invoiceItems; track invoiceItem.id; let i = $index) {
+                            <tr>
+                                <th>{{ i + 1 }}</th>
+                                <td>{{ invoiceItem.name }}</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card shadow-lg rounded-3 my-5">
+            <div class="card-header bg-default">
+                <h1 class="mb-0">Produits rapportant le plus de bénéfices</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (invoiceItem of invoiceItems; track invoiceItem.id; let i = $index) {
+                            <tr>
+                                <th>{{ i + 1 }}</th>
+                                <td>{{ invoiceItem.name }}</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card shadow-lg rounded-3 my-5">
+            <div class="card-header bg-default">
+                <h1 class="mb-0">Produits les mieux notés</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Bénéfice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (invoiceItem of invoiceItems; track invoiceItem.id; let i = $index) {
+                            <tr>
+                                <th>{{ i + 1 }}</th>
+                                <td>{{ invoiceItem.name }}</td>
+                                <td>{{ invoiceItem.quantity }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>

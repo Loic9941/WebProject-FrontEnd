@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../../shared/services/api.service';
+import { InvoiceItem } from '../../../invoice-items/interfaces/invoice-item.interface';
 
 @Component({
   selector: 'app-financial-report',
@@ -12,8 +13,10 @@ export class FinancialReportComponent {
   constructor(
     private apiService: ApiService) { }
 
+  invoiceItems : InvoiceItem[] = [];
+
   ngOnInit(): void {
-    //this.getFinancialReport();
+
   }
 
   // Add any methods or properties needed for the component here

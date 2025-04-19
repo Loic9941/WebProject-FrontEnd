@@ -1,5 +1,4 @@
 import { InvoiceItem } from "../../invoice-items/interfaces/invoice-item.interface";
-import { Rating } from "./rating.interface";
 
 export interface Product {
     id : number
