@@ -47,7 +47,7 @@ export class NavbarPrivateComponent {
   }
 
   showShop() : boolean {
-    return this.authService.isCustomer() || this.authService.isAdmin();
+    return this.authService.isCustomer();
   }
 
   showUsers() : boolean {
