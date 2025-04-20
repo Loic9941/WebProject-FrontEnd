@@ -6,4 +6,7 @@ export interface Rating {
     lastName : string;
     productName : string;
     createdAt : Date;
+    commentText? : string;
+    commentId? : number;
+    commentCreatedAt? : Date;
 }
