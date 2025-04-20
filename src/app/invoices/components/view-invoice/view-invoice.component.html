@@ -14,7 +14,7 @@
                                 <th>Prix</th>
                                 <th>Total</th>
                                 <th>Statut</th>
-                                <th></th>
+                                <th>Evaluer</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,12 +28,12 @@
                                 /></td>
                                 <td> {{ item.productName }}</td>
                                 <td>{{ item.quantity }}</td>
-                                <td>{{ item.unitPrice |currency:'€' }}</td>
-                                <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
+                                <td>{{ item.unitPrice }} €</td>
+                                <td>{{ item.quantity * item.unitPrice }} €</td>
                                 <td>{{ getInvoiceItemStatus(item) }}</td>
                                 <td>
                                     <button 
-                                        class="btn btn-outline-default btn-sm"
+                                        class="btn btn-outline-secondary btn-sm"
                                         title="Noter l'article"
                                         (click)="rateArticle(invoice, item)"
                                     >
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mb-3">
                     <b><label for="total" class="form-label">Total de la commande : </label></b>
-                    <p>{{ totalPrice |currency:'€' }}</p>
+                    <p>{{ totalPrice }} €</p>
                 </div>
                 <div class="mb-3">
                     <b><label for="status" class="form-label">Statut de la commande : </label></b>

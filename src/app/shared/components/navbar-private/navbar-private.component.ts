@@ -79,7 +79,7 @@ export class NavbarPrivateComponent {
       const invoice : Invoice = data;
       if (invoice) {
         const invoiceId = invoice.id;
-        this.router.navigate(["/invoices/edit/" + invoiceId]);
+        this.router.navigate(["/invoices/"+ invoiceId + "/edit"]);
       }
     });
   }

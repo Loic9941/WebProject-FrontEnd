@@ -20,4 +20,11 @@ export class RatingService {
     return this.apiService.get(`ratings`);
   }
 
+  getRatingById(id: number): Observable<any> {
+    return this.apiService.get(`ratings/${id}`);
+  }
+
+  commentRating(id: number, text: string): Observable<any> {
+    return this.apiService.post(`ratings/${id}/comment`, { text });
+  }
 }

@@ -33,4 +33,10 @@ export class AuthService {
   isCustomer(): boolean {
     return this.isAuthenticated() && this.getUserRoles() == "Customer";
   }
+
+  getUserId(): number {
+    let token = sessionStorage.getItem('jwt') ?? '';
+    let decodeToken: any = jwtDecode(token);
+    return decodeToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+  }
 }

@@ -84,6 +84,14 @@
                                 <small class="text-muted">{{ comment.createdAt | date: 'dd/MM/yyyy' }}</small>
                             </div>
                         </div>
+                        <div *ngIf="comment.commentId" class="mt-2">
+                            <div class="p-2 bg-light text-muted rounded">
+                                <small>
+                                    <strong>Réponse :</strong> {{ comment.commentText }} - 
+                                    <small>le {{ comment.commentCreatedAt | date: 'dd/MM/yyyy' }}</small>
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <ng-template #noComments>
@@ -92,7 +100,6 @@
             </div>
         </div>
 
-        <!-- Back Button -->
         <div class="text-center mt-3">
             <button [routerLink]="['/products']" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Retour

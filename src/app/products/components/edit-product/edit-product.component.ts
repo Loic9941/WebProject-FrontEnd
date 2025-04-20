@@ -22,7 +22,7 @@ export class EditProductComponent {
     description: '',
     price: 0,
     image: undefined,
-    artisteId: 1, //Fix Me Later
+    artisteId: 0,
     id: 0,
     category: '',
     createdAt: ''

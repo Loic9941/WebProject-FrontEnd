@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card shadow my-5">
             <form [formGroup]="invoiceForm"  (ngSubmit)="MarkInvoiceAsPaid()">
-                <h4 class="card-header">Modification du panier</h4>
+                <h4 class="card-header">Modifier le panier</h4>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead class="table-light">
@@ -26,8 +26,8 @@
                                 /></td>
                                 <td>{{ item.productName }}</td>
                                 <td>{{ item.quantity }}</td>
-                                <td>{{ item.unitPrice |currency:'€' }}</td>
-                                <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
+                                <td>{{ item.unitPrice }} €</td>
+                                <td>{{ item.quantity * item.unitPrice }} €</td>
                                 <td>
                                     <button 
                                         class="btn btn-outline-danger btn-sm"
@@ -41,7 +41,7 @@
                     </table>
                     <br/>
                     <div class="d-flex justify-content-end">
-                        Total : {{ totalPrice |currency:'€' }}
+                        Total : {{ totalPrice }} €
                     </div>
                     <br/>
                     <mat-form-field>

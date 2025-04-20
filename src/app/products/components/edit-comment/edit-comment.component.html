@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card shadow my-5">
+            <form #commentForm="ngForm"  (ngSubmit)="saveComment(commentForm)">
+                @if (rating.commentId) {
+                    <h1 class="card-header text-center">Modification d'une réponse</h1>
+                }
+                @else {
+                    <h1 class="card-header text-center">Ajouter une réponse</h1>
+                }
+                <div class="card-body">
+                    <div class="mb-3">
+                        <b><label for="name" class="form-label">Nom de l'article :</label></b>
+                        {{ rating.productName }}
+                    </div>
+                    <div class="mb-3">
+                        <b><label for="rate" class="form-label">Note :</label></b>
+                        <span *ngFor="let star of [].constructor(rating.rate); let i = index">
+                            <i class="fa fa-star
+                            text-warning"></i>
+                        </span>
+                        <span *ngFor="let star of [].constructor(5 - rating.rate); let i = index">
+                            <i class="fa fa-star text-secondary"></i>
+                        </span>
+                    </div>
+                    <div class="mb-3">
+                        <b><label for="comment" class="form-label">Commentaire :</label></b>
+                        {{ rating.text }}
+                    </div>
+                    <div class="mb-3">
+                        <b><label for="createdAt" class="form-label">Date du commentaire :</label></b>
+                        {{ rating.createdAt | date: 'dd/MM/yyyy' }}
+                    </div>
+                    <div class="mb-3">
+                        <b><label for="" class="form-label">Auteur du commentaire :</label></b>
+                        {{ rating.firstName }} ******
+                    </div>
+
+                    <div class="mb-3">
+                        <b><label for="commentText" class="form-label">Réponse :</label></b>
+                        <textarea 
+                            id="commentText" 
+                            name="commentText" 
+                            [(ngModel)]="rating.commentText"
+                            class="form-control" 
+                            rows="5" 
+                            required
+                        ></textarea>
+                        <div *ngIf="commentForm.controls['commentText']?.invalid && (commentForm.controls['commentText']?.touched || commentForm.controls['commentText']?.dirty)">
+                            <div *ngIf="commentForm.controls['commentText']?.errors?.['required']" class="text-danger">Le commentaire est requis.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-between">
+                    <button [routerLink]="['/rates']" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        [disabled]="commentForm.invalid"
+                    >
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
