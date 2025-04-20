@@ -10,11 +10,11 @@ export class InvoiceItemService {
   constructor(private apiService: ApiService) { }
 
   getInvoiceItems(): Observable<any>  {
-    return this.apiService.get('invoiceItem');
+    return this.apiService.get('invoiceItems');
   }
 
   getInvoiceItemById(id: number): Observable<any>  {
-    return this.apiService.get(`invoiceItem/${id}`);
+    return this.apiService.get(`invoiceItems/${id}`);
   }
 
   // inPreparation, readyToBePickedUp ,pickedUp, inTransit, delivered
@@ -34,24 +34,24 @@ export class InvoiceItemService {
   }
 
   markAsReadyToBeShipped(invoiceItemId: number) {
-    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsReadyToBeShipped`, {});
+    return this.apiService.put(`invoiceItems/${invoiceItemId}/markAsReadyToBeShipped`, {});
   }
 
   markAsPickedUp(invoiceItemId: number, estimatedDeliveryDate?: string) {
     let data = {
       estimatedDeliveryDate: estimatedDeliveryDate ? new Date(estimatedDeliveryDate).toISOString().split('T')[0] : undefined
     };
-    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsPickedUp`, data);
+    return this.apiService.put(`invoiceItems/${invoiceItemId}/markAsPickedUp`, data);
   }
 
   markAsInTransit(invoiceItemId: number, estimatedDeliveryDate?: string) {
     let data = {
       estimatedDeliveryDate: estimatedDeliveryDate ? new Date(estimatedDeliveryDate).toISOString().split('T')[0] : undefined
     };
-    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsInTransit`, data);
+    return this.apiService.put(`invoiceItems/${invoiceItemId}/markAsInTransit`, data);
   }
 
   markAsDelivered(invoiceItemId: number) {
-    return this.apiService.put(`invoiceItem/${invoiceItemId}/markAsDelivered`, {});
+    return this.apiService.put(`invoiceItems/${invoiceItemId}/markAsDelivered`, {});
   }
 }

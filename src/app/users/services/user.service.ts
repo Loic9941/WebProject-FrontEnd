@@ -10,14 +10,14 @@ export class UserService {
   constructor(private apiService: ApiService) { }
 
   getUsers(): Observable<any> {
-    return this.apiService.get('User');
+    return this.apiService.get('users');
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.apiService.delete(`User`,id);
+    return this.apiService.delete(`users`,id);
   }
 
   getDeliveryPartners(): Observable<any> {
-    return this.apiService.get('User/getDeliveryPartners');
+    return this.apiService.get('users/getDeliveryPartners');
   }
 }

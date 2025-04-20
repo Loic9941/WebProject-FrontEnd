@@ -11,26 +11,27 @@ export class InvoiceService {
   constructor(private apiService: ApiService) { }
 
   getPendingInvoice() {
-    return this.apiService.get('invoice/getPendingInvoice');
+    return this.apiService.get('invoices/getPendingInvoice');
   }
 
   getInvoices(): Observable<any> {
-    return this.apiService.get('invoice');
+    return this.apiService.get('invoicse');
   }
 
   getInvoiceById(id: number): Observable<any>  {
-    return this.apiService.get(`invoice/${id}`);
+    return this.apiService.get(`invoices/${id}`);
   }
 
+  //should be moved to invoiceItem service
   deleteInvoiceItem(invoiceItemId: number) {
-    return this.apiService.delete(`invoiceItem`,invoiceItemId);
+    return this.apiService.delete(`invoiceItems`,invoiceItemId);
   }
 
   markInvoiceAsPaid(invoiceId: number, deliveryPartnerId: number) {
     let data = {
       deliveryPartnerId: deliveryPartnerId
     };
-    return this.apiService.put(`invoice/${invoiceId}/markAsPaid`, data);
+    return this.apiService.put(`invoices/${invoiceId}/markAsPaid`, data);
   }
 
   getInvoiceStatus(invoice: Invoice) {

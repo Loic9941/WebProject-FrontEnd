@@ -18,30 +18,32 @@ export class ProductService {
   ):Observable<any> {
     if (minPrice == null) minPrice = 0;
     if (maxPrice == null) maxPrice = 0;
-    return this.apiService.get(`Product?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}`);
+    return this.apiService.get(`products?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}`);
   }
 
   getProductById(id: number): Observable<any> {
-    return this.apiService.get(`Product/${id}`);
+    return this.apiService.get(`products/${id}`);
   }
 
   updateProduct(id: number, product: any): Observable<any> {
-    return this.apiService.putMedia(`Product/${id}`, product);
+    return this.apiService.putMedia(`products/${id}`, product);
   }
 
   addProduct(product: any): Observable<any> {
-    return this.apiService.postMedia(`Product`, product);
+    return this.apiService.postMedia(`products`, product);
   }
 
   deleteProduct(id: number): Observable<any> {
-    return this.apiService.delete(`Product`, id);
+    return this.apiService.delete(`products`, id);
   }
 
+  //Fix me 
+  //Should be moved to invoice service or renamed
   addToInvoice(id: number): Observable<any> {
-    return this.apiService.post(`Invoice/AddToInvoice/${id}`, {});
+    return this.apiService.post(`invoices/AddToInvoice/${id}`, {});
   }
 
   getCategories(): Observable<any> {
-    return this.apiService.get(`Product/GetCategories`);
+    return this.apiService.get(`products/GetCategories`);
   }
 }
