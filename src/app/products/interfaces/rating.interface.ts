@@ -5,7 +5,6 @@ export interface Rating {
     id : number
     text : string;
     rate : number;
-    user : User,
     createdAt : Date;
     invoiceItem : InvoiceItem
 }

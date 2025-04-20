@@ -13,7 +13,10 @@ export class RatingService {
     return this.apiService.post(`InvoiceItem/${id}/rate`, { rate, text });
   }
 
-  getRatings(): Observable<any> {
+  getRatings(productId?: number): Observable<any> {
+    if (productId) {
+      return this.apiService.get(`ratings?productId=${productId}`);
+    }
     return this.apiService.get(`ratings`);
   }
 

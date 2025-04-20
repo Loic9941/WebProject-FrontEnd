@@ -6,6 +6,7 @@ import { Product } from '../../interfaces/product.interface';
 import { Invoice } from '../../../invoices/interfaces/invoice.interface';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Rating } from '../../interfaces/rating.interface';
+import { RatingService } from '../../services/rating.service';
 
 @Component({
   selector: 'app-view-product',
@@ -26,33 +27,43 @@ export class ViewProductComponent implements OnInit {
   };
 
   ratings : Rating[] = [];
-  rating: number = 0; // Initialize rating to 0
-  numberOfRatings: number = 0; // Initialize numberOfRatings to 0
-  @Output() cartUpdated = new EventEmitter<Number>(); // EventEmitter to notify parent
+  rating: number = 0; 
+  numberOfRatings: number = 0; 
+  @Output() cartUpdated = new EventEmitter<Number>();
   @Output() showSuccessMessage = new EventEmitter<String>();
 
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ratingService: RatingService,
   ) {}
 
   ngOnInit(): void {
     this.productId = +this.route.snapshot.paramMap.get('id')!;
-    
-    this.productService.getProductById(this.productId).subscribe((data) => {
+    this.getProductById(this.productId);
+    this.getRatings(this.productId);
+  }
+
+  getRatings(productId: number) {
+    this.ratingService.getRatings(productId).subscribe((data) => {
+      this.ratings = data;
+      this.numberOfRatings = this.ratings.length;
+      let sum = 0;
+      for (let i = 0; i < this.ratings.length; i++) {
+        sum += this.ratings[i].rate;
+      }
+      this.rating = sum / this.numberOfRatings;
+    });
+  }
+
+  getProductById(id: number) {
+    this.productService.getProductById(id).subscribe((data) => {
       this.product = data;
       if (this.product.image) {
         this.product.image = 'data:image/jpeg;base64,' + this.product.image
       }
-      this.ratings = this.product.invoiceItems.map((item) => item.rating).filter((rating) => rating !== null) as Rating[];
-      console.log(this.ratings);
-      this.numberOfRatings = this.ratings.length;
-      this.ratings.forEach((rating) => {
-        this.rating += rating.rate;
-      });
-      this.rating = this.numberOfRatings > 0 ? this.rating / this.numberOfRatings : 0;
     });
   }
 
@@ -69,10 +80,5 @@ export class ViewProductComponent implements OnInit {
   }
   showAddToInvoiceButton() {
     return this.authService.isCustomer();
-  }
-  
-  getStars(rating: number): number[] {
-    const fullStars = Math.floor(rating);
-    return Array(fullStars).fill(0);
   }
 }
