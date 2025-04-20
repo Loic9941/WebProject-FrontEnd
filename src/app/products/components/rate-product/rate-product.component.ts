@@ -32,13 +32,13 @@ export class RateProductComponent {
   invoiceItemId!: number;
   invoiceItem: InvoiceItem = {
     id: 0,
-    product : undefined,
     quantity: 0,
     unitPrice: 0,
-    name: '',
     createdAt: '',
     productId: 0,
     status: '',
+    productName: '',
+    invoiceId: 0
   }
 
   productRateForm : FormGroup;

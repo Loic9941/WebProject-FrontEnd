@@ -21,9 +21,10 @@ export class ViewProductComponent implements OnInit {
     description: '',
     price: 0,
     image: undefined,
-    contactId: 1, //Fix Me Later
     id: 0,
-    invoiceItems: [],
+    artisteId: 0,
+    category: '',
+    createdAt: ''
   };
 
   ratings : Rating[] = [];

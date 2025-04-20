@@ -21,12 +21,12 @@
                             <tr *ngFor="let item of invoice.invoiceItems; let i = index">
                                 <th>{{ i + 1 }}</th>
                                 <td><img 
-                                    *ngIf="item.product.image" 
-                                    [src]="'data:image/jpeg;base64,' + item.product.image" 
+                                    *ngIf="item.productImage" 
+                                    [src]="'data:image/jpeg;base64,' + item.productImage" 
                                     class="card-img-top" 
                                     style="height: 20px; object-fit: cover;"
                                 /></td>
-                                <td> {{ item.name }}</td>
+                                <td> {{ item.productName }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.unitPrice |currency:'€' }}</td>
                                 <td>{{ item.quantity * item.unitPrice |currency:'€' }}</td>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="mb-3">
                     <b><label for="deliveryPartner" class="form-label">Transporteur : </label></b>
-                    <p>{{ invoice.deliveryPartner?.firstname }}</p>
+                    <p>{{ invoice.deliveryPartnerName }}</p>
                 </div>
             
             

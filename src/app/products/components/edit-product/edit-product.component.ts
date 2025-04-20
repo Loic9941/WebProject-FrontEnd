@@ -22,9 +22,10 @@ export class EditProductComponent {
     description: '',
     price: 0,
     image: undefined,
-    contactId: 1, //Fix Me Later
+    artisteId: 1, //Fix Me Later
     id: 0,
-    invoiceItems: [],
+    category: '',
+    createdAt: ''
   };
   selectedFile: File | null = null;
   newCategoryName: string = '';

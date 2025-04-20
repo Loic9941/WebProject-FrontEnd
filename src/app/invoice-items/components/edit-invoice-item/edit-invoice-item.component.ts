@@ -42,8 +42,9 @@ export class EditInvoiceItemComponent {
     unitPrice: 0,
     productId: 0,
     createdAt: '',
-    name: '', 
     status: '',
+    productName: '',
+    invoiceId: 0,
   };
 
   constructor(

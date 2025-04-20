@@ -5,6 +5,7 @@ export interface Invoice {
     invoiceItems : InvoiceItem[];
     status? : string;
     deliveryPartnerId? : number;
+    deliveryPartnerName? : string
     createdAt? : string;
     paidAt? : string;
 }

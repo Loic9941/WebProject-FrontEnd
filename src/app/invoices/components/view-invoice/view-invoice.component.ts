@@ -16,7 +16,7 @@ export class ViewInvoiceComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
   
   invoiceId!: number;
-  invoice: any = {
+  invoice: Invoice = {
     id: 0,
     invoiceItems: [],
   };

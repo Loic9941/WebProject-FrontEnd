@@ -38,4 +38,19 @@ export class TableUsersComponent {
         }
       });
     }
+
+    getRoleLabel(role: string): string {
+      switch (role) {
+        case 'Artisan':
+          return 'Artisan';
+        case 'DeliveryPartner':
+          return 'Livreur';
+        case 'Customer':
+          return 'Client';
+        case 'Administrator':
+          return 'Administrateur';
+        default:
+          return 'Inconnu';
+      }
+    }
 }

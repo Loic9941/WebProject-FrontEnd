@@ -1,18 +1,18 @@
 import { Product } from "../../products/interfaces/product.interface";
 import { Rating } from "../../products/interfaces/rating.interface";
-import { User } from "../../users/interfaces/user.interface";
 
 export interface InvoiceItem {
     id : number
-    quantity : number;
+    invoiceId : number;
+    productId? : number;
+    productName : string;
+    clientFullName? : string;
     unitPrice : number;
-    productId : number;
-    product? : Product;
-    createdAt : string;
-    name : string;
+    quantity : number;
     status : string;
+    createdAt : string;
     estimatedDeliveryDate? : string;
     rating? : Rating;
     deliveredAt? : string;
-    user? : User
+    productImage? : string
 }
