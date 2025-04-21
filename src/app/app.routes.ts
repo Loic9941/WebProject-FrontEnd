@@ -19,17 +19,21 @@ import { EditCommentComponent } from './products/components/edit-comment/edit-co
 import { artisanGuard } from './shared/guards/artisan.guard';
 import { administratorGuard } from './shared/guards/administrator.guard';
 import { customerGuard } from './shared/guards/customer.guard';
+import { AtisanProductsComponent } from './products/pages/atisan-products/atisan-products.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 
-    { path: 'products', component: TableProductsComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'artisan/products', component: AtisanProductsComponent, canActivate: [authGuard, artisanGuard]},
+
+
     { path: 'products/:id/edit', component: EditProductComponent,  canActivate: [authGuard, artisanGuard] },
     { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
     { path: 'products/:id/rate', component: RateProductComponent, canActivate: [authGuard] },
     { path: 'products/:id/view', component: ViewProductComponent,  canActivate: [authGuard, customerGuard] },
+
     
     { path: 'rates', component: TableRatingComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'rates/:id/comment', component: EditCommentComponent, canActivate: [authGuard, artisanGuard] },
