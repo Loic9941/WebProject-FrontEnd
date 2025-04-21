@@ -16,29 +16,32 @@ import { ShopProductsComponent } from './products/components/shop-products/shop-
 import { FinancialReportComponent } from './accounting/components/financial-report/financial-report.component';
 import { TableRatingComponent } from './products/components/table-rating/table-rating.component';
 import { EditCommentComponent } from './products/components/edit-comment/edit-comment.component';
+import { artisanGuard } from './shared/guards/artisan.guard';
+import { administratorGuard } from './shared/guards/administrator.guard';
+import { customerGuard } from './shared/guards/customer.guard';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 
-    { path: 'products', component: TableProductsComponent, canActivate: [authGuard] },
-    { path: 'products/:id/edit', component: EditProductComponent,  canActivate: [authGuard] },//to do later, add  guards
+    { path: 'products', component: TableProductsComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'products/:id/edit', component: EditProductComponent,  canActivate: [authGuard, artisanGuard] },
     { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
     { path: 'products/:id/rate', component: RateProductComponent, canActivate: [authGuard] },
-    { path: 'products/:id/view', component: ViewProductComponent,  canActivate: [authGuard] },
+    { path: 'products/:id/view', component: ViewProductComponent,  canActivate: [authGuard, customerGuard] },
     
-    { path: 'rates', component: TableRatingComponent, canActivate: [authGuard] },
-    { path: 'rates/:id/comment', component: EditCommentComponent, canActivate: [authGuard] },
+    { path: 'rates', component: TableRatingComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'rates/:id/comment', component: EditCommentComponent, canActivate: [authGuard, artisanGuard] },
 
 
-    { path: 'shop', component: ShopProductsComponent, canActivate: [authGuard] },
+    { path: 'shop', component: ShopProductsComponent, canActivate: [authGuard, artisanGuard] },
 
-    { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard] }, // Replace with actual component
+    { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard, artisanGuard] },
 
-    { path: 'users', component: TableUsersComponent, canActivate: [authGuard] },
+    { path: 'users', component: TableUsersComponent, canActivate: [authGuard, administratorGuard] },
 
-    { path: 'invoices/:id/edit', component: EditInvoiceComponent, canActivate: [authGuard] },
+    { path: 'invoices/:id/edit', component: EditInvoiceComponent, canActivate: [authGuard, ] },
     { path: 'invoices', component : TableInvoicesComponent, canActivate: [authGuard] },
     { path: 'invoices/:id/view', component: ViewInvoiceComponent, canActivate: [authGuard] },
 
