@@ -19,27 +19,35 @@ import { EditCommentComponent } from './products/components/edit-comment/edit-co
 import { artisanGuard } from './shared/guards/artisan.guard';
 import { administratorGuard } from './shared/guards/administrator.guard';
 import { customerGuard } from './shared/guards/customer.guard';
-import { AtisanProductsComponent } from './products/pages/atisan-products/atisan-products.component';
+import { ArtisanEditProductComponent } from './products/pages/artisan-edit-product/artisan-edit-product.component';
+import { ArtisanNewProductComponent } from './products/pages/artisan-new-product/artisan-new-product.component';
+import { ArtisanTableProductsComponent } from './products/pages/artisan-table-products/artisan-table-products.component';
+import { CustomerViewProductComponent } from './products/pages/customer-view-product/customer-view-product.component';
+import { CustomerTableProductsComponent } from './products/pages/customer-table-products/customer-table-products.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 
-    { path: 'artisan/products', component: AtisanProductsComponent, canActivate: [authGuard, artisanGuard]},
+    //Artisan Routes
+    { path: 'artisan/products', component: ArtisanTableProductsComponent, canActivate: [authGuard, artisanGuard]},
+    { path: 'artisan/products/:id/edit', component: ArtisanEditProductComponent ,  canActivate: [authGuard, artisanGuard] },
+    { path: 'artisan/products/new', component: ArtisanNewProductComponent,  canActivate: [authGuard,artisanGuard] },
+    
+    //Customer Routes
+    { path: 'customer/products', component: CustomerTableProductsComponent, canActivate: [authGuard, customerGuard] },
+    { path: 'customer/products/:id', component: CustomerViewProductComponent,  canActivate: [authGuard, customerGuard] },
 
-
-    { path: 'products/:id/edit', component: EditProductComponent,  canActivate: [authGuard, artisanGuard] },
-    { path: 'products/edit', component: EditProductComponent,  canActivate: [authGuard] },
+    
+    //To do
     { path: 'products/:id/rate', component: RateProductComponent, canActivate: [authGuard] },
-    { path: 'products/:id/view', component: ViewProductComponent,  canActivate: [authGuard, customerGuard] },
 
     
     { path: 'rates', component: TableRatingComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'rates/:id/comment', component: EditCommentComponent, canActivate: [authGuard, artisanGuard] },
 
 
-    { path: 'shop', component: ShopProductsComponent, canActivate: [authGuard, artisanGuard] },
 
     { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard, artisanGuard] },
 

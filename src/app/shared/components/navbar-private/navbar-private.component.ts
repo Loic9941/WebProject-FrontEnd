@@ -42,8 +42,8 @@ export class NavbarPrivateComponent {
     this.router.navigate(["/login"]);
   }
 
-  showProducts() : boolean {
-    return this.authService.isAdmin() || this.authService.isArtisan();
+  showArtisanProducts() : boolean {
+    return this.authService.isArtisan();
   }
 
   showShop() : boolean {

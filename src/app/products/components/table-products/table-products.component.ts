@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -13,7 +13,9 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class TableProductsComponent {
   constructor(
     private productService: ProductService, 
-    private authService: AuthService) {
+    private authService: AuthService,
+    private router: Router
+  ) {
   }
   products: Product[] = [];
 
@@ -39,5 +41,9 @@ export class TableProductsComponent {
     this.productService.deleteProduct(id).subscribe(() => {
       this.products = this.products.filter((product) => product.id !== id);
     });
+  }
+
+  goToProduct(id: number) {
+    this.router.navigate(["/artisan/products", id, "edit"]);
   }
 }

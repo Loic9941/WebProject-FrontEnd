@@ -43,7 +43,7 @@ export class LoginComponent {
               this.router.navigate(["/invoice-items"]);
             }
             else if (this.authService.isArtisan()) {
-              this.router.navigate(["/products"]);
+              this.router.navigate(["artisan/products"]);
             }
           }
         },

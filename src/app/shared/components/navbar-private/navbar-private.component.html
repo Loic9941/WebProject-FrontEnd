@@ -7,12 +7,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <li *ngIf="showArtisanProducts()" class="nav-item">
+          <a class="nav-link" href="/artisan/products">Mes articles</a>
+        </li>
+
         <li *ngIf="showShop()" class="nav-item">
-          <a class="nav-link" href="/shop">Boutique en ligne</a>
+          <a class="nav-link" href="/customer/products">Boutique en ligne</a>
         </li>
-        <li *ngIf="showProducts()" class="nav-item">
-          <a class="nav-link" href="/products">Mes articles</a>
-        </li>
+
+
         <li *ngIf="showUsers()" class="nav-item"> 
           <a class="nav-link" href="/users">Utilisateurs</a>
         </li>
