@@ -46,7 +46,7 @@ export class NavbarPrivateComponent {
     return this.authService.isArtisan();
   }
 
-  showShop() : boolean {
+  showCustomerShop() : boolean {
     return this.authService.isCustomer();
   }
 
@@ -79,7 +79,7 @@ export class NavbarPrivateComponent {
       const invoice : Invoice = data;
       if (invoice) {
         const invoiceId = invoice.id;
-        this.router.navigate(["/invoices/"+ invoiceId + "/edit"]);
+        this.router.navigate(["customer/invoices", invoiceId,"edit"]);
       }
     });
   }

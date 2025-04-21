@@ -1,47 +1,45 @@
-<div class="card-body">
-    <table class="table table-striped">
-        <thead>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col" class="text-end"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for  (product of products; track product.id; let i = $index)  {
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Catégorie</th>
-                <th scope="col" class="text-end"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @for  (product of products; track product.id; let i = $index)  {
-                <tr>
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>
-                        {{ product.name }}
-                    </td>
-                    <td>
-                        {{ product.price }} €
-                    </td>
-                    <td>
-                        {{ product.category }}
-                    </td>
-                    <td class="text-end">
-                        <button
-                            class="btn btn-outline-secondary btn-sm me-2"
-                            (click)="goToProduct(product.id)"
-                            *ngIf="showEditButton()"
-                            title="Modifier"
-                        >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button
-                            class="btn btn-outline-danger btn-sm me-2"
-                            title="Supprimer"
-                            (click)="deleteProduct(product.id)"
-                            *ngIf="showDeleteButton()"
-                        >
-                        <i class="fas fa-trash-alt"></i>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    {{ product.name }}
+                </td>
+                <td>
+                    {{ product.price }} €
+                </td>
+                <td>
+                    {{ product.category }}
+                </td>
+                <td class="text-end">
+                    <button
+                        class="btn btn-outline-secondary btn-sm me-2"
+                        (click)="goToProduct(product.id)"
+                        *ngIf="showEditButton()"
+                        title="Modifier"
+                    >
+                        <i class="fas fa-edit"></i>
                     </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                    <button
+                        class="btn btn-outline-danger btn-sm me-2"
+                        title="Supprimer"
+                        (click)="deleteProduct(product.id)"
+                        *ngIf="showDeleteButton()"
+                    >
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

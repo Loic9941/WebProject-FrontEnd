@@ -7,21 +7,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <!--Artisan-->
         <li *ngIf="showArtisanProducts()" class="nav-item">
           <a class="nav-link" href="/artisan/products">Mes articles</a>
         </li>
 
-        <li *ngIf="showShop()" class="nav-item">
+        <!--Customer-->
+        <li *ngIf="showCustomerShop()" class="nav-item">
           <a class="nav-link" href="/customer/products">Boutique en ligne</a>
+        </li>
+        <li *ngIf="showInvoices()" class="nav-item"> 
+          <a class="nav-link" href="customer/invoices">Mes commandes</a>
         </li>
 
 
         <li *ngIf="showUsers()" class="nav-item"> 
           <a class="nav-link" href="/users">Utilisateurs</a>
         </li>
-        <li *ngIf="showInvoices()" class="nav-item"> 
-          <a class="nav-link" href="/invoices">Mes commandes</a>
-        </li>
+
         <li *ngIf="showInvoiceItems()" class="nav-item"> 
           <a class="nav-link" href="/invoice-items">Mes commandes</a>
         </li>
@@ -32,6 +35,7 @@
           <a class="nav-link" href="/financial-report">Mes rapport financiers</a>
         </li>
       </ul>
+      
       <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
         <i class="fas fa-shopping-cart"></i>
         Panier ({{ numberCart }})

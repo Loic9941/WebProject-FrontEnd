@@ -1,18 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './authentication/components/login/login.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
-import { TableProductsComponent } from './products/components/table-products/table-products.component';
-import { EditProductComponent } from './products/components/edit-product/edit-product.component';
-import { ViewProductComponent } from './products/components/view-product/view-product.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { TableUsersComponent } from './users/components/table-users/table-users.component';
 import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
-import { TableInvoicesComponent } from './invoices/components/table-invoices/table-invoices.component';
-import { ViewInvoiceComponent } from './invoices/components/view-invoice/view-invoice.component';
 import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 import { TableInvoiceItemsComponent } from './invoice-items/components/table-invoice-items/table-invoice-items.component';
 import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
-import { ShopProductsComponent } from './products/components/shop-products/shop-products.component';
 import { FinancialReportComponent } from './accounting/components/financial-report/financial-report.component';
 import { TableRatingComponent } from './products/components/table-rating/table-rating.component';
 import { EditCommentComponent } from './products/components/edit-comment/edit-comment.component';
@@ -24,11 +18,14 @@ import { ArtisanNewProductComponent } from './products/pages/artisan-new-product
 import { ArtisanTableProductsComponent } from './products/pages/artisan-table-products/artisan-table-products.component';
 import { CustomerViewProductComponent } from './products/pages/customer-view-product/customer-view-product.component';
 import { CustomerTableProductsComponent } from './products/pages/customer-table-products/customer-table-products.component';
+import { CustomerTableInvoicesComponent } from './invoices/pages/customer-table-invoices/customer-table-invoices.component';
+import { CustomerViewInvoiceComponent } from './invoices/pages/customer-view-invoice/customer-view-invoice.component';
+import { CustomerEditInvoiceComponent } from './invoices/pages/customer-edit-invoice/customer-edit-invoice.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'CustomerEditInvoiceComponentregister', component: RegisterComponent },
 
     //Artisan Routes
     { path: 'artisan/products', component: ArtisanTableProductsComponent, canActivate: [authGuard, artisanGuard]},
@@ -38,6 +35,9 @@ export const routes: Routes = [
     //Customer Routes
     { path: 'customer/products', component: CustomerTableProductsComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/products/:id', component: CustomerViewProductComponent,  canActivate: [authGuard, customerGuard] },
+    { path: 'customer/invoices', component : CustomerTableInvoicesComponent, canActivate: [authGuard, customerGuard] },
+    { path: 'customer/invoices/:id', component: CustomerViewInvoiceComponent, canActivate: [authGuard, customerGuard] },
+    { path: 'customer/invoices/:id/edit', component: CustomerEditInvoiceComponent, canActivate: [authGuard, customerGuard] },
 
     
     //To do
@@ -54,8 +54,6 @@ export const routes: Routes = [
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard, administratorGuard] },
 
     { path: 'invoices/:id/edit', component: EditInvoiceComponent, canActivate: [authGuard, ] },
-    { path: 'invoices', component : TableInvoicesComponent, canActivate: [authGuard] },
-    { path: 'invoices/:id/view', component: ViewInvoiceComponent, canActivate: [authGuard] },
 
     { path: 'invoice-items', component: TableInvoiceItemsComponent, canActivate: [authGuard] },
     { path: 'invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard] },
