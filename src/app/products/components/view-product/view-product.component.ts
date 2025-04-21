@@ -30,8 +30,8 @@ export class ViewProductComponent implements OnInit {
   ratings : Rating[] = [];
   rating: number = 0; 
   numberOfRatings: number = 0; 
-  @Output() cartUpdated = new EventEmitter<Number>();
-  @Output() showSuccessMessage = new EventEmitter<String>();
+  @Output() cartUpdated = new EventEmitter<number>();
+  @Output() showSuccessMessage = new EventEmitter<string>();
 
 
   constructor(

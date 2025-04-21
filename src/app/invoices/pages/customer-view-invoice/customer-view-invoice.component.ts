@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ViewInvoiceComponent } from '../../components/view-invoice/view-invoice.component';
 
 @Component({
@@ -8,5 +8,9 @@ import { ViewInvoiceComponent } from '../../components/view-invoice/view-invoice
   styleUrl: './customer-view-invoice.component.css'
 })
 export class CustomerViewInvoiceComponent {
+  @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
 
+  showErrorMessageEmit(message: string) {
+    this.showErrorMessage.emit(message);
+  }
 }
