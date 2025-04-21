@@ -36,13 +36,12 @@ export class LoginComponent {
             sessionStorage.setItem("jwt", response.token);
             this.showSuccessMessage.emit("Connexion réussie");
             if (this.authService.isCustomer()) {
-              this.router.navigate(["/shop"]);
+              this.router.navigate(["/customer/products"]);
             } else if (this.authService.isAdmin()) {
-              this.router.navigate(["/users"]);
+              this.router.navigate(["/administrator/users"]);
             } else if (this.authService.isDeliveryPartner()) {
-              this.router.navigate(["/invoice-items"]);
-            }
-            else if (this.authService.isArtisan()) {
+              this.router.navigate(["/delivery-partner/invoice-items"]);
+            }  else if (this.authService.isArtisan()) {
               this.router.navigate(["artisan/products"]);
             }
           }

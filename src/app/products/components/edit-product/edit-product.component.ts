@@ -1,15 +1,16 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule],
   providers: []
 
 })
@@ -36,6 +37,8 @@ export class EditProductComponent {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -115,5 +118,11 @@ export class EditProductComponent {
     } else {
         alert('Veuillez entrer un nom pour la nouvelle catégorie.');
     }
-}
+  }
+
+  redirectToProducts(){
+    if (this.authService.isArtisan()){
+      this.router.navigate(['/artisan/products']);
+    }
+  }
 }

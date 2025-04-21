@@ -39,7 +39,11 @@ export const routes: Routes = [
     { path: 'customer/invoices/:id', component: CustomerViewInvoiceComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices/:id/edit', component: CustomerEditInvoiceComponent, canActivate: [authGuard, customerGuard] },
 
+    //deliveryPartner Routes
     
+    
+
+
     //To do
     { path: 'products/:id/rate', component: RateProductComponent, canActivate: [authGuard] },
 
@@ -47,13 +51,9 @@ export const routes: Routes = [
     { path: 'rates', component: TableRatingComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'rates/:id/comment', component: EditCommentComponent, canActivate: [authGuard, artisanGuard] },
 
-
-
     { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard, artisanGuard] },
 
     { path: 'users', component: TableUsersComponent, canActivate: [authGuard, administratorGuard] },
-
-    { path: 'invoices/:id/edit', component: EditInvoiceComponent, canActivate: [authGuard, ] },
 
     { path: 'invoice-items', component: TableInvoiceItemsComponent, canActivate: [authGuard] },
     { path: 'invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard] },

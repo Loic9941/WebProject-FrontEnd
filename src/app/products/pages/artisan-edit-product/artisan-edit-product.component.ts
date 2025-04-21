@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EditProductComponent } from '../../components/edit-product/edit-product.component';
 
 @Component({
@@ -8,5 +8,10 @@ import { EditProductComponent } from '../../components/edit-product/edit-product
   styleUrl: './artisan-edit-product.component.css'
 })
 export class ArtisanEditProductComponent {
+  @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+  @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
 
+  showSuccessMessageEmit(message: string) {
+    this.showSuccessMessage.emit(message);
+  }
 }
