@@ -25,7 +25,7 @@ import { CustomerEditInvoiceComponent } from './invoices/pages/customer-edit-inv
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'CustomerEditInvoiceComponentregister', component: RegisterComponent },
+    { path: 'register', component: RegisterComponent },
 
     //Artisan Routes
     { path: 'artisan/products', component: ArtisanTableProductsComponent, canActivate: [authGuard, artisanGuard]},
