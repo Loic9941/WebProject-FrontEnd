@@ -9,7 +9,6 @@ import { EditProductComponent } from '../../components/edit-product/edit-product
 })
 export class ArtisanEditProductComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
-  @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
 
   showSuccessMessageEmit(message: string) {
     this.showSuccessMessage.emit(message);

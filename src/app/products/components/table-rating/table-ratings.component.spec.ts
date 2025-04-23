@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableRatingComponent } from './table-rating.component';
+import { TableRatingsComponent } from './table-ratings.component';
 
-describe('TableRatingComponent', () => {
-  let component: TableRatingComponent;
-  let fixture: ComponentFixture<TableRatingComponent>;
+describe('TableRatingsComponent', () => {
+  let component: TableRatingsComponent;
+  let fixture: ComponentFixture<TableRatingsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableRatingComponent]
+      imports: [TableRatingsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableRatingComponent);
+    fixture = TestBed.createComponent(TableRatingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

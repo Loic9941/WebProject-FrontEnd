@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-table-rating',
+  selector: 'app-table-ratings',
   imports: [CommonModule, RouterLink],
-  templateUrl: './table-rating.component.html',
-  styleUrl: './table-rating.component.css'
+  templateUrl: './table-ratings.component.html',
+  styleUrl: './table-ratings.component.css'
 })
-export class TableRatingComponent {
+export class TableRatingsComponent {
   ratings: Rating[] = [];
 
   constructor(
