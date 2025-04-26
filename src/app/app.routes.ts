@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './authentication/components/login/login.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { authGuard } from './shared/guards/auth.guard';
-import { TableUsersComponent } from './users/components/table-users/table-users.component';
 import { TableInvoiceItemsComponent } from './invoice-items/components/table-invoice-items/table-invoice-items.component';
 import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
 import { FinancialReportComponent } from './accounting/components/financial-report/financial-report.component';
@@ -20,6 +19,7 @@ import { CustomerViewInvoiceComponent } from './invoices/pages/customer-view-inv
 import { CustomerEditInvoiceComponent } from './invoices/pages/customer-edit-invoice/customer-edit-invoice.component';
 import { CustomerRateProductComponent } from './products/pages/customer-rate-product/customer-rate-product.component';
 import { ArtisanTableRatingsComponent } from './products/pages/artisan-table-ratings/artisan-table-ratings.component';
+import { AdminTableUsersComponent } from './users/pages/admin-table-users/admin-table-users.component';
 
 export const routes: Routes = [
     { path : '', redirectTo: '/login', pathMatch: 'full' },
@@ -43,6 +43,9 @@ export const routes: Routes = [
     //deliveryPartner Routes
     
     
+    //administrator Routes
+    { path: 'admin/users', component: AdminTableUsersComponent, canActivate: [authGuard, administratorGuard] },
+
 
 
     //To do
@@ -52,7 +55,6 @@ export const routes: Routes = [
 
     { path: 'financial-report', component: FinancialReportComponent, canActivate: [authGuard, artisanGuard] },
 
-    { path: 'users', component: TableUsersComponent, canActivate: [authGuard, administratorGuard] },
 
     { path: 'invoice-items', component: TableInvoiceItemsComponent, canActivate: [authGuard] },
     { path: 'invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard] },
