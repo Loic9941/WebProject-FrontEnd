@@ -63,7 +63,7 @@ export class NavbarPrivateComponent {
   }
   
   showInvoiceItems() : boolean {
-    return this.authService.isArtisan() || this.authService.isAdmin() || this.authService.isDeliveryPartner();
+    return this.authService.isArtisan() || this.authService.isDeliveryPartner();
   }
 
   showFinancialReports() : boolean {
@@ -71,7 +71,7 @@ export class NavbarPrivateComponent {
   }
 
   showRates() : boolean {
-    return this.authService.isArtisan() || this.authService.isAdmin();
+    return this.authService.isArtisan();
   }
   
   goToCart() : void {

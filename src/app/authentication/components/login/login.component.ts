@@ -38,7 +38,7 @@ export class LoginComponent {
             if (this.authService.isCustomer()) {
               this.router.navigate(["/customer/products"]);
             } else if (this.authService.isAdmin()) {
-              this.router.navigate(["/administrator/users"]);
+              this.router.navigate(["/admin/users"]);
             } else if (this.authService.isDeliveryPartner()) {
               this.router.navigate(["/delivery-partner/invoice-items"]);
             }  else if (this.authService.isArtisan()) {

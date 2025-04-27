@@ -11,6 +11,9 @@
         <li *ngIf="showArtisanProducts()" class="nav-item">
           <a class="nav-link" href="/artisan/products">Mes articles</a>
         </li>
+        <li *ngIf="showRates()" class="nav-item"> 
+          <a class="nav-link" href="artisan/rates">Mes notes</a>
+        </li>
 
         <!--Customer-->
         <li *ngIf="showCustomerShop()" class="nav-item">
@@ -20,17 +23,15 @@
           <a class="nav-link" href="customer/invoices">Mes commandes</a>
         </li>
 
-
+        <!--Admin-->
         <li *ngIf="showUsers()" class="nav-item"> 
-          <a class="nav-link" href="/users">Utilisateurs</a>
+          <a class="nav-link" href="admin/users">Utilisateurs</a>
         </li>
 
         <li *ngIf="showInvoiceItems()" class="nav-item"> 
           <a class="nav-link" href="/invoice-items">Mes commandes</a>
         </li>
-        <li *ngIf="showRates()" class="nav-item"> 
-          <a class="nav-link" href="/rates">Mes notes</a>
-        </li>
+
         <li *ngIf="showFinancialReports()" class="nav-item"> 
           <a class="nav-link" href="/financial-report">Mes rapport financiers</a>
         </li>
