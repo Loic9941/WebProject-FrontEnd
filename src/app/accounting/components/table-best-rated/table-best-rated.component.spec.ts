@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FinancialReportComponent } from './financial-report.component';
+import { TableBestRatedComponent } from './table-best-rated.component';
 
-describe('FinancialReportComponent', () => {
-  let component: FinancialReportComponent;
-  let fixture: ComponentFixture<FinancialReportComponent>;
+describe('TableBestRatedComponent', () => {
+  let component: TableBestRatedComponent;
+  let fixture: ComponentFixture<TableBestRatedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FinancialReportComponent]
+      imports: [TableBestRatedComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FinancialReportComponent);
+    fixture = TestBed.createComponent(TableBestRatedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,14 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Product } from '../../interfaces/product.interface';
-import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { Rating } from '../../interfaces/rating.interface';
 import { RatingService } from '../../services/rating.service';
 
 @Component({
-  selector: 'app-edit-product',
+  selector: 'app-edit-comment',
   templateUrl: './edit-comment.component.html',
   styleUrls: ['./edit-comment.component.css'],
   imports: [FormsModule, CommonModule, RouterLink],

@@ -42,38 +42,28 @@ export class NavbarPrivateComponent {
     this.router.navigate(["/login"]);
   }
 
-  showArtisanProducts() : boolean {
-    return this.authService.isArtisan();
-  }
-
-  showCustomerShop() : boolean {
-    return this.authService.isCustomer();
-  }
-
-  showUsers() : boolean {
-    return this.authService.isAdmin();
-  }
+  
 
   showCart() : boolean {
     return this.authService.isCustomer();
   }
 
-  showInvoices  () : boolean {
+  isAdmin() : boolean {
+    return this.authService.isAdmin();
+  }
+
+  isDeliveryPartner() : boolean {
+    return this.authService.isDeliveryPartner();
+  }
+
+  isArtisan() : boolean {
+    return this.authService.isArtisan();
+  }
+
+  isCustomer() : boolean {
     return this.authService.isCustomer();
   }
-  
-  showInvoiceItems() : boolean {
-    return this.authService.isArtisan() || this.authService.isDeliveryPartner();
-  }
 
-  showFinancialReports() : boolean {
-    return this.authService.isArtisan();
-  }
-
-  showRates() : boolean {
-    return this.authService.isArtisan();
-  }
-  
   goToCart() : void {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       const invoice : Invoice = data;
