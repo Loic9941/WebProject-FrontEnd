@@ -27,7 +27,7 @@
                     </div>
 
                     <!-- Minimum Price Filter -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="minPriceFilter" class="form-label fw-bold">Prix minimum :</label>
                         <input
                             [(ngModel)]="minPrice"
@@ -40,7 +40,7 @@
                     </div>
 
                     <!-- Maximum Price Filter -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="maxPriceFilter" class="form-label fw-bold">Prix maximum :</label>
                         <input
                             [(ngModel)]="maxPrice"
@@ -69,6 +69,23 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Order by-->
+                    <div class="col-md-2 mt-3">
+                        <label for="orderBy" class="form-label fw-bold">Trier par :</label>
+                        <select
+                            [(ngModel)]="orderBy"
+                            id="orderBy"
+                            class="form-select"
+                            (change)="applyFilters()"
+                        >
+                            <option value="name">Nom</option>
+                            <option value="nameDesc">Nom (descendant)</option>
+                            <option value="price">Prix</option>
+                            <option value="priceDesc">Prix (descendant)</option>
+                            <option value="createdAt">Date d'ajout</option>
+                            <option value="createdAtDesc">Date d'ajout (descendant)</option>
+                        </select>
                 </div>
 
                 <!-- Products Grid -->

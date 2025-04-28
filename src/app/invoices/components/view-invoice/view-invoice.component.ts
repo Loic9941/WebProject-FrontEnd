@@ -54,6 +54,6 @@ export class ViewInvoiceComponent {
         this.showErrorMessage.emit('Vous ne pouvez pas noter un article qui n\'est pas livré');
         return;
       }
-      this.router.navigate(['/products/rate', invoiceItem.id]);
-  }
+      this.router.navigate(['/customer/invoice-items', invoiceItem.id, 'rates', 'new']);
+    }
 }

@@ -21,6 +21,7 @@ export class ShopProductsComponent {
   minPrice: number = 0;
   maxPrice: number = 0;
   searchQuery: string = '';
+  orderBy: string = 'name';
   
   products: Product[] = [];
   categories: string[] = [];
@@ -41,7 +42,8 @@ export class ShopProductsComponent {
       this.minPrice,
       this.maxPrice,
       this.selectedCategory,
-      this.searchQuery
+      this.searchQuery,
+      this.orderBy
     ).subscribe((data) => {
       this.products = data;
     });
@@ -63,6 +65,7 @@ export class ShopProductsComponent {
     this.minPrice = 0;
     this.maxPrice = 0;
     this.searchQuery = '';
+    this.orderBy = 'name';
     this.getProducts();
   }
 }

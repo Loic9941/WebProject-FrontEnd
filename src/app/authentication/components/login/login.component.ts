@@ -42,7 +42,7 @@ export class LoginComponent {
             } else if (this.authService.isDeliveryPartner()) {
               this.router.navigate(["/delivery-partner/invoice-items"]);
             }  else if (this.authService.isArtisan()) {
-              this.router.navigate(["artisan/products"]);
+              this.router.navigate(["/artisan/products"]);
             }
           }
         },

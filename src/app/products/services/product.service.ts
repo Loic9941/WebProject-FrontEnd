@@ -14,11 +14,12 @@ export class ProductService {
     minPrice: number = 0,
     maxPrice: number = 0,
     category: string = '',
-    search: string = ''
+    search: string = '',
+    orderBy: string = 'name'
   ):Observable<any> {
     if (minPrice == null) minPrice = 0;
     if (maxPrice == null) maxPrice = 0;
-    return this.apiService.get(`products?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}`);
+    return this.apiService.get(`products?minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&search=${search}&orderBy=${orderBy}`);
   }
 
   getProductById(id: number): Observable<any> {

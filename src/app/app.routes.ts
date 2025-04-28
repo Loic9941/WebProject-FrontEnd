@@ -25,7 +25,7 @@ import { DeliveryPartnerTableInvoiceItemsComponent } from './products/pages/deli
 import { AdminTableInvoiceItemsComponent } from './products/pages/admin-table-invoice-items/admin-table-invoice-items.component';
 import { ArtisanEditInvoiceItemComponent } from './products/pages/artisan-edit-invoice-item/artisan-edit-invoice-item.component';
 import { DeliveryPartnerEditInvoiceItemComponent } from './products/pages/delivery-partner-edit-invoice-item/delivery-partner-edit-invoice-item.component';
-import { AdminEditInvoiceItemComponent } from './products/pages/admin-edit-invoice-item/admin-edit-invoice-item.component';
+import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 
 export const routes: Routes = [
 
@@ -47,10 +47,10 @@ export const routes: Routes = [
     //Customer Routes
     { path: 'customer/products', component: CustomerTableProductsComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/products/:id', component: CustomerViewProductComponent,  canActivate: [authGuard, customerGuard] },
-    { path: 'customer/products/:id/rate', component: CustomerRateProductComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices', component : CustomerTableInvoicesComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices/:id', component: CustomerViewInvoiceComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices/:id/edit', component: CustomerEditInvoiceComponent, canActivate: [authGuard, customerGuard] },
+    { path: 'customer/invoice-items/:id/rates/new', component: CustomerRateProductComponent, canActivate: [authGuard, customerGuard] },
 
     //deliveryPartner Routes
     { path: 'delivery-partner/invoice-items', component: DeliveryPartnerTableInvoiceItemsComponent, canActivate: [authGuard, deliveryPartnerGuard] },
@@ -59,6 +59,5 @@ export const routes: Routes = [
     //administrator Routes
     { path: 'admin/users', component: AdminTableUsersComponent, canActivate: [authGuard, administratorGuard] },
     { path: 'admin/invoice-items', component: AdminTableInvoiceItemsComponent, canActivate: [authGuard, administratorGuard] },
-    { path: 'admin/invoice-items/:id/edit', component: AdminEditInvoiceItemComponent, canActivate: [authGuard, administratorGuard] },
 
 ];
