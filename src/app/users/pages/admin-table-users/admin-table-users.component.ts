@@ -13,11 +13,11 @@ export class AdminTableUsersComponent {
   
   constructor() { }
 
-  emitShowSuccessMessage(message: string) {
+  ShowSuccessMessageEmit(message: string) {
     this.showSuccessMessage.emit(message);
   }
 
-  emitShowErrorMessage(message: string) {
+  ShowErrorMessageEmit(message: string) {
     this.showErrorMessage.emit(message);
   }
 }

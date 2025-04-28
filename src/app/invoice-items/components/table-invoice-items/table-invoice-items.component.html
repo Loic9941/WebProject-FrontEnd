@@ -20,8 +20,8 @@
                 <td>{{ invoiceItem.createdAt | date: 'dd/MM/yyyy' }}</td>
                 <td  class="text-end">
                     <button class="btn btn-outline-secondary btn-sm me-2" 
-                        [routerLink]="['/invoice-items',invoiceItem.id, 'edit']"
-                        title="Voir"
+                        [routerLink]="[invoiceItem.id, 'edit']"
+                        title="Editer"
                     >
                         <i class="fas fa-edit"></i>
                     </button>

@@ -23,6 +23,9 @@ import { deliveryPartnerGuard } from './shared/guards/delivery-partner.guard';
 import { ArtisanTableInvoiceItemsComponent } from './products/pages/artisan-table-invoice-items/artisan-table-invoice-items.component';
 import { DeliveryPartnerTableInvoiceItemsComponent } from './products/pages/delivery-partner-table-invoice-items/delivery-partner-table-invoice-items.component';
 import { AdminTableInvoiceItemsComponent } from './products/pages/admin-table-invoice-items/admin-table-invoice-items.component';
+import { ArtisanEditInvoiceItemComponent } from './products/pages/artisan-edit-invoice-item/artisan-edit-invoice-item.component';
+import { DeliveryPartnerEditInvoiceItemComponent } from './products/pages/delivery-partner-edit-invoice-item/delivery-partner-edit-invoice-item.component';
+import { AdminEditInvoiceItemComponent } from './products/pages/admin-edit-invoice-item/admin-edit-invoice-item.component';
 
 export const routes: Routes = [
 
@@ -39,7 +42,7 @@ export const routes: Routes = [
     { path: 'artisan/rates/:id/comment', component: ArtisanRateCommentComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/financial-report', component: ArtisanFinancialReportsComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/invoice-items', component: ArtisanTableInvoiceItemsComponent, canActivate: [authGuard, artisanGuard] },
-    { path: 'artisan/invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard, administratorGuard] },
+    { path: 'artisan/invoice-items/:id/edit', component: ArtisanEditInvoiceItemComponent, canActivate: [authGuard, artisanGuard] },
 
     //Customer Routes
     { path: 'customer/products', component: CustomerTableProductsComponent, canActivate: [authGuard, customerGuard] },
@@ -48,17 +51,14 @@ export const routes: Routes = [
     { path: 'customer/invoices', component : CustomerTableInvoicesComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices/:id', component: CustomerViewInvoiceComponent, canActivate: [authGuard, customerGuard] },
     { path: 'customer/invoices/:id/edit', component: CustomerEditInvoiceComponent, canActivate: [authGuard, customerGuard] },
-    { path: 'customer/invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard, customerGuard] },
 
     //deliveryPartner Routes
     { path: 'delivery-partner/invoice-items', component: DeliveryPartnerTableInvoiceItemsComponent, canActivate: [authGuard, deliveryPartnerGuard] },
-    { path: 'delivery-partner/invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard, deliveryPartnerGuard] },
+    { path: 'delivery-partner/invoice-items/:id/edit', component: DeliveryPartnerEditInvoiceItemComponent, canActivate: [authGuard, deliveryPartnerGuard] },
     
     //administrator Routes
     { path: 'admin/users', component: AdminTableUsersComponent, canActivate: [authGuard, administratorGuard] },
     { path: 'admin/invoice-items', component: AdminTableInvoiceItemsComponent, canActivate: [authGuard, administratorGuard] },
-    { path: 'admin/invoice-items/:id/edit', component: EditInvoiceItemComponent, canActivate: [authGuard, administratorGuard] },
+    { path: 'admin/invoice-items/:id/edit', component: AdminEditInvoiceItemComponent, canActivate: [authGuard, administratorGuard] },
 
-
-    //To do
 ];

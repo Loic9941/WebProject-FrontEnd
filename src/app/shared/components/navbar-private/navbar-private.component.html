@@ -42,16 +42,17 @@
           <li class="nav-item"> 
             <a class="nav-link" href="admin/invoice-items">Commandes</a>
           </li>
+        </ng-template>
 
+        <!--Delivery partner-->
+        <ng-template [ngIf]="isDeliveryPartner()">
+          <li class="nav-item"> 
+            <a class="nav-link" href="delivery-partner/invoice-items">Mes livraisons</a>
+          </li>
         </ng-template>
       </ul>
 
-      <!--Delivery partner-->
-      <ng-template [ngIf]="isDeliveryPartner()">
-        <li class="nav-item"> 
-          <a class="nav-link" href="/delivery-partner/invoice-items">Mes livraisons</a>
-        </li>
-      </ng-template>
+
       
       <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
         <i class="fas fa-shopping-cart"></i>
