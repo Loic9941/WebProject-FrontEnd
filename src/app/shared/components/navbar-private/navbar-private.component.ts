@@ -60,11 +60,47 @@ export class NavbarPrivateComponent {
     return this.authService.isArtisan();
   }
 
+  navigateToCustomerProducts() : void {
+    this.router.navigate(["customer/products"]);
+  }
+
+  navigateToCustomerInvoices() : void {
+    this.router.navigate(["customer/invoices"]);
+  }
+
+  navigateToAdminUsers() : void {
+    this.router.navigate(["admin/users"]);
+  }
+
+  navigateToAdminInvoiceItems() : void {
+    this.router.navigate(["admin/invoice-items"]);
+  }
+
+  navigateToArtisanProducts() : void {
+    this.router.navigate(["artisan/products"]);
+  }
+
+  navigateToArtisanRates() : void {
+    this.router.navigate(["artisan/rates"]);
+  }
+
+  navigateToArtisanInvoiceItems() : void {
+    this.router.navigate(["artisan/invoice-items"]);
+  }
+
+  navigateToArtisanFinancialReports() : void {
+    this.router.navigate(["artisan/financial-reports"]);
+  }
+
+  navigateTodeliveryPartnerInvoiceItems() : void {
+    this.router.navigate(["delivery-partner/invoice-items"]);
+  }
+
   isCustomer() : boolean {
     return this.authService.isCustomer();
   }
 
-  goToCart() : void {
+  navigateToCart() : void {
     this.invoiceService.getPendingInvoice().subscribe((data: any) => {
       const invoice : Invoice = data;
       if (invoice) {

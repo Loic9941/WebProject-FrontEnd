@@ -11,57 +11,79 @@
         <!--Artisan-->
         <ng-template [ngIf]="isArtisan()">
           <li class="nav-item">
-            <a class="nav-link" href="/artisan/products">Mes articles</a>
+            <a class="nav-link" (click)="navigateToArtisanProducts()">Mes articles</a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link" href="/artisan/rates">Mes notes</a>
+            <a class="nav-link" (click)="navigateToArtisanRates()">Mes notes</a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link" href="/artisan/invoice-items">Mes commandes</a>
+            <a class="nav-link" (click)="navigateToArtisanInvoiceItems()">Mes commandes</a>
           </li>      
           <li class="nav-item"> 
-            <a class="nav-link" href="/artisan/financial-report">Mes rapport financiers</a>
+            <a class="nav-link" (click)="navigateToArtisanFinancialReports()">Mes rapport financiers</a>
           </li>
         </ng-template>
 
         <!--Customer-->
         <ng-template [ngIf]="isCustomer()">
           <li class="nav-item">
-            <a class="nav-link" href="/customer/products">Boutique en ligne</a>
+            <a class="nav-link"
+              (click)="navigateToCustomerProducts()"
+              >
+              Boutique en ligne
+            </a>
           </li>
-          <li class="nav-item"> 
-            <a class="nav-link" href="customer/invoices">Mes commandes</a>
+          <li class="nav-item">
+            <a 
+              class="nav-link" 
+              (click)="navigateToCustomerInvoices()"
+              >
+              Mes commandes
+            </a>
           </li>
         </ng-template>
         
         <!--Admin-->
         <ng-template [ngIf]="isAdmin()">
           <li class="nav-item"> 
-            <a class="nav-link" href="admin/users">Utilisateurs</a>
+            <a 
+              class="nav-link" 
+              (click)="navigateToAdminUsers()"
+              >
+              Utilisateurs
+            </a>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link" href="admin/invoice-items">Commandes</a>
+            <a 
+              class="nav-link" 
+              (click)="navigateToAdminInvoiceItems()"
+              >
+              Commandes
+            </a>
           </li>
         </ng-template>
 
         <!--Delivery partner-->
         <ng-template [ngIf]="isDeliveryPartner()">
           <li class="nav-item"> 
-            <a class="nav-link" href="delivery-partner/invoice-items">Mes livraisons</a>
+            <a class="nav-link" (click)="navigateTodeliveryPartnerInvoiceItems()">Mes livraisons</a>
           </li>
         </ng-template>
       </ul>
 
 
       
-      <button *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2" (click)="goToCart()">
-        <i class="fas fa-shopping-cart"></i>
-        Panier ({{ numberCart }})
-      </button>
-      <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">
-        <i class="fas fa-sign-out-alt"></i>
-        Déconnexion
-      </button>
+      <button 
+        *ngIf="showCart()" class="btn btn-outline-secondary ms-auto me-2"
+        (click)="navigateToCart()"
+        >
+          <i class="fas fa-shopping-cart"></i>
+          Panier ({{ numberCart }})
+        </button>
+        <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Déconnexion
+        </button>
     </div>
   </div>
 </nav>

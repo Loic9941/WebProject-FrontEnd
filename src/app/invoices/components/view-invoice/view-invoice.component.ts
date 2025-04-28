@@ -53,6 +53,9 @@ export class ViewInvoiceComponent {
       if (invoiceItem.status !== 'delivered') {
         this.showErrorMessage.emit('Vous ne pouvez pas noter un article qui n\'est pas livré');
         return;
+      } else if (invoiceItem.status === 'delivered' && invoiceItem.rating !== null) {
+        this.showErrorMessage.emit('Vous avez déjà noté cet article');
+        return;
       }
       this.router.navigate(['/customer/invoice-items', invoiceItem.id, 'rates', 'new']);
     }

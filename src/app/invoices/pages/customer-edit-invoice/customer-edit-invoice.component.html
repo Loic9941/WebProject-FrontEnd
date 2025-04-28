@@ -1,1 +1,5 @@
-<app-edit-invoice></app-edit-invoice>
+<app-edit-invoice
+    (cartUpdated)="cartUpdatedEmit($event)"
+    (showErrorMessage)="showErrorMessageEmit($event)"
+    (showSuccessMessage)="showSuccessMessageEmit($event)"
+></app-edit-invoice>

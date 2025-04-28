@@ -40,7 +40,7 @@ export const routes: Routes = [
     { path: 'artisan/products/new', component: ArtisanNewProductComponent,  canActivate: [authGuard,artisanGuard] },
     { path: 'artisan/rates', component: ArtisanTableRatingsComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/rates/:id/comment', component: ArtisanRateCommentComponent, canActivate: [authGuard, artisanGuard] },
-    { path: 'artisan/financial-report', component: ArtisanFinancialReportsComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'artisan/financial-reports', component: ArtisanFinancialReportsComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/invoice-items', component: ArtisanTableInvoiceItemsComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/invoice-items/:id/edit', component: ArtisanEditInvoiceItemComponent, canActivate: [authGuard, artisanGuard] },
 
