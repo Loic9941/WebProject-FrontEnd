@@ -66,6 +66,7 @@ export class EditProductComponent {
       formData.append('description', this.product.description || '');
       formData.append('price', this.product.price.toString());
       formData.append('category', this.product.category || '');
+      formData.append('available', this.product.available ? 'true' : 'false');
 
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);

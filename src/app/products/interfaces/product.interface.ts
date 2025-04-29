@@ -8,4 +8,5 @@ export interface Product {
     artisteFullName? : string;
     category : string;
     createdAt : string;
+    available? : boolean;
 }

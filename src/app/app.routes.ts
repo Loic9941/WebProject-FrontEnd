@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './authentication/components/login/login.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { authGuard } from './shared/guards/auth.guard';
-import { EditInvoiceItemComponent } from './invoice-items/components/edit-invoice-item/edit-invoice-item.component';
 import { artisanGuard } from './shared/guards/artisan.guard';
 import { administratorGuard } from './shared/guards/administrator.guard';
 import { customerGuard } from './shared/guards/customer.guard';
@@ -24,7 +23,6 @@ import { DeliveryPartnerTableInvoiceItemsComponent } from './products/pages/deli
 import { AdminTableInvoiceItemsComponent } from './products/pages/admin-table-invoice-items/admin-table-invoice-items.component';
 import { ArtisanEditInvoiceItemComponent } from './products/pages/artisan-edit-invoice-item/artisan-edit-invoice-item.component';
 import { DeliveryPartnerEditInvoiceItemComponent } from './products/pages/delivery-partner-edit-invoice-item/delivery-partner-edit-invoice-item.component';
-import { RateProductComponent } from './products/components/rate-product/rate-product.component';
 
 export const routes: Routes = [
 
