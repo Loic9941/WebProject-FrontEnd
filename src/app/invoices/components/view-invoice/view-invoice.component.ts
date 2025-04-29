@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Invoice } from '../../interfaces/invoice.interface';
 import { InvoiceItem } from '../../../invoice-items/interfaces/invoice-item.interface';
 import { InvoiceItemService } from '../../../invoice-items/services/invoice-item.service';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-view-invoice',
@@ -15,6 +16,7 @@ import { InvoiceItemService } from '../../../invoice-items/services/invoice-item
 export class ViewInvoiceComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
   
+  apiUrlImage = environment.API_URL_IMAGE;
   invoiceId!: number;
   invoice: Invoice = {
     id: 0,

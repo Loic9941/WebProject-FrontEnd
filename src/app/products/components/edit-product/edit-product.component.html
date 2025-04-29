@@ -21,13 +21,14 @@
                     </div>
                     <div class="mb-3">
                         <b><label for="description" class="form-label">Description de l'article :</label></b>
-                        <input
+                        <textarea
                         [(ngModel)]="product.description"
                         type="text"
                         id="description"
                         class="form-control"
                         name="description"
-                        />
+                        >
+                        </textarea>
                     </div>
                     <div class="mb-3">
                         <b><label for="price" class="form-label">Prix de l'article :</label></b>
@@ -85,6 +86,15 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="product.image " class="mb-3">
+                        <b><p>Photo :</p></b>
+                        <img
+                            [src]="apiUrlImage + product.image"
+                            alt="Image de l'article"
+                            class="img-thumbnail"
+                            style="max-width: 200px;"
+                        />
+                    </div>
                     <div class="mb-3">
                         <b><p>En ligne :</p></b>
                         <input
@@ -94,17 +104,7 @@
                             class="form-check-input"
                             name="available"
                         />
-                    </div>
-                    <div *ngIf="product.image " class="mb-3">
-                        <b><p>photo :</p></b>
-                        <img
-                            [src]="product.image"
-                            alt="Image de l'article"
-                            class="img-thumbnail"
-                            style="max-width: 200px;"
-                        />
-                    </div>
-                    
+                    </div>                    
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">

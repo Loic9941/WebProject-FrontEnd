@@ -20,7 +20,7 @@
                                 <th>{{ i + 1 }}</th>
                                 <td><img 
                                     *ngIf="item.productImage" 
-                                    [src]="'data:image/jpeg;base64,' + item.productImage" 
+                                    [src]="apiUrlImage + item.productImage" 
                                     class="card-img-top" 
                                     style="height: 20px; object-fit: cover;"
                                 /></td>

@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import { User } from '../../../users/interfaces/user.interface';
 import { UserService } from '../../../users/services/user.service';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-edit-invoice',
@@ -29,11 +30,9 @@ export class EditInvoiceComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter
   @Output() cartUpdated: EventEmitter<number> = new EventEmitter<number>();
   invoiceForm: FormGroup;
-  
-
   invoiceId!: number;
   deliveryPartners: User[] = [];
-  
+  apiUrlImage = environment.API_URL_IMAGE;
   totalPrice!: number;
   invoice: Invoice = {
     id: 0,

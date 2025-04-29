@@ -100,7 +100,7 @@
                             <div class="card h-100">
                                 <img 
                                     *ngIf="product.image" 
-                                    [src]="'data:image/jpeg;base64,' + product.image" 
+                                    [src]="apiUrlImage + product.image" 
                                     class="card-img-top" 
                                     alt="{{ product.name }}" 
                                     style="height: 200px; object-fit: cover;"

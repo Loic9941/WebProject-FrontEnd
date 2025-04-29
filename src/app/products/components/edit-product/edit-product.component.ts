@@ -1,10 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
+import { environment } from '../../../environment';
+
 
 @Component({
   selector: 'app-edit-product',
@@ -16,7 +18,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 })
 export class EditProductComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
-
+  apiUrlImage = environment.API_URL_IMAGE;
   productId!: number;
   product: Product = {
     name: '',
@@ -53,9 +55,6 @@ export class EditProductComponent {
   getProduct(): void {
     this.productService.getProductById(this.productId).subscribe((data) => {
       this.product = data;
-      if (this.product.image) {
-        this.product.image = 'data:image/jpeg;base64,' + this.product.image
-      }
     });
   }
 
@@ -74,11 +73,13 @@ export class EditProductComponent {
       if (this.productId) {
         this.productService.updateProduct(this.productId, formData).subscribe((data) => {
           this.showSuccess();
+          this.getProduct();
         });
       }
       else {
         this.productService.addProduct(formData).subscribe((data) => {
           this.showSuccess();
+          this.getProduct();
         });
       }
     }
@@ -93,12 +94,8 @@ export class EditProductComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.product.image = reader.result as string; // Update product.image with the preview URL
-      };
-      reader.readAsDataURL(this.selectedFile);
+      this.product.image = '';
+      this.selectedFile = input.files[0];      
     }
   }
 

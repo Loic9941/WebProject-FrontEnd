@@ -7,6 +7,8 @@ import { Invoice } from '../../../invoices/interfaces/invoice.interface';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Rating } from '../../interfaces/rating.interface';
 import { RatingService } from '../../services/rating.service';
+import { environment } from '../../../environment';
+
 
 @Component({
   selector: 'app-view-product',
@@ -30,6 +32,7 @@ export class ViewProductComponent implements OnInit {
   ratings : Rating[] = [];
   rating: number = 0; 
   numberOfRatings: number = 0; 
+  apiUrlImage = environment.API_URL_IMAGE;
   @Output() cartUpdated = new EventEmitter<number>();
   @Output() showSuccessMessage = new EventEmitter<string>();
 
@@ -62,9 +65,6 @@ export class ViewProductComponent implements OnInit {
   getProductById(id: number) {
     this.productService.getProductById(id).subscribe((data) => {
       this.product = data;
-      if (this.product.image) {
-        this.product.image = 'data:image/jpeg;base64,' + this.product.image
-      }
     });
   }
 

@@ -4,6 +4,7 @@ import { Product } from '../../interfaces/product.interface';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-shop-products',
@@ -16,7 +17,7 @@ export class ShopProductsComponent {
     private productService: ProductService, 
   )
   {}
-
+  apiUrlImage = environment.API_URL_IMAGE;
   selectedCategory: string = '';
   minPrice: number = 0;
   maxPrice: number = 0;
