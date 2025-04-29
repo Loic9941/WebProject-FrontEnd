@@ -28,7 +28,6 @@ import { environment } from '../../../environment';
 export class EditInvoiceComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter
-  @Output() cartUpdated: EventEmitter<number> = new EventEmitter<number>();
   invoiceForm: FormGroup;
   invoiceId!: number;
   deliveryPartners: User[] = [];
@@ -67,7 +66,6 @@ export class EditInvoiceComponent {
       for (let i = 0; i < this.invoice.invoiceItems.length; i++) {
         sum += this.invoice.invoiceItems[i].quantity;
       }
-      this.cartUpdated.emit(sum);
     });
   }
 
@@ -101,5 +99,9 @@ export class EditInvoiceComponent {
         this.showErrorMessage.emit("Erreur lors de la suppression du produit");
       }
     });
+  }
+
+  redirectToInvoices() {
+    this.router.navigate(['/customer/invoices']);
   }
 }

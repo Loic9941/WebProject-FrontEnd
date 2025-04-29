@@ -44,6 +44,6 @@ export class TableProductsComponent {
   }
 
   goToProduct(id: number) {
-    this.router.navigate(["/artisan/products", id, "edit"]);
+    this.router.navigate(['', id, "edit"]);
   }
 }

@@ -54,4 +54,8 @@ export class InvoiceItemService {
   markAsDelivered(invoiceItemId: number) {
     return this.apiService.put(`invoiceItems/${invoiceItemId}/markAsDelivered`, {});
   }
+
+  deleteInvoiceItem(invoiceItemId: number) {
+    return this.apiService.delete(`invoiceItems`, invoiceItemId);
+  }
 }

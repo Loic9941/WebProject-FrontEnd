@@ -23,6 +23,10 @@ import { DeliveryPartnerTableInvoiceItemsComponent } from './products/pages/deli
 import { AdminTableInvoiceItemsComponent } from './products/pages/admin-table-invoice-items/admin-table-invoice-items.component';
 import { ArtisanEditInvoiceItemComponent } from './products/pages/artisan-edit-invoice-item/artisan-edit-invoice-item.component';
 import { DeliveryPartnerEditInvoiceItemComponent } from './products/pages/delivery-partner-edit-invoice-item/delivery-partner-edit-invoice-item.component';
+import { AdminTableProductsComponent } from './products/pages/admin-table-products/admin-table-products.component';
+import { AdminTableRatingsComponent } from './products/pages/admin-table-ratings/admin-table-ratings.component';
+import { AdminEditInvoiceItemComponent } from './invoices/pages/admin-edit-invoice-item/admin-edit-invoice-item.component';
+import { AdminEditProductComponent } from './products/pages/admin-edit-product/admin-edit-product.component';
 
 export const routes: Routes = [
 
@@ -56,5 +60,10 @@ export const routes: Routes = [
     //administrator Routes
     { path: 'admin/users', component: AdminTableUsersComponent, canActivate: [authGuard, administratorGuard] },
     { path: 'admin/invoice-items', component: AdminTableInvoiceItemsComponent, canActivate: [authGuard, administratorGuard] },
+    { path: 'admin/invoice-items/:id/edit', component: AdminEditInvoiceItemComponent, canActivate: [authGuard, administratorGuard] },
+    { path: 'admin/rates', component: AdminTableRatingsComponent, canActivate: [authGuard, administratorGuard] },
+    { path: 'admin/products', component: AdminTableProductsComponent, canActivate: [authGuard, administratorGuard]},
+    { path: 'admin/products/:id/edit', component: AdminEditProductComponent ,  canActivate: [authGuard, administratorGuard] },
+
 
 ];

@@ -58,6 +58,13 @@
               Commandes
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="navigateToAdminProducts()">Articles</a>
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" (click)="navigateToAdminRates()">Notes</a>
+          </li>
+          <!--missing ratings and products -->
         </ng-template>
 
         <!--Delivery partner-->
@@ -75,7 +82,7 @@
         (click)="navigateToCart()"
         >
           <i class="fas fa-shopping-cart"></i>
-          Panier ({{ numberCart }})
+          Panier
         </button>
         <button class="btn btn-outline-secondary ms-auto me-2" (click)="logout()">
           <i class="fas fa-sign-out-alt"></i>

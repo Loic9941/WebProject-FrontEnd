@@ -33,7 +33,6 @@ export class ViewProductComponent implements OnInit {
   rating: number = 0; 
   numberOfRatings: number = 0; 
   apiUrlImage = environment.API_URL_IMAGE;
-  @Output() cartUpdated = new EventEmitter<number>();
   @Output() showSuccessMessage = new EventEmitter<string>();
 
 
@@ -70,15 +69,10 @@ export class ViewProductComponent implements OnInit {
 
   addToInvoice(productId: number) {
     this.productService.addToInvoice(productId).subscribe((data) => {
-      const invoice : Invoice = data;
-      let sum = 0;
-      for (let i = 0; i < invoice.invoiceItems.length; i++) {
-        sum += invoice.invoiceItems[i].quantity;
-      }
-      this.cartUpdated.emit(sum);
       this.showSuccessMessage.emit("Produit ajouté au panier");
     });
   }
+
   showAddToInvoiceButton() {
     return this.authService.isCustomer();
   }

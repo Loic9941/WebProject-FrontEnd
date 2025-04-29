@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar-wrapper.component.css'
 })
 export class NavbarWrapperComponent {
-  @Input() numberCart: number = 0;
   get isLoggedIn(): boolean {
     return sessionStorage.getItem("jwt") ? true : false;
   }

@@ -1,19 +1,20 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { EditInvoiceComponent } from '../../components/edit-invoice/edit-invoice.component';
+import { EditInvoiceItemComponent } from "../../../invoice-items/components/edit-invoice-item/edit-invoice-item.component";
 
 @Component({
-  selector: 'app-customer-edit-invoice',
-  imports: [EditInvoiceComponent],
-  templateUrl: './customer-edit-invoice.component.html',
-  styleUrl: './customer-edit-invoice.component.css'
+  selector: 'app-admin-edit-invoice-item',
+  imports: [EditInvoiceItemComponent],
+  templateUrl: './admin-edit-invoice-item.component.html',
+  styleUrl: './admin-edit-invoice-item.component.css'
 })
-export class CustomerEditInvoiceComponent {
+export class AdminEditInvoiceItemComponent {
   @Output() showErrorMessage: EventEmitter<string> = new EventEmitter<string>();
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
 
   showErrorMessageEmit(message: string) {
     this.showErrorMessage.emit(message);
   }
+
   showSuccessMessageEmit(message: string) {
     this.showSuccessMessage.emit(message);
   }
