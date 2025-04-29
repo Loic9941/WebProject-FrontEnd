@@ -17,7 +17,6 @@ import { CustomerEditInvoiceComponent } from './invoices/pages/customer-edit-inv
 import { CustomerRateProductComponent } from './products/pages/customer-rate-product/customer-rate-product.component';
 import { ArtisanTableRatingsComponent } from './products/pages/artisan-table-ratings/artisan-table-ratings.component';
 import { AdminTableUsersComponent } from './users/pages/admin-table-users/admin-table-users.component';
-import { ArtisanFinancialReportsComponent } from './accounting/pages/artisan-financial-reports/artisan-financial-reports.component';
 import { ArtisanRateCommentComponent } from './products/pages/artisan-rate-comment/artisan-rate-comment.component';
 import { deliveryPartnerGuard } from './shared/guards/delivery-partner.guard';
 import { ArtisanTableInvoiceItemsComponent } from './products/pages/artisan-table-invoice-items/artisan-table-invoice-items.component';
@@ -39,8 +38,8 @@ export const routes: Routes = [
     { path: 'artisan/products/:id/edit', component: ArtisanEditProductComponent ,  canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/products/new', component: ArtisanNewProductComponent,  canActivate: [authGuard,artisanGuard] },
     { path: 'artisan/rates', component: ArtisanTableRatingsComponent, canActivate: [authGuard, artisanGuard] },
-    { path: 'artisan/rates/:id/comment', component: ArtisanRateCommentComponent, canActivate: [authGuard, artisanGuard] },
-    { path: 'artisan/financial-reports', component: ArtisanFinancialReportsComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'artisan/rates/:id/comment/new', component: ArtisanRateCommentComponent, canActivate: [authGuard, artisanGuard] },
+    { path: 'artisan/rates/:id/comment/:commentId/edit', component: ArtisanRateCommentComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/invoice-items', component: ArtisanTableInvoiceItemsComponent, canActivate: [authGuard, artisanGuard] },
     { path: 'artisan/invoice-items/:id/edit', component: ArtisanEditInvoiceItemComponent, canActivate: [authGuard, artisanGuard] },
 

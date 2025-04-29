@@ -35,9 +35,21 @@
                 <td>
                     <span *ngIf="rating.commentId" class="badge bg-success">Oui</span>
                     <span *ngIf="!rating.commentId" class="badge bg-danger">Non</span>
+                </td>
                 <td class="text-end">
-                    <button class="btn btn-outline-secondary btn-sm me-2"
-                    [routerLink]="['/rates', rating.id, 'comment']"
+                    <button
+                        *ngIf="!rating.commentId"
+                        class="btn btn-outline-secondary btn-sm me-2"
+                        [routerLink]="[rating.id, 'comments', 'new']"
+                        title="Répondre au commentaire"
+                    >
+                        <i class="fas fa-comment"></i>
+                    </button>
+                    <button
+                        *ngIf="rating.commentId"
+                        class="btn btn-outline-secondary btn-sm me-2"
+                        [routerLink]="[rating.id, 'comments', rating.commentId, 'edit']"
+                        title="Modifier la réponse"
                     >
                         <i class="fas fa-comment"></i>
                     </button>

@@ -38,10 +38,8 @@ export class ProductService {
     return this.apiService.delete(`products`, id);
   }
 
-  //Fix me 
-  //Should be moved to invoice service or renamed
   addToInvoice(id: number): Observable<any> {
-    return this.apiService.post(`invoices/AddToInvoice/${id}`, {});
+    return this.apiService.post(`products/${id}/addToInvoice`, {});
   }
 
   getCategories(): Observable<any> {

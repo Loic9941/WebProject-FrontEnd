@@ -88,10 +88,6 @@ export class NavbarPrivateComponent {
     this.router.navigate(["artisan/invoice-items"]);
   }
 
-  navigateToArtisanFinancialReports() : void {
-    this.router.navigate(["artisan/financial-reports"]);
-  }
-
   navigateTodeliveryPartnerInvoiceItems() : void {
     this.router.navigate(["delivery-partner/invoice-items"]);
   }

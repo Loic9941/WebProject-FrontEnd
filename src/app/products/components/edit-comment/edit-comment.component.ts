@@ -17,6 +17,7 @@ export class EditCommentComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
 
   ratingId!: number;
+  commentId!: number;
   rating : Rating = {
     id : 0,
     rate : 0,
@@ -34,6 +35,7 @@ export class EditCommentComponent {
 
   ngOnInit(): void {    
     this.ratingId = +this.route.snapshot.paramMap.get('id')!;
+    this.commentId = +this.route.snapshot.paramMap.get('commentId')!;
     this.getRating();
   }
 
@@ -45,9 +47,16 @@ export class EditCommentComponent {
 
   saveComment(form: NgForm): void {
     if (form.valid) {
-      this.ratingService.commentRating(this.ratingId, this.rating.commentText || '').subscribe(() => {
-        this.showSuccess();
-    });
+      if (this.commentId) {
+        this.ratingService.updateComment(this.ratingId, this.commentId, this.rating.commentText || '').subscribe(() => {
+          this.showSuccess();
+        }
+        );
+      } else {
+        this.ratingService.commentRating(this.ratingId, this.rating.commentText || '').subscribe(() => {
+          this.showSuccess();
+        });
+      }
     }
   }
 

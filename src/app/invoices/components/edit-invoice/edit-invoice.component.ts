@@ -82,8 +82,8 @@ export class EditInvoiceComponent {
     let deliveryPartnerId = this.invoiceForm.get('selectDeliveryPartner')?.value?.id;
     this.invoiceService.markInvoiceAsPaid(this.invoiceId, deliveryPartnerId).subscribe({
       next: (response) => {
-        this.showSuccessMessage.emit("Facture marquée comme payée");
-        this.router.navigate(["/invoices"]);
+        this.showSuccessMessage.emit("Commande payée avec succès");
+        this.router.navigate(["/customer/invoices"]);
       },
       error: (error) => {
         this.showErrorMessage.emit("Erreur lors de la mise à jour de la facture");
