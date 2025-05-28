@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card shadow my-5">
-            <form #productForm="ngForm"  (ngSubmit)="saveProduct(productForm)">
+            <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)">
                 @if (productId) {
                     <h1 class="card-header text-center">Modifier un article</h1>
                 }
@@ -9,18 +9,26 @@
                     <h1 class="card-header text-center">Ajouter un article</h1>
                 }
                 <div class="card-body">
-                    <div class="mb-3">
-                        <b><label for="name" class="form-label">Nom de l'article :</label></b>
+                    <div>
+                        <b><label for="name" class="form-label">Nom de l'article<span class="text-danger">*</span></label></b>
                         <input
                         [(ngModel)]="product.name"
                         type="text"
                         id="name"
                         class="form-control"
                         name="name"
+                        #nameInput="ngModel"
+                        required
                         />
                     </div>
-                    <div class="mb-3">
-                        <b><label for="description" class="form-label">Description de l'article :</label></b>
+                    <div>
+                        @if(nameInput.invalid && nameInput.touched) {
+                            <small class="form-text text-danger">Le nom de l'article est obligatoire</small>
+                        }
+                    </div>
+                    <br />
+                    <div>
+                        <b><label for="description" class="form-label">Description de l'article</label></b>
                         <textarea
                         [(ngModel)]="product.description"
                         type="text"
@@ -30,18 +38,27 @@
                         >
                         </textarea>
                     </div>
-                    <div class="mb-3">
-                        <b><label for="price" class="form-label">Prix de l'article :</label></b>
+                    <br />
+                    <div>
+                        <b><label for="price" class="form-label">Prix de l'article<span class="text-danger">*</span></label></b>
                         <input
                         [(ngModel)]="product.price"
-                            type="number"
-                            id="price"
-                            class="form-control"
-                            name="price"
+                        type="number"
+                        id="price"
+                        class="form-control"
+                        name="price"
+                        required
+                        #priceInput="ngModel"
                         />
                     </div>
-                    <div class="mb-3">
-                        <b><label for="image" class="form-label">Photo de l'article :</label></b>
+                    <div>
+                        @if(priceInput.invalid && priceInput.touched) {
+                            <small class="form-text text-danger">Le prix de l'article est obligatoire</small>
+                        }
+                    </div>
+                    <br />
+                    <div>
+                        <b><label for="image" class="form-label">Photo de l'article</label></b>
                         <input
                             type="file"
                             id="image"
@@ -49,8 +66,9 @@
                             (change)="onFileSelected($event)"
                         />
                     </div>
-                    <div class="mb-3">
-                        <b><label for="category" class="form-label">Catégorie :</label></b>
+                    <br />
+                    <div>
+                        <b><label for="category" class="form-label">Catégorie<span class="text-danger">*</span></label></b>
                         <div class="row">
                             <div class="col-md-6">
                                 <select
@@ -58,6 +76,8 @@
                                     id="category"
                                     class="form-select"
                                     name="category"
+                                    required
+                                    #categoryInput="ngModel"
                                 >
                                     <option *ngFor="let category of categories" [value]="category">
                                         {{ category }}
@@ -85,8 +105,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            @if(categoryInput.invalid && categoryInput.touched) {
+                                <small class="form-text text-danger">La catégorie est obligatoire</small>
+                            }
+                        </div>
                     </div>
-                    <div *ngIf="product.image " class="mb-3">
+                    <br />
+                    <div *ngIf="product.image">
                         <b><p>Photo :</p></b>
                         <img
                             [src]="apiUrlImage + product.image"
@@ -95,16 +121,7 @@
                             style="max-width: 200px;"
                         />
                     </div>
-                    <div class="mb-3">
-                        <b><p>En ligne :</p></b>
-                        <input
-                            type="checkbox"
-                            [(ngModel)]="product.available"
-                            id="available"
-                            class="form-check-input"
-                            name="available"
-                        />
-                    </div>                    
+                    <br />   
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">
@@ -115,6 +132,7 @@
                     <button 
                         type="submit" 
                         class="btn btn-primary"
+                        [disabled]="productForm.invalid"
                     >
                         Enregistrer
                     </button>

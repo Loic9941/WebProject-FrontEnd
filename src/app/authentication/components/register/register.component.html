@@ -5,7 +5,7 @@
       <form [formGroup]="registerForm"  (ngSubmit)="register()">
         <div class="card-body">
           <div class="form-group">
-            <label for="firstname">Prénom</label>
+            <label for="firstname">Prénom<span class="text-danger">*</span></label>
             <input
               formControlName="firstname"
               type="text"
@@ -23,7 +23,7 @@
           </div>
           <br />
           <div class="form-group">
-            <label for="lastname">Nom</label>
+            <label for="lastname">Nom<span class="text-danger">*</span></label>
             <input
               formControlName="lastname"
               type="text"
@@ -41,7 +41,7 @@
           </div>
           <br />
           <div>
-            <label for="email">Email</label>
+            <label for="email">Email<span class="text-danger">*</span></label>
             <input
               formControlName="email"
               type="email"
@@ -62,7 +62,7 @@
           </div>
           <br />
           <div class="form-group">
-            <label for="password">Mot de passe</label>
+            <label for="password">Mot de passe<span class="text-danger">*</span></label>
             <input
               formControlName="password"
               type="password"
@@ -90,14 +90,20 @@
           </div>
           <br />
           <div>
-              <label for="role">Rôle</label>
-
+              <label for="role">Rôle<span class="text-danger">*</span></label>
               <select formControlName="role" class="form-control border">
                   <option value="Artisan">Artisan</option>
                   <option value="Customer">Client</option>
                   <option value="Administrator">Administrateur</option>
                   <option value="DeliveryPartner">Partenaire de livraison</option>
               </select>
+          </div>
+          <div>
+            @if(registerForm.get('role')?.invalid && registerForm.get('role')?.errors && registerForm.get('role')?.dirty || registerForm.get('role')?.touched){
+              @if(registerForm.get('role')?.hasError('required')){
+                <small class="form-text text-danger">Le rôle est obligatoire</small>
+              }
+            }
           </div>
         </div>
         <div class="card-footer">

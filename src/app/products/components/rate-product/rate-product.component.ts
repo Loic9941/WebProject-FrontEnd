@@ -71,7 +71,7 @@ export class RateProductComponent {
     ).subscribe({
       next: (response) => {
         this.showSuccessMessage.emit('Produit noté avec succès');
-        this.router.navigate(["/invoices"]);
+        this.router.navigate(["/customer/invoices"]);
       },
       error: (error) => {
         if(error.status === 409) {

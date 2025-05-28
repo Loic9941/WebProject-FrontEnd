@@ -73,13 +73,13 @@ export class EditProductComponent {
       if (this.productId) {
         this.productService.updateProduct(this.productId, formData).subscribe((data) => {
           this.showSuccess();
-          this.getProduct();
+          this.redirectToProducts();
         });
       }
       else {
         this.productService.addProduct(formData).subscribe((data) => {
           this.showSuccess();
-          this.getProduct();
+          this.redirectToProducts();
         });
       }
     }
