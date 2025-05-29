@@ -122,5 +122,8 @@ export class EditProductComponent {
     if (this.authService.isArtisan()){
       this.router.navigate(['/artisan/products']);
     }
+    else if (this.authService.isAdmin()){
+      this.router.navigate(['/admin/products']);
+    }
   }
 }

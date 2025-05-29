@@ -44,6 +44,11 @@ export class TableProductsComponent {
   }
 
   goToProduct(id: number) {
-    this.router.navigate(['/artisan/products', id, "edit"]);
+    if (this.authService.isArtisan()) {
+      this.router.navigate(['/artisan/products', id, 'edit']);
+    }
+    else if (this.authService.isAdmin()) {
+      this.router.navigate(['/admin/products', id, 'edit']);
+    }
   }
 }

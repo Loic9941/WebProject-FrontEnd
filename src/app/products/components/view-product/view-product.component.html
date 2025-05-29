@@ -19,17 +19,16 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Product Details -->
                 <div class="col-md-7">
                     <div class="card-body">
                         <h3 class="card-title">{{ product.name }}</h3>
-                        <p class="text-muted">{{ product.category }}</p>
-                        <p class="card-text">
+                        <p class="text-muted">{{ product.artistFullName}}</p>
+                        <p class="text-muted">Catégorie : {{ product.category }}</p>
+                        <p class="card-text">Description :
                             {{ product.description }}
                         </p>
-                        <h4 class="text-primary">{{ product.price | currency: 'EUR' }}</h4>
-
-                        <!-- Ratings -->
+                        <h4 class="text-primary">{{ product.price}} €</h4>
+                        <br />
                         <div class="mb-3">
                             <h6>Évaluation :</h6>
                             <div *ngIf="ratings.length > 0;">
@@ -40,9 +39,11 @@
                                     <i class="fa fa-star text-secondary"></i>
                                 </span>
                             </div>
+                            <div *ngIf="ratings.length === 0">
+                                <span class="text-muted">--</span>
+                            </div>
                         </div>
 
-                        <!-- Add to Cart Button -->
                         <div class="mt-4">
                             <button
                                 type="button"
@@ -58,7 +59,6 @@
             </div>
         </div>
 
-        <!-- Comments Section -->
         <div class="card shadow my-4">
             <div class="card-header bg-default">
                 <h5 class="mb-0">Avis des clients</h5>

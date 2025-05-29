@@ -121,7 +121,17 @@
                             style="max-width: 200px;"
                         />
                     </div>
-                    <br />   
+                    <br />
+                    <div class="mb-3">
+                        <b><p>Publié :</p></b>
+                        <input
+                            type="checkbox"
+                            [(ngModel)]="product.available"
+                            id="available"
+                            class="form-check-input"
+                            name="available"
+                        />
+                    </div>   
                 </div>
                 
                 <div class="card-footer d-flex justify-content-between">

@@ -5,6 +5,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Prix</th>
             <th scope="col">Catégorie</th>
+            <th scope="col">Statut</th>
             <th scope="col" class="text-end"></th>
         </tr>
     </thead>
@@ -21,6 +22,13 @@
                 <td>
                     {{ product.category }}
                 </td>
+                <td>
+                    @if(product.available) {
+                        <span class="badge bg-success">Publié</span>
+                    } 
+                    @else {
+                        <span class="badge bg-danger">Non publié</span>
+                    }
                 <td class="text-end">
                     <button
                         class="btn btn-outline-secondary btn-sm me-2"

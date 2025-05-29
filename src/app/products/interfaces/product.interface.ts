@@ -5,7 +5,7 @@ export interface Product {
     image : string | undefined;
     price : number;
     artisteId : number;
-    artisteFullName? : string;
+    artistFullName? : string;
     category : string;
     createdAt : string;
     available? : boolean;
