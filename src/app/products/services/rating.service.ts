@@ -26,10 +26,10 @@ export class RatingService {
   }
 
   commentRating(id: number, text: string): Observable<any> {
-    return this.apiService.post(`ratings/${id}/comment`, { text });
+    return this.apiService.post(`ratings/${id}/comments`, { text });
   }
 
   updateComment(ratingId: number, commentId: number, text: string): Observable<any> {
-    return this.apiService.put(`ratings/${ratingId}/comment/${commentId}`, { text });
+    return this.apiService.put(`ratings/${ratingId}/comments/${commentId}`, { text });
   }
 }
