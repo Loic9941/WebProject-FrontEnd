@@ -10,11 +10,11 @@
                 }
                 <div class="card-body">
                     <div class="mb-3">
-                        <b><label for="name" class="form-label">Nom de l'article</label></b>
+                        <b><label for="name" class="form-label">Nom de l'article :</label></b>
                         {{ rating.productName }}
                     </div>
                     <div class="mb-3">
-                        <b><label for="rate" class="form-label">Note</label></b>
+                        <b><label for="rate" class="form-label">Note :</label></b>
                         <span *ngFor="let star of [].constructor(rating.rate); let i = index">
                             <i class="fa fa-star
                             text-warning"></i>
@@ -24,20 +24,20 @@
                         </span>
                     </div>
                     <div class="mb-3">
-                        <b><label for="comment" class="form-label">Commentaire</label></b>
+                        <b><label for="comment" class="form-label">Commentaire :</label></b>
                         {{ rating.text }}
                     </div>
                     <div class="mb-3">
-                        <b><label for="createdAt" class="form-label">Date du commentaire</label></b>
+                        <b><label for="createdAt" class="form-label">Date du commentaire :</label></b>
                         {{ rating.createdAt | date: 'dd/MM/yyyy' }}
                     </div>
                     <div class="mb-3">
-                        <b><label for="" class="form-label">Auteur du commentaire</label></b>
+                        <b><label for="" class="form-label">Auteur du commentaire :</label></b>
                         {{ rating.firstName }} ******
                     </div>
 
                     <div class="mb-3">
-                        <b><label for="commentText" class="form-label">Réponse</label></b>
+                        <b><label for="commentText" class="form-label">Réponse :</label></b>
                         <textarea 
                             id="commentText" 
                             name="commentText" 

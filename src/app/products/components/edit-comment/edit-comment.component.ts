@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Rating } from '../../interfaces/rating.interface';
@@ -30,6 +30,7 @@ export class EditCommentComponent {
   constructor(
     private route: ActivatedRoute,
     private ratingService: RatingService,
+    private router: Router
   ) {
   }
 
@@ -50,11 +51,13 @@ export class EditCommentComponent {
       if (this.commentId) {
         this.ratingService.updateComment(this.ratingId, this.commentId, this.rating.commentText || '').subscribe(() => {
           this.showSuccess();
+          this.router.navigate(["/artisan/rates"]);
         }
         );
       } else {
         this.ratingService.commentRating(this.ratingId, this.rating.commentText || '').subscribe(() => {
           this.showSuccess();
+          this.router.navigate(["/artisan/rates"]);
         });
       }
     }
