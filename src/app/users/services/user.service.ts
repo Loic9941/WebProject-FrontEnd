@@ -18,6 +18,6 @@ export class UserService {
   }
 
   getDeliveryPartners(): Observable<any> {
-    return this.apiService.get('users/getDeliveryPartners');
+    return this.apiService.get('users/DeliveryPartners');
   }
 }
