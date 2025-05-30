@@ -20,4 +20,12 @@ export class UserService {
   getDeliveryPartners(): Observable<any> {
     return this.apiService.get('users/DeliveryPartners');
   }
+
+  blockUser(id: number): Observable<any> {
+    return this.apiService.put(`users/${id}/block`, {});
+  }
+
+  unblockUser(id: number): Observable<any> {
+    return this.apiService.put(`users/${id}/unblock`, {});
+  }
 }

@@ -22,6 +22,10 @@ export class TableUsersComponent {
     users: User[] = [];
 
     ngOnInit() {
+      this.getUsers();
+    }
+
+    getUsers() {
       this.userService.getUsers().subscribe((data) => {
         this.users = data;
       });
@@ -35,6 +39,30 @@ export class TableUsersComponent {
         },
         error: (err) => {
           this.showErrorMessage.emit('Erreur lors de la suppression de l\'utilisateur');
+        }
+      });
+    }
+
+    blockUser(id: number) {
+      this.userService.blockUser(id).subscribe({
+        next: () => {
+          this.getUsers();
+          this.showSuccessMessage.emit('Utilisateur bloqué');
+        },
+        error: (err) => {
+          this.showErrorMessage.emit('Erreur lors du blocage de l\'utilisateur');
+        }
+      });
+    }
+
+    unblockUser(id: number) {
+      this.userService.unblockUser(id).subscribe({
+        next: () => {
+          this.getUsers();
+          this.showSuccessMessage.emit('Utilisateur débloqué');
+        },
+        error: (err) => {
+          this.showErrorMessage.emit('Erreur lors du déblocage de l\'utilisateur');
         }
       });
     }

@@ -4,4 +4,5 @@ export interface User {
     role: string;
     firstname: string;
     lastname: string;
+    isBlocked: boolean;
 }

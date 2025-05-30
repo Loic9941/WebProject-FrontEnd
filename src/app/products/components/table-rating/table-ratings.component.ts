@@ -3,6 +3,7 @@ import { Rating } from '../../interfaces/rating.interface';
 import { RatingService } from '../../services/rating.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-table-ratings',
@@ -14,7 +15,8 @@ export class TableRatingsComponent {
   ratings: Rating[] = [];
 
   constructor(
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    private authService: AuthService
   ) {
     
   }
@@ -23,6 +25,10 @@ export class TableRatingsComponent {
     this.ratingService.getRatings().subscribe((data) => {
       this.ratings = data;
     });
+  }
+
+  showActions(): boolean {
+    return this.authService.isArtisan();
   }
 
   

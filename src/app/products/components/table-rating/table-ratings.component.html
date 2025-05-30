@@ -38,7 +38,7 @@
                 </td>
                 <td class="text-end">
                     <button
-                        *ngIf="!rating.commentId"
+                        *ngIf="!rating.commentId && showActions()"
                         class="btn btn-outline-secondary btn-sm me-2"
                         [routerLink]="[rating.id, 'comments', 'new']"
                         title="Répondre au commentaire"
@@ -46,7 +46,7 @@
                         <i class="fas fa-comment"></i>
                     </button>
                     <button
-                        *ngIf="rating.commentId"
+                        *ngIf="rating.commentId && showActions()"
                         class="btn btn-outline-secondary btn-sm me-2"
                         [routerLink]="[rating.id, 'comments', rating.commentId, 'edit']"
                         title="Modifier la réponse"

@@ -3,7 +3,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product.interface';
-import { Invoice } from '../../../invoices/interfaces/invoice.interface';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Rating } from '../../interfaces/rating.interface';
 import { RatingService } from '../../services/rating.service';
