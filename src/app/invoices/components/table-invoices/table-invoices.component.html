@@ -11,6 +11,9 @@
         </tr>
     </thead>
     <tbody>
+        <tr *ngIf="!invoices || invoices.length === 0">
+            <td colspan="6" class="text-center text-muted">Aucune commande</td>
+        </tr>
         @for (invoice of invoices; track invoice.id; let i = $index) {
             <tr>
                 <th scope="row">{{ i + 1 }}</th>

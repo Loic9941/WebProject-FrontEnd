@@ -12,6 +12,9 @@
         </tr>
     </thead>
     <tbody>
+        <tr *ngIf="!ratings || ratings.length === 0">
+            <td colspan="7" class="text-center text-muted">Aucune note</td>
+        </tr>
         @for  (rating of ratings; track rating.id; let i = $index)  {
             <tr>
                 <th scope="row">{{ i + 1 }}</th>

@@ -18,6 +18,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr *ngIf="!users || users.length === 0">
+                            <td colspan="7" class="text-center text-muted">Aucun utilisateur</td>
+                        </tr>
                         @for (user of users; track user.id; let i = $index) {
                             <tr>
                                 <th>{{ i + 1 }}</th>
