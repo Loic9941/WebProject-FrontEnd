@@ -11,7 +11,7 @@ export class RatingService {
 
   //Move this to invoiceItem service
   rateInvoiceItem(id: number, rate: number, text: string): Observable<any> {
-    return this.apiService.post(`InvoiceItems/${id}/rate`, { rate, text });
+    return this.apiService.post(`invoiceItems/${id}/rate`, { rate, text });
   }
 
   getRatings(productId?: number): Observable<any> {

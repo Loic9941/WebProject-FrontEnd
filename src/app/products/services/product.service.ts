@@ -43,6 +43,6 @@ export class ProductService {
   }
 
   getCategories(): Observable<any> {
-    return this.apiService.get(`products/Categories`);
+    return this.apiService.get(`products/categories`);
   }
 }

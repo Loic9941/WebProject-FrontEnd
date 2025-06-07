@@ -3,7 +3,7 @@
         <div class="card shadow my-5">
             <form [formGroup]="invoiceForm"  (ngSubmit)="MarkInvoiceAsPaid()">
                 <h4 class="card-header">Modifier le panier</h4>
-                    <div class="card-body">
+                <div class="card-body">
                     <table class="table table-bordered">
                         <thead class="table-light">
                             <tr>
@@ -16,6 +16,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr *ngFor="let item of invoice.invoiceItems; let i = index">
                                 <th>{{ i + 1 }}</th>
                                 <td>{{ item.productName }}</td>
@@ -40,15 +41,15 @@
                     </div>
                     <br/>
                     <mat-form-field>
-                      <mat-label>Transporteur</mat-label>
-                      <mat-select matNativeControl formControlName="selectDeliveryPartner" required>
-                        <mat-option *ngFor="let partner of deliveryPartners" [value]="partner">
-                          {{ partner.firstname }}
-                        </mat-option>
-                      </mat-select>
+                        <mat-label>Transporteur</mat-label>
+                        <mat-select matNativeControl formControlName="selectDeliveryPartner" required>
+                            <mat-option *ngFor="let partner of deliveryPartners" [value]="partner">
+                            {{ partner.firstname }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
-                
+            
                 <div class="card-footer d-flex justify-content-between">
                     <button class="btn btn-secondary" type="button" (click)="redirectToInvoices()">
                         <i class="fas fa-arrow-left"></i>

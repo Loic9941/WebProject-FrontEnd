@@ -11,7 +11,7 @@ export class InvoiceService {
   constructor(private apiService: ApiService) { }
 
   getPendingInvoice() {
-    return this.apiService.get('invoices/getPendingInvoice');
+    return this.apiService.get('invoices/pending');
   }
 
   getInvoices(): Observable<any> {
@@ -37,7 +37,7 @@ export class InvoiceService {
   getInvoiceStatus(invoice: Invoice) {
     if (invoice.status === 'pending') {
       return 'En cours d\'achat'
-    } else if (invoice.status === 'paid') {
+    } else if (invoice.status === 'Paid') {
       return 'Payée';
     }
     return 'Statut inconnu';

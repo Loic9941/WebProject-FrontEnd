@@ -20,7 +20,8 @@ import { environment } from '../../../environment';
     MatFormFieldModule, 
     MatSelectModule, 
     MatInputModule, 
-    ReactiveFormsModule],
+    ReactiveFormsModule
+  ],
   templateUrl: './edit-invoice.component.html',
   styleUrl: './edit-invoice.component.css',
   providers: []

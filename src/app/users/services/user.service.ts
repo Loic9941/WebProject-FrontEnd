@@ -18,7 +18,7 @@ export class UserService {
   }
 
   getDeliveryPartners(): Observable<any> {
-    return this.apiService.get('users/DeliveryPartners');
+    return this.apiService.get('users/deliveryPartners');
   }
 
   blockUser(id: number): Observable<any> {
