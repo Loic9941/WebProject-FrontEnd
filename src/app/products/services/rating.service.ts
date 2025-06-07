@@ -32,4 +32,8 @@ export class RatingService {
   updateComment(ratingId: number, commentId: number, text: string): Observable<any> {
     return this.apiService.put(`ratings/${ratingId}/comments/${commentId}`, { text });
   }
+
+  deleteRating(ratingId: number ): Observable<any> {
+    return this.apiService.delete(`ratings`, ratingId);
+  }
 }

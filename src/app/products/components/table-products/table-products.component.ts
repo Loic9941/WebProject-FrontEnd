@@ -20,6 +20,10 @@ export class TableProductsComponent {
   products: Product[] = [];
 
   ngOnInit() {
+    this.getProducts();
+  }
+
+  getProducts() {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
@@ -39,7 +43,7 @@ export class TableProductsComponent {
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(() => {
-      this.products = this.products.filter((product) => product.id !== id);
+      this.getProducts();
     });
   }
 

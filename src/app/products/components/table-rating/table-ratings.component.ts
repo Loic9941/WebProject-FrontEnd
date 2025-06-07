@@ -22,14 +22,30 @@ export class TableRatingsComponent {
   }
 
   ngOnInit(): void {
+    this.getRatings();
+  }
+
+  getRatings(): void {
     this.ratingService.getRatings().subscribe((data) => {
       this.ratings = data;
     });
   }
 
-  showActions(): boolean {
+  showModifyCommentButton(): boolean {
     return this.authService.isArtisan();
   }
 
-  
+  showAddCommentButton(): boolean {
+    return this.authService.isArtisan();
+  }
+
+  showDeleteButton(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  deleteRating(ratingId: number): void {
+    this.ratingService.deleteRating(ratingId).subscribe(() => {
+      this.getRatings();
+    });
+  }
 }
