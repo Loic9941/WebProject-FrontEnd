@@ -37,7 +37,7 @@ export class InvoiceService {
   getInvoiceStatus(invoice: Invoice) {
     if (invoice.status === 'pending') {
       return 'En cours d\'achat'
-    } else if (invoice.status === 'Paid') {
+    } else if (invoice.status === 'paid') {
       return 'Payée';
     }
     return 'Statut inconnu';
