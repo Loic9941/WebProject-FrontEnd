@@ -7,7 +7,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <app-table-products></app-table-products>
+                <app-table-products
+                    (showSuccessMessage)="ShowSuccessMessageEmit($event)"
+                ></app-table-products>
             </div>
         </div>
     </div>

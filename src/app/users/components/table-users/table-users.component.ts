@@ -34,7 +34,7 @@ export class TableUsersComponent {
     deleteUser(id: number) {
       this.userService.deleteUser(id).subscribe({
         next: () => {
-          this.users = this.users.filter((user) => user.id !== id);
+          this.getUsers();
           this.showSuccessMessage.emit('Utilisateur supprimé');
         },
         error: (err) => {

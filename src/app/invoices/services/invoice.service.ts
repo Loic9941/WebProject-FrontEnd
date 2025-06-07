@@ -22,7 +22,6 @@ export class InvoiceService {
     return this.apiService.get(`invoices/${id}`);
   }
 
-  //should be moved to invoiceItem service
   deleteInvoiceItem(invoiceItemId: number) {
     return this.apiService.delete(`invoiceItems`,invoiceItemId);
   }

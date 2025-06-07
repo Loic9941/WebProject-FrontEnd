@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TableProductsComponent } from "../../components/table-products/table-products.component";
 
 @Component({
@@ -8,4 +8,9 @@ import { TableProductsComponent } from "../../components/table-products/table-pr
   styleUrl: './admin-table-products.component.css'
 })
 export class AdminTableProductsComponent {
+    @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+    
+    ShowSuccessMessageEmit(message: string) {
+      this.showSuccessMessage.emit(message);
+    }
 }

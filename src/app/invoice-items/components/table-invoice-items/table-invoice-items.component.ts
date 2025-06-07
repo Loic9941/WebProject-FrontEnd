@@ -25,13 +25,14 @@ export class TableInvoiceItemsComponent {
   @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
 
   invoiceItems: InvoiceItem[] = [];
-  
 
   ngOnInit() {
+    this.getInvoiceItems();
+  }
+
+  getInvoiceItems() {
     this.invoiceItemService.getInvoiceItems().subscribe((data) => {
       this.invoiceItems = data;
-      console.log(this.invoiceItems);
-
     });
   }
 
@@ -45,7 +46,7 @@ export class TableInvoiceItemsComponent {
 
   deleteInvoiceItem(invoiceItem: InvoiceItem) {
     this.invoiceItemService.deleteInvoiceItem(invoiceItem.id).subscribe(() => {
-      this.invoiceItems = this.invoiceItems.filter((item) => item.id !== invoiceItem.id);
+      this.getInvoiceItems();
       this.showSuccessMessage.emit('Article supprimé avec succès');
     }, (error) => {
       this.showErrorMessage.emit('Erreur lors de la suppression de l\'article');

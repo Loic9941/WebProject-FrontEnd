@@ -5,7 +5,9 @@
                 <h1 class="mb-0 text-center">Toutes les notes</h1>
             </div>
             <div class="card-body">
-                <app-table-ratings></app-table-ratings>
+                <app-table-ratings
+                    (showSuccessMessage)="ShowSuccessMessageEmit($event)"
+                ></app-table-ratings>
             </div>
         </div>
     </div>

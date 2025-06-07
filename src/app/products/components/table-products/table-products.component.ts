@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Router, RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
@@ -11,6 +11,8 @@ import { AuthService } from '../../../shared/services/auth.service';
 	templateUrl: './table-products.component.html',
 })
 export class TableProductsComponent {
+  @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+  
   constructor(
     private productService: ProductService, 
     private authService: AuthService,
@@ -43,6 +45,7 @@ export class TableProductsComponent {
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(() => {
+      this.showSuccessMessage.emit('Produit supprimé');
       this.getProducts();
     });
   }

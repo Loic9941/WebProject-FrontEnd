@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Rating } from '../../interfaces/rating.interface';
 import { RatingService } from '../../services/rating.service';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,9 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrl: './table-ratings.component.css'
 })
 export class TableRatingsComponent {
+
+  @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+  
   ratings: Rating[] = [];
 
   constructor(
@@ -46,6 +49,7 @@ export class TableRatingsComponent {
   deleteRating(ratingId: number): void {
     this.ratingService.deleteRating(ratingId).subscribe(() => {
       this.getRatings();
+      this.showSuccessMessage.emit('Note supprimée');
     });
   }
 }

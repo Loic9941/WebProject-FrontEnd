@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TableProductsComponent } from '../../components/table-products/table-products.component';
 import { RouterLink } from '@angular/router';
 
@@ -9,4 +9,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './artisan-table-products.component.css'
 })
 export class ArtisanTableProductsComponent {
+      @Output() showSuccessMessage: EventEmitter<string> = new EventEmitter<string>();
+      
+      ShowSuccessMessageEmit(message: string) {
+        this.showSuccessMessage.emit(message);
+      }
 }
