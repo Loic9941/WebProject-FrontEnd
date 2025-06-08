@@ -38,7 +38,7 @@ export class TableUsersComponent {
           this.showSuccessMessage.emit('Utilisateur supprimé');
         },
         error: (err) => {
-          this.showErrorMessage.emit('Erreur lors de la suppression de l\'utilisateur');
+          this.showErrorMessage.emit('Erreur lors de la suppression de l\'utilisateur. Vous ne pouvez pas supprimer un utilisateur qui a des commandes ou un admin.');
         }
       });
     }
